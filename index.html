@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="estilo.css">
+  <title>Delizz</title>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar-responsive">
+      <h2 class="logo">Delizz</h2>
+      <input type="checkbox" id="menu" class="checkbox-menu">
+      <label for="menu">
+        <ion-icon class="icon-menu" name="grid-outline"></ion-icon>
+        <ion-icon class="icon-menu-solid" name="grid"></ion-icon>
+      </label>
+      <ul class="container-links">
+        <li class="li-menu"><a class="a-menu" href="#home">Inicio</a></li>
+        <li class="li-menu"><a class="a-menu" href="#product">Cookies</a></li>
+        <li class="li-menu"><a class="a-menu" href="#aboutus">Nosotros</a></li>
+        <li class="li-menu"><a class="a-menu" href="#contact">Contacto</a></li>
+      </ul>
+    </nav>
+    <nav class="navbar">
+      <h2 class="logo">Delizz</h2>
+      <ul class="container-links2">
+        <li class="li-menu2"><a class="a-menu" href="#home">Inicio</a></li>
+        <li class="li-menu2"><a class="a-menu" href="#product">Cookies</a></li>
+        <li class="li-menu2"><a class="a-menu" href="#aboutus">Nosotros</a></li>
+        <li class="li-menu2"><a class="a-menu" href="#contact">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="frontPage">
+    <div class="containerTitle">
+      <h1 class="title">Delizz</h1>
+      <p>Mmh, el sabor mas delicioso.</p>
+    </div>
+    <div class="containerBuy">
+      <div class="containerBox">
+        <div class="cookieOne">
+          <ion-icon class="btnIzq" name="arrow-back-outline"></ion-icon>
+          <img class="imgCookie" src="./resourse/chocolate-crumble-cookie-removebg-preview.png" alt="Galleta uno">
+          <ion-icon class="btnDer" name="arrow-forward-outline"></ion-icon>
+        </div>
+        <div class="cookieTwo">
+          <ion-icon class="btnIzq" name="arrow-back-outline"></ion-icon>
+          <img class="imgCookie" src="./resourse/chocolate-chip-crumble-removebg-preview.png" alt="Galleta dos">
+          <ion-icon class="btnDer" name="arrow-forward-outline"></ion-icon>
+        </div>
+        <div class="cookieThree">
+          <ion-icon class="btnIzq" name="arrow-back-outline"></ion-icon>
+          <img class="imgCookie" src="./resourse/red-velvet-crumble-cookie-removebg-preview.png" alt="Galleta tres">
+          <ion-icon class="btnDer" name="arrow-forward-outline"></ion-icon>
+        </div>
+      </div>
+      <a class="btn-3" href="#">
+        <div class="button__icon-wrapper">
+          <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
+          <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
+        </div>
+        Ordenar
+      </a>
+    </div>
+  </main>
+  <section class="ourFlavor">
+    <h2>Nuestros sabores</h2>
+    <div class="containerFlavor">
+      <img src="./resourse/red-velvet-crumble-cookie-removebg-preview.png" alt="">
+      <div class="cotainerDescipFlavor">
+        <h3>Red Velvet</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Sint aliquam, aspernatur praesentium modi saepe commodi. Sit nihil beatae maxime illo culpa id animi necessitatibus consequuntur praesentium inventore dignissimos, voluptates asperiores!</p>
+        <a class="btn-3" href="#">
+          <div class="button__icon-wrapper">
+            <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
+            <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
+          </div>
+          Añadir
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <script src="script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
