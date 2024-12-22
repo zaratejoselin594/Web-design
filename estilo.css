@@ -71,6 +71,9 @@
   font-weight: 500;
   position: relative;
 }
+a{
+  text-decoration: none;
+}
 .a-menu::after {
   content: '';
   display: block;
@@ -130,6 +133,7 @@
 
 .frontPage{
   padding: 4em;
+  padding-bottom: 0px;
   top: 3.7em;
   display: flex;
   flex-direction: row;
@@ -155,6 +159,8 @@
   justify-content: end;
   gap: 3em;
   transform: rotate(90deg);
+  padding-top: 1.5em;
+  padding-bottom: 3em;
 }
 
 .containerBox{
@@ -346,4 +352,34 @@
   .colorLila{
     background-color: var(--primaryColor);
   }
+}
+h3{
+  font-family: "Sansita", serif;
+  font-size: 1.5em;
+}
+.sectionOur, .sectionContact{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--thirdColor);
+  padding-top: 2em;
+  padding-bottom: 2em;
+  background-color: var(--primaryColor);
+}
+.containerAbout, .containerContact{
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+}
+.sectionContact{
+  background-color: var(--thirdColor);
+  color: #000;
+}
+.containerContact div a{
+  color: #000;
+  padding: 1em;
+  font-size: 1.5em;
 }
