@@ -155,7 +155,7 @@ a{
   height: 38em;
   gap: 3em;
   transform: rotate(90deg);
-  padding-top: 1.5em;
+  padding-top: 2em;
   padding-bottom: 3em;
 }
 .imgCookie::selection {
