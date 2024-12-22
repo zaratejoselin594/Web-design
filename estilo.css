@@ -30,19 +30,16 @@
   font-size: 1.5em;
   font-weight: 600;
   padding: .5em;
-  color: var(--fourthColor);
 }
 .icon-menu{
   font-size: 1.8em;
   padding: .5em;
   display: flex;
-  color: var(--fourthColor);
 }
 .icon-menu-solid{
   font-size: 1.8em;
   padding: .5em;
   display: none;
-  color: var(--fourthColor);
 }
 .checkbox-menu{
   display: none;
@@ -65,7 +62,7 @@
 }
 .a-menu {
   text-decoration: none;
-  color: var(--fourthColor);
+  color: #000;
   font-size: 14px;
   text-transform: uppercase;
   font-weight: 500;
@@ -79,7 +76,7 @@ a{
   display: block;
   width: 0;
   height: 2px;
-  background: var(--fourthColor);
+  background: #000;
   transition: width 0.3s;
   position: absolute;
   bottom: -4px;
@@ -149,7 +146,7 @@ a{
   font-family: "Sansita", serif;
   font-size: 7em;
   font-weight: 600;
-  color: var(--fourthColor);
+  color: var(--thirdColor);
 }
 .containerBuy{
   width: 27em;
@@ -197,7 +194,6 @@ a{
   width: 10em;
   height: 10em;
 }
-
 
 .btn-3 {
   width: 7em;
@@ -271,7 +267,9 @@ a{
     transform: rotate(0deg);
   }
 }
+
 /* Seccion Nuestros sabores */
+
 .ourFlavor{
   display: flex;
   align-items: center;
@@ -361,10 +359,10 @@ h3{
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--thirdColor);
   padding-top: 2em;
   padding-bottom: 2em;
-  background-color: var(--primaryColor);
+  background-color: var(--thirdColor);
+  border-top: var(--primaryColor) solid 2px;
 }
 .containerAbout, .containerContact{
   width: 80%;
@@ -375,11 +373,11 @@ h3{
   gap: 1em;
 }
 .sectionContact{
-  background-color: var(--thirdColor);
-  color: #000;
+  background-color: var(--primaryColor);
+  color: var(--thirdColor);
 }
 .containerContact div a{
-  color: #000;
+  color: var(--thirdColor);
   padding: 1em;
   font-size: 1.5em;
 }
