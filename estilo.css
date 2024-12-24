@@ -12,7 +12,8 @@
   margin: 0;
   font-family: "Nunito",serif;
 }
-/* Reducir codigo */
+/* Reducir codigo ------------------------------------------------------------------------------------------------------------------------------ */
+
 .containerBuy,.containerBox, .containerBox div, .li-menu, 
 .navbar, .container-links2, .frontPage, .btnAddCookie,
 .ourFlavor, .containerFlavor, .cotainerDescipFlavor, 
@@ -34,7 +35,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  z-index: 1001;
+  z-index: 1100;
 }
 .logo{
   font-family: "Sansita", serif;
@@ -46,11 +47,16 @@
   font-size: 1.8em;
   padding: .5em;
   display: flex;
+  cursor: pointer;
 }
 .icon-menu-solid{
   font-size: 1.8em;
   padding: .5em;
   display: none;
+  cursor: pointer;
+}
+.iconCart {
+  font-size: 1.5em;
 }
 .checkbox-menu{
   display: none;
@@ -78,9 +84,7 @@
   font-weight: 500;
   position: relative;
 }
-a{
-  text-decoration: none;
-}
+
 .a-menu::after {
   content: '';
   display: block;
@@ -122,7 +126,116 @@ a{
   padding: 1em;
 }
 
+/* Modal ----------------------------------------------------------------------------------------------------------------------------------- */
 
+.titleCart, .monto, .contentModal, .articleCookie, .topModal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.modal{
+  visibility: hidden;
+  opacity: 0;
+}
+.containerModal{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  background-color: #0000008a;
+  z-index: 1000;
+}
+.contentModal{
+  z-index: 1030;
+  flex-direction: column;
+  padding: 1em;
+  position: fixed;
+  top: 3.7em;
+  background-color: var(--thirdColor);
+}
+.containerModal h3{
+  font-size: 1.2em;
+  font-family: "Nunito",serif;
+}
+.articleCookie{
+  gap: 2em;
+}
+.infoCart{
+  flex-direction: column;
+  align-items: start;
+}
+.monto{
+  flex-direction: column;
+  align-items: end;
+  margin-left: 2em;
+  gap: 1.5em;
+}
+.btnHowMany{
+  border: none;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  font-size: 1em;
+}
+.containerHowMany{
+  padding-top: .5em;
+}
+.topModal{
+  gap: 1em;
+  border-bottom: #000 solid 2px;
+  width: 100%;
+  justify-content: end;
+  margin-bottom: 1em;
+  padding: .3em;
+}
+.closeModal{
+  font-size: 1.5em;
+}
+.iconTrash{
+  font-size: 1.3em;
+}
+.cart{
+  padding: 0 1em;
+}
+.cart a{
+  top: .2em;
+}
+.titleCart{
+  gap: 2em;
+}
+.imgProduct{
+  width: 5em;height: 5em;
+}
+.howManyCookies {
+  width: 15%;
+  padding: 0 .5em;
+  font-size: 1em;
+  color: #333;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+}
+.howManyCookies::-webkit-inner-spin-button,
+.howManyCookies::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.howManyCookies:focus {
+  border-color: #ccc;
+  background-color: #fff;
+}
+.modal:target{
+  visibility: visible;
+  opacity: 1;
+}
 /* Seccion Main ---------------------------------------------------------------------------------------------------------------------------- */
 
 .frontPage{
@@ -389,4 +502,8 @@ h3{
   .navbar{
     display: none;
   }
+}
+a {
+  text-decoration: none;
+  color: #000;
 }

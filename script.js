@@ -1,3 +1,5 @@
+//Slider
+
 const cookies = [
   {
     selector: '.cookieOne',
@@ -64,4 +66,94 @@ document.querySelectorAll('.btnDer').forEach((btn, index) => {
   btn.addEventListener('click', () => {
     changeImage(index, 'right');
   });
+});
+
+
+//Modal Cart ---------------------------------------------------------------------
+
+
+const decreaseButton = document.getElementById('decrease');
+const increaseButton = document.getElementById('increase');
+const numberInput = document.getElementById('number');
+
+decreaseButton.addEventListener('click', () => {
+  const currentValue = parseInt(numberInput.value, 10) || 0;
+  if (currentValue > 0) {
+    numberInput.value = currentValue - 1;
+  }
+});
+
+increaseButton.addEventListener('click', () => {
+  const currentValue = parseInt(numberInput.value, 10) || 0;
+  numberInput.value = currentValue + 1;
+});
+
+numberInput.addEventListener('input', () => {
+  if (parseInt(numberInput.value, 10) < 0) {
+    numberInput.value = 0;
+  }
+});
+
+
+// Se cierre el menu al tocar la pantalla --------------------------------------------
+
+ 
+const menuCheckbox = document.getElementById('menu');
+const navLinks = document.querySelectorAll('.container-links a'); 
+const body = document.body; 
+
+body.addEventListener('click', (event) => {
+  if (!event.target.closest('.navbar-responsive') && !event.target.closest('.container-links')) {
+    menuCheckbox.checked = false;
+  }
+});
+
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    menuCheckbox.checked = false;  
+  });
+});
+
+
+
+
+/// Elementos del carrito y total
+const cartTotalElement = document.querySelector('.cart-total'); // Elemento para el total
+
+// Precio de un producto, ajusta según el producto real
+const productPrice = 4345;
+
+// Función para actualizar el total
+function updateCartTotal() {
+  const quantity = parseInt(numberInput.value, 10) || 0;
+  const total = productPrice * quantity;
+
+  // Actualizamos el total en el carrito
+  if (cartTotalElement) {
+    cartTotalElement.innerText = `Total: $${total.toFixed(2)}`;
+  }
+}
+
+// Función para decrementar
+decreaseButton.addEventListener('click', () => {
+  const currentValue = parseInt(numberInput.value, 10) || 0;
+  if (currentValue > 0) {
+    numberInput.value = currentValue - 1;
+  }
+  updateCartTotal(); // Actualizamos el total después de cambiar la cantidad
+});
+
+// Función para incrementar
+increaseButton.addEventListener('click', () => {
+  const currentValue = parseInt(numberInput.value, 10) || 0;
+  numberInput.value = currentValue + 1;
+  updateCartTotal(); // Actualizamos el total después de cambiar la cantidad
+});
+
+// Función para manejar el input directamente
+numberInput.addEventListener('input', () => {
+  if (parseInt(numberInput.value, 10) < 0) {
+    numberInput.value = 0;
+  }
+  updateCartTotal(); // Actualizamos el total cada vez que se cambia el input
 });
