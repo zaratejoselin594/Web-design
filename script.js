@@ -319,7 +319,7 @@ buttons.forEach(button => {
     setTimeout(() => {
       notification.remove();
     }, 3000);
-  });x
+  });
 });
 
 
