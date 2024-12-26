@@ -128,51 +128,22 @@ buttons.forEach(button => {
   });
 });
 
-// Función para reconstruir el carrito completo
-function rebuildCart() {
-  // Limpiar el contenedor actual
-  cartContainer.innerHTML = '';
-
-  let boxBuffer = [];
-  cookieFlavorsInCart.forEach(cookie => {
-    boxBuffer.push(cookie);
-
-    // Si se alcanzan 3 galletas, crear una caja
-    if (boxBuffer.length === 3) {
-      createCookieBox(boxBuffer);
-      boxBuffer = [];
-    }
-  });
-
-  // Crear una caja con las galletas restantes (1 o 2)
-  if (boxBuffer.length > 0) {
-    createCookieBox(boxBuffer);
-  }
-
-  // Actualizar el precio total del carrito
-  updateTotalPrice();
-}
 
 // Función para crear una caja de galletas
+// Modificar la función createCookieBox para incluir la eliminación de elementos del localStorage
 function createCookieBox(cookieFlavors) {
   const articleCookie = document.createElement('div');
   articleCookie.classList.add('articleCookie');
 
-  // Número de galletas en la caja
   const cookieCount = cookieFlavors.length;
-
-  // Título de la caja
   const title = `Caja de ${cookieCount} cookie${cookieCount > 1 ? 's' : ''}`;
-
-  // Sabores en la caja
-  const flavorText = cookieFlavors
-    .map(cookie => cookie.flavor)
-    .join(cookieCount === 2 ? ' y ' : ', ');
-
-  // Calcular el precio total de la caja
+  const flavorText = cookieFlavors.map(cookie => cookie.flavor).join(', ');
   const totalPrice = cookieFlavors.reduce((sum, c) => sum + c.price, 0);
+  const boxId = `box-${Date.now()}-${Math.random()}`;
 
-  // Configurar el contenido HTML de la caja
+  // Guardar el ID en los datos de las galletas
+  cookieFlavors.forEach(cookie => (cookie.id = boxId));
+
   articleCookie.innerHTML = `
     <img src="./resourse/caja.jpg" alt="" class="imgProduct">
     <div class="titleCart">
@@ -190,20 +161,34 @@ function createCookieBox(cookieFlavors) {
         </div>
       </div>
       <div class="monto">
-        <a href="#"><ion-icon class="iconTrash" name="trash-outline"></ion-icon></a>
+        <ion-icon name="trash-outline" class="iconTrash" data-id="${boxId}"></ion-icon>
         <p>$${totalPrice}</p>
       </div>
     </div>
   `;
 
-  // Agregar la caja al contenedor
   if (cartContainer) {
     cartContainer.appendChild(articleCookie);
   }
 
-  // Configurar los botones de cantidad
   setupQuantityButtons(articleCookie);
+
+  // Evento para eliminar del carrito y localStorage
+  const deleteButton = articleCookie.querySelector('.iconTrash');
+  deleteButton.addEventListener('click', () => {
+    deleteCookieFromCart(boxId);
+    articleCookie.remove(); // Eliminar del DOM
+  });
 }
+
+// Función para eliminar un artículo del localStorage
+function deleteCookieFromCart(boxId) {
+  cookieFlavorsInCart = cookieFlavorsInCart.filter(cookie => cookie.id !== boxId);
+  saveCartToLocalStorage();
+  updateTotalPrice(); // Actualizar el precio total
+}
+
+
 
 // Función para configurar los botones de cantidad
 function setupQuantityButtons(container) {
@@ -242,50 +227,56 @@ function updateTotalPrice() {
   const cartItems = document.querySelectorAll('.articleCookie .monto p');
   let total = 0;
 
+  // Sumar todos los precios de los artículos en el carrito
   cartItems.forEach(item => {
     total += parseInt(item.textContent.replace('$', ''), 10);
   });
 
-  const totalPriceElement = document.querySelector('.cart-total p');
+  // Actualizar el contenido del elemento <p class="total">
+  const totalPriceElement = document.querySelector('.total');
   if (totalPriceElement) {
     totalPriceElement.textContent = `Total: $${total}`;
+  }
+
+  // Asegurar que <p class="total"> y el botón "Comprar" estén al final del contenedor
+  const buyButton = document.querySelector('.cart-total');
+  if (cartContainer) {
+    cartContainer.appendChild(totalPriceElement);
+    cartContainer.appendChild(buyButton);
   }
 }
 
 function rebuildCart() {
-  // Guardar referencias a los elementos persistentes
+  // Limpiar el contenedor actual, pero preservar elementos persistentes
   const topModal = document.querySelector('.topModal');
+  const totalPriceElement = document.querySelector('.total');
   const buyButton = document.querySelector('.cart-total');
 
-  // Limpiar solo las cajas de galletas, preservando los elementos persistentes
   const cartItems = cartContainer.querySelectorAll('.articleCookie');
   cartItems.forEach(item => item.remove());
 
+  // Reconstruir las cajas con las galletas del carrito
   let boxBuffer = [];
   cookieFlavorsInCart.forEach(cookie => {
     boxBuffer.push(cookie);
-
-    // Si se alcanzan 3 galletas, crear una caja
     if (boxBuffer.length === 3) {
       createCookieBox(boxBuffer);
       boxBuffer = [];
     }
   });
-
-  // Crear una caja con las galletas restantes (1 o 2)
   if (boxBuffer.length > 0) {
     createCookieBox(boxBuffer);
   }
 
-  // Asegurarse de que los elementos persistentes se mantengan en el contenedor
-  if (!cartContainer.contains(topModal)) {
-    cartContainer.insertAdjacentElement('afterbegin', topModal);
+  // Asegurar que <p class="total"> y el botón "Comprar" estén al final del contenedor
+  if (totalPriceElement && !cartContainer.contains(totalPriceElement)) {
+    cartContainer.appendChild(totalPriceElement);
   }
-  if (!cartContainer.contains(buyButton)) {
+  if (buyButton && !cartContainer.contains(buyButton)) {
     cartContainer.appendChild(buyButton);
   }
 
-  // Actualizar el precio total del carrito
+  // Actualizar el precio total
   updateTotalPrice();
 }
 
@@ -323,6 +314,79 @@ buttons.forEach(button => {
 });
 
 
+
+
 // Mover el botón "Comprar" al cargar la página
-window.addEventListener('load', moveBuyButtonToBottom);
+window.addEventListener('load', () => {
+  const totalPriceElement = document.querySelector('.total');
+  const buyButton = document.querySelector('.cart-total');
+
+  if (totalPriceElement && cartContainer) {
+    cartContainer.appendChild(totalPriceElement);
+  }
+  if (buyButton && cartContainer) {
+    cartContainer.appendChild(buyButton);
+  }
+  updateTotalPrice();
+});
+
+
+// -----------------------------------------------------------------------------------------------------------------------------
+
+// Función para guardar el carrito en localStorage
+function saveCartToLocalStorage() {
+  const cartData = cookieFlavorsInCart.map(cookie => ({
+    flavor: cookie.flavor,
+    price: cookie.price
+  }));
+
+  localStorage.setItem('cartData', JSON.stringify(cartData));
+}
+
+// Llamar a esta función después de agregar una galleta al carrito
+buttons.forEach(button => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // Obtener sabor y precio
+    const flavor = button.getAttribute('data-flavor');
+    const price = parseInt(button.getAttribute('data-price'), 10);
+
+    // Agregar galleta al carrito
+    cookieFlavorsInCart.push({ flavor, price });
+
+    // Guardar el carrito en localStorage
+    saveCartToLocalStorage();
+
+    // Reconstruir el carrito en la interfaz
+    rebuildCart();
+  });
+});
+
+// Función para recuperar el carrito desde localStorage
+function loadCartFromLocalStorage() {
+  const cartData = localStorage.getItem('cartData');
+
+  if (cartData) {
+    const parsedCartData = JSON.parse(cartData);
+    cookieFlavorsInCart = parsedCartData.map(item => ({
+      flavor: item.flavor,
+      price: item.price
+    }));
+
+    rebuildCart(); // Reconstruir el carrito visualmente
+  }
+}
+
+// Llamar a la función cuando se cargue la página
+window.addEventListener('load', () => {
+  loadCartFromLocalStorage();
+});
+
+
+
+
+
+
+
 

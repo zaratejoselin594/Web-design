@@ -128,89 +128,126 @@
 
 /* Modal ----------------------------------------------------------------------------------------------------------------------------------- */
 
-.titleCart, .monto, .contentModal, .articleCookie, .topModal{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-}
+/* General Layout */
+
 .modal{
   visibility: hidden;
   opacity: 0;
 }
-.containerModal{
+.modal:target{
+  visibility: visible;
+  opacity: 1;
+}
+/* Modal Container */
+.containerModal {
   width: 100%;
   height: 100vh;
   position: fixed;
   display: flex;
   align-items: center;
-  justify-content: end;
-  background-color: #0000008a;
-  z-index: 1000;
+  justify-content: flex-end;
+  background-color: rgba(0, 0, 0, 0.54);
+  z-index: 1001;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  overflow: auto;
 }
-.contentModal{
+
+/* Modal Content */
+.contentModal {
   z-index: 1030;
+  display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   padding: 1em;
+  font-size: .8em;
   position: fixed;
-  top: 3.7em;
+  top: 4.6em;
   background-color: var(--thirdColor);
+  /* Rounded corners for better aesthetics */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* Soft shadow for depth */
+  width: 35%;
+  /* Adjust width for responsiveness */
+  max-width: 35%;
+  max-height: 90vh;
+  /* Allow the modal to take up to 90% of the viewport height */
+  overflow-y: auto;
+  /* Enable vertical scrolling if content exceeds the modal height */
 }
-.containerModal h3{
-  font-size: 1.2em;
-  font-family: "Nunito",serif;
+
+/* Modal Header */
+.topModal {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1em;
+  border-bottom: 2px solid #000;
+  width: 100%;
+  padding: 0.3em;
+  margin-bottom: 1em;
 }
-.articleCookie{
+
+.closeModal {
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.closeModal:hover {
+  color: #ff4747;
+  /* Red hover effect for close button */
+}
+
+/* Modal Body */
+.articleCookie {
+  display: flex;
   gap: 2em;
+  padding-top: 2.4em;
+  padding-bottom: 2em;
+  border-top: #ccc solid 1px;
 }
-.infoCart{
-  flex-direction: column;
-  align-items: start;
+.articleCookie h3{
+  font-family: "Nunito", sans-serif;
+  font-size: 1.2em;
 }
-.monto{
+.articleCookie p{
+  color: #777;
+}
+.infoCart {
+  height: 10em;
+  display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-start;
+}
+
+
+.monto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   margin-left: 2em;
   gap: 1.5em;
 }
-.btnHowMany{
+
+/* Buttons */
+.btnHowMany {
   border: none;
   background-color: #f9f9f9;
   cursor: pointer;
   font-size: 1em;
+  padding: 0.5em;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
-.containerHowMany{
-  padding-top: .5em;
+
+.btnHowMany:hover {
+  background-color: #e0e0e0;
+  /* Light background on hover */
 }
-.topModal{
-  gap: 1em;
-  border-bottom: #000 solid 2px;
-  width: 100%;
-  justify-content: end;
-  margin-bottom: 1em;
-  padding: .3em;
-}
-.closeModal{
-  font-size: 1.5em;
-}
-.iconTrash{
-  font-size: 1.3em;
-}
-.cart{
-  padding: 0 1em;
-}
-.cart a{
-  top: .2em;
-}
-.titleCart{
-  gap: 2em;
-}
-.imgProduct{
-  width: 5em;height: 5em;
-}
+
+/* Input Field */
 .howManyCookies {
   width: 15%;
-  padding: 0 .5em;
+  padding: 0.5em;
   font-size: 1em;
   color: #333;
   text-align: center;
@@ -219,22 +256,64 @@
   border-radius: 5px;
   outline: none;
   transition: border-color 0.3s ease;
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
-  appearance: none;
 }
+
 .howManyCookies::-webkit-inner-spin-button,
 .howManyCookies::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 .howManyCookies:focus {
   border-color: #ccc;
   background-color: #fff;
 }
-.modal:target{
+
+/* Cart and Product Styling */
+.cart {
+  padding: 0 1em;
+}
+
+.cart a {
+  position: relative;
+  top: 0.2em;
+}
+
+/* Image and Title Styling */
+.imgProduct {
+  width: 5em;
+  height: 5em;
+  object-fit: cover;
+  /* Ensure the image covers the box without distortion */
+}
+
+.titleCart {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* Modal visibility trigger */
+.modal:target {
   visibility: visible;
   opacity: 1;
+}
+
+/* Small Improvements for Accessibility */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.closeModal:focus {
+  outline: 2px solid #ff4747;
+  /* Improved focus indicator for better accessibility */
+  font-size: 1.2em;
+}
+.iconTrash{
+  font-size: 2em;
+  cursor: pointer;
 }
 /* Seccion Main ---------------------------------------------------------------------------------------------------------------------------- */
 
