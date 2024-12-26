@@ -1,37 +1,36 @@
-//Slider
-
+// Slider
 const cookies = [
   {
     selector: '.cookieOne',
     images: [
-      "./resourse/webp/redVelvetCookie.webp",
-      "./resourse/webp/cookieChocolateCacao.webp",
-      "./resourse/webp/cookieStarwberry.webp",
-      "./resourse/webp/chocolateChipsAndMany.webp",
-      "./resourse/webp/cookieChocolate.webp",
-      "./resourse/webp/cookieVainilla.webp"
+      { src: "./resourse/webp/redVelvetCookie.webp", flavor: "Red Velvet", price: 890 },
+      { src: "./resourse/webp/cookieChocolateCacao.webp", flavor: "Chocolate Doble", price: 900 },
+      { src: "./resourse/webp/cookieStarwberry.webp", flavor: "Vainilla con Frutilla", price: 950 },
+      { src: "./resourse/webp/chocolateChipsAndMany.webp", flavor: "Vainilla con Chocolate y Maní", price: 700 },
+      { src: "./resourse/webp/cookieChocolate.webp", flavor: "Chocolate", price: 650 },
+      { src: "./resourse/webp/cookieVainilla.webp", flavor: "Vainilla Clásica", price: 560 }
     ]
   },
   {
     selector: '.cookieTwo',
     images: [
-      "./resourse/webp/redVelvetCookie.webp",
-      "./resourse/webp/cookieChocolateCacao.webp",
-      "./resourse/webp/cookieStarwberry.webp",
-      "./resourse/webp/chocolateChipsAndMany.webp",
-      "./resourse/webp/cookieChocolate.webp",
-      "./resourse/webp/cookieVainilla.webp"
+      { src: "./resourse/webp/redVelvetCookie.webp", flavor: "Red Velvet", price: 890 },
+      { src: "./resourse/webp/cookieChocolateCacao.webp", flavor: "Chocolate Doble", price: 900 },
+      { src: "./resourse/webp/cookieStarwberry.webp", flavor: "Vainilla con Frutilla", price: 950 },
+      { src: "./resourse/webp/chocolateChipsAndMany.webp", flavor: "Vainilla con Chocolate y Maní", price: 700 },
+      { src: "./resourse/webp/cookieChocolate.webp", flavor: "Chocolate", price: 650 },
+      { src: "./resourse/webp/cookieVainilla.webp", flavor: "Vainilla Clásica", price: 560 }
     ]
   },
   {
     selector: '.cookieThree',
     images: [
-      "./resourse/webp/redVelvetCookie.webp",
-      "./resourse/webp/cookieChocolateCacao.webp",
-      "./resourse/webp/cookieStarwberry.webp",
-      "./resourse/webp/chocolateChipsAndMany.webp",
-      "./resourse/webp/cookieChocolate.webp",
-      "./resourse/webp/cookieVainilla.webp"
+      { src: "./resourse/webp/redVelvetCookie.webp", flavor: "Red Velvet", price: 890 },
+      { src: "./resourse/webp/cookieChocolateCacao.webp", flavor: "Chocolate Doble", price: 900 },
+      { src: "./resourse/webp/cookieStarwberry.webp", flavor: "Vainilla con Frutilla", price: 950 },
+      { src: "./resourse/webp/chocolateChipsAndMany.webp", flavor: "Vainilla con Chocolate y Maní", price: 700 },
+      { src: "./resourse/webp/cookieChocolate.webp", flavor: "Chocolate", price: 650 },
+      { src: "./resourse/webp/cookieVainilla.webp", flavor: "Vainilla Clásica", price: 560 }
     ]
   }
 ];
@@ -51,8 +50,9 @@ function changeImage(sliderIndex, direction) {
   }
 
   images.forEach((img) => {
-    img.setAttribute("src", cookie.images[currentIndex]);
+    img.setAttribute("src", cookie.images[currentIndex].src);
     img.setAttribute("data-index", currentIndex);
+    img.setAttribute("alt", cookie.images[currentIndex].flavor);
   });
 }
 
@@ -68,14 +68,10 @@ document.querySelectorAll('.btnDer').forEach((btn, index) => {
   });
 });
 
-
-
-// Se cierre el menu al tocar la pantalla ----------------------------------------------------------------------------------------------
-
- 
+// Cierre del menú al tocar fuera
 const menuCheckbox = document.getElementById('menu');
-const navLinks = document.querySelectorAll('.container-links a'); 
-const body = document.body; 
+const navLinks = document.querySelectorAll('.container-links a');
+const body = document.body;
 
 body.addEventListener('click', (event) => {
   if (!event.target.closest('.navbar-responsive') && !event.target.closest('.container-links')) {
@@ -85,14 +81,9 @@ body.addEventListener('click', (event) => {
 
 navLinks.forEach(link => {
   link.addEventListener('click', () => {
-    menuCheckbox.checked = false;  
+    menuCheckbox.checked = false;
   });
 });
-
-
-
-
-//-------------------------------------------------------------------------------------------------------------------------------
 
 // Función para mover el botón "Comprar" al final del contenedor
 function moveBuyButtonToBottom() {
@@ -107,30 +98,7 @@ function moveBuyButtonToBottom() {
 let cookieFlavorsInCart = [];
 const cartContainer = document.querySelector('.contentModal');
 
-// Agregar evento a los botones de agregar galletas
-const buttons = document.querySelectorAll('.btnAddCookie');
-buttons.forEach(button => {
-  button.addEventListener('click', (event) => {
-    event.preventDefault();
-
-    // Obtener el sabor y precio de la galleta
-    const flavor = button.getAttribute('data-flavor');
-    const price = parseInt(button.getAttribute('data-price'), 10);
-
-    // Agregar la galleta al carrito temporal
-    cookieFlavorsInCart.push({ flavor, price });
-
-    // Reconstruir el carrito completo
-    rebuildCart();
-
-    // Mover el botón "Comprar" al final
-    moveBuyButtonToBottom();
-  });
-});
-
-
 // Función para crear una caja de galletas
-// Modificar la función createCookieBox para incluir la eliminación de elementos del localStorage
 function createCookieBox(cookieFlavors) {
   const articleCookie = document.createElement('div');
   articleCookie.classList.add('articleCookie');
@@ -177,7 +145,7 @@ function createCookieBox(cookieFlavors) {
   const deleteButton = articleCookie.querySelector('.iconTrash');
   deleteButton.addEventListener('click', () => {
     deleteCookieFromCart(boxId);
-    articleCookie.remove(); // Eliminar del DOM
+    articleCookie.remove();
   });
 }
 
@@ -185,12 +153,10 @@ function createCookieBox(cookieFlavors) {
 function deleteCookieFromCart(boxId) {
   cookieFlavorsInCart = cookieFlavorsInCart.filter(cookie => cookie.id !== boxId);
   saveCartToLocalStorage();
-  updateTotalPrice(); // Actualizar el precio total
+  updateTotalPrice();
 }
 
-
-
-// Función para configurar los botones de cantidad
+// Configurar botones de cantidad
 function setupQuantityButtons(container) {
   const decreaseButton = container.querySelector('.decrease');
   const increaseButton = container.querySelector('.increase');
@@ -227,18 +193,15 @@ function updateTotalPrice() {
   const cartItems = document.querySelectorAll('.articleCookie .monto p');
   let total = 0;
 
-  // Sumar todos los precios de los artículos en el carrito
   cartItems.forEach(item => {
     total += parseInt(item.textContent.replace('$', ''), 10);
   });
 
-  // Actualizar el contenido del elemento <p class="total">
   const totalPriceElement = document.querySelector('.total');
   if (totalPriceElement) {
     totalPriceElement.textContent = `Total: $${total}`;
   }
 
-  // Asegurar que <p class="total"> y el botón "Comprar" estén al final del contenedor
   const buyButton = document.querySelector('.cart-total');
   if (cartContainer) {
     cartContainer.appendChild(totalPriceElement);
@@ -246,16 +209,41 @@ function updateTotalPrice() {
   }
 }
 
-function rebuildCart() {
-  // Limpiar el contenedor actual, pero preservar elementos persistentes
-  const topModal = document.querySelector('.topModal');
-  const totalPriceElement = document.querySelector('.total');
-  const buyButton = document.querySelector('.cart-total');
+// Función para guardar el carrito en localStorage
+function saveCartToLocalStorage() {
+  const cartData = cookieFlavorsInCart.map(cookie => ({
+    id: cookie.id, // Aseguramos que el ID se guarde
+    flavor: cookie.flavor,
+    price: cookie.price
+  }));
 
+  localStorage.setItem('cartData', JSON.stringify(cartData));
+}
+
+// Función para cargar el carrito desde localStorage
+function loadCartFromLocalStorage() {
+  const cartData = localStorage.getItem('cartData');
+
+  if (cartData) {
+    const parsedCartData = JSON.parse(cartData);
+
+    // Reconstruimos el carrito con los datos cargados
+    cookieFlavorsInCart = parsedCartData.map(item => ({
+      id: item.id, // Recuperar el ID único
+      flavor: item.flavor,
+      price: item.price
+    }));
+
+    rebuildCart(); // Reconstruir la interfaz gráfica del carrito
+  }
+}
+
+// Reconstrucción del carrito
+function rebuildCart() {
   const cartItems = cartContainer.querySelectorAll('.articleCookie');
   cartItems.forEach(item => item.remove());
 
-  // Reconstruir las cajas con las galletas del carrito
+  // Dividimos las galletas en grupos para recrear las cajas
   let boxBuffer = [];
   cookieFlavorsInCart.forEach(cookie => {
     boxBuffer.push(cookie);
@@ -264,129 +252,167 @@ function rebuildCart() {
       boxBuffer = [];
     }
   });
+
   if (boxBuffer.length > 0) {
     createCookieBox(boxBuffer);
   }
 
-  // Asegurar que <p class="total"> y el botón "Comprar" estén al final del contenedor
-  if (totalPriceElement && !cartContainer.contains(totalPriceElement)) {
-    cartContainer.appendChild(totalPriceElement);
-  }
-  if (buyButton && !cartContainer.contains(buyButton)) {
-    cartContainer.appendChild(buyButton);
-  }
-
-  // Actualizar el precio total
   updateTotalPrice();
 }
 
-// Itera sobre todos los botones y agrega el evento 'click'
-buttons.forEach(button => {
-  button.addEventListener('click', (event) => {
-    // Prevenir la acción predeterminada del enlace (si es necesario)
-    event.preventDefault();
+// Agregar funcionalidad para el botón Buy en el slider
+document.querySelectorAll('.btnBuy').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    // Recoger las imágenes visibles en cada slider
+    const selectedFlavors = cookies.map(slider => {
+      const imgElement = document.querySelector(`${slider.selector} .imgCookie`);
+      if (!imgElement) return null;
 
-    // Obtener el valor del sabor del atributo 'data-flavor'
-    const flavor = button.getAttribute('data-flavor');
+      const flavorIndex = parseInt(imgElement.getAttribute('data-index') || '0', 10);
+      return slider.images[flavorIndex]; // Información de la imagen visible
+    });
 
-    // Crear la notificación
-    const notification = document.createElement('div');
-    notification.textContent = `Agregando ${flavor} al carrito...`;
-    notification.style.position = 'fixed';
-    notification.style.bottom = '20px';
-    notification.style.left = '50%';
-    notification.style.transform = 'translateX(-50%)';
-    notification.style.padding = '10px 20px';
-    notification.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
-    notification.style.color = '#fff';
-    notification.style.borderRadius = '5px';
-    notification.style.fontSize = '16px';
-    notification.style.zIndex = '9999';
+    // Filtrar sabores válidos (asegurarse de que todos los sliders tienen selección)
+    const validFlavors = selectedFlavors.filter(flavor => flavor !== null);
 
-    // Añadir la notificación al body
-    document.body.appendChild(notification);
-
-    // Eliminar la notificación después de 3 segundos
-    setTimeout(() => {
-      notification.remove();
-    }, 3000);
+    // Verificar que hay exactamente 3 galletas seleccionadas
+    if (validFlavors.length === 3) {
+      createCookieBox(validFlavors); // Crear la caja de galletas
+      cookieFlavorsInCart.push(...validFlavors); // Agregar al carrito temporal
+      saveCartToLocalStorage(); // Guardar en localStorage
+      rebuildCart(); // Reconstruir el carrito
+      moveBuyButtonToBottom(); // Asegurar que el botón "Comprar" está al final
+    } else {
+      alert('Debes seleccionar exactamente 3 galletas visibles para añadir al carrito.');
+    }
   });
 });
 
 
 
-
-// Mover el botón "Comprar" al cargar la página
-window.addEventListener('load', () => {
-  const totalPriceElement = document.querySelector('.total');
-  const buyButton = document.querySelector('.cart-total');
-
-  if (totalPriceElement && cartContainer) {
-    cartContainer.appendChild(totalPriceElement);
-  }
-  if (buyButton && cartContainer) {
-    cartContainer.appendChild(buyButton);
-  }
-  updateTotalPrice();
-});
-
-
-// -----------------------------------------------------------------------------------------------------------------------------
-
-// Función para guardar el carrito en localStorage
-function saveCartToLocalStorage() {
-  const cartData = cookieFlavorsInCart.map(cookie => ({
-    flavor: cookie.flavor,
-    price: cookie.price
-  }));
-
-  localStorage.setItem('cartData', JSON.stringify(cartData));
-}
-
-// Llamar a esta función después de agregar una galleta al carrito
+const buttons = document.querySelectorAll('.btnAddCookie');
 buttons.forEach(button => {
   button.addEventListener('click', (event) => {
     event.preventDefault();
 
-    // Obtener sabor y precio
+    // Obtener el sabor y precio de la galleta
     const flavor = button.getAttribute('data-flavor');
     const price = parseInt(button.getAttribute('data-price'), 10);
 
-    // Agregar galleta al carrito
-    cookieFlavorsInCart.push({ flavor, price });
+    // Generar un ID único para cada artículo
+    const id = `cookie-${Date.now()}-${Math.random()}`;
 
-    // Guardar el carrito en localStorage
-    saveCartToLocalStorage();
+    // Agregar la galleta al carrito temporal
+    cookieFlavorsInCart.push({ id, flavor, price });
 
-    // Reconstruir el carrito en la interfaz
+    saveCartToLocalStorage(); // Guardar en localStorage
+
+    // Reconstruir el carrito completo
     rebuildCart();
+
+    // Mover el botón "Comprar" al final
+    moveBuyButtonToBottom();
   });
 });
 
-// Función para recuperar el carrito desde localStorage
-function loadCartFromLocalStorage() {
-  const cartData = localStorage.getItem('cartData');
 
-  if (cartData) {
-    const parsedCartData = JSON.parse(cartData);
-    cookieFlavorsInCart = parsedCartData.map(item => ({
-      flavor: item.flavor,
-      price: item.price
-    }));
+// Función para mostrar notificaciones
+function showNotification(message, type = "success") {
+  const notification = document.createElement("div");
+  notification.classList.add("notification", type);
+  notification.textContent = message;
 
-    rebuildCart(); // Reconstruir el carrito visualmente
-  }
+  // Agregar la notificación al cuerpo
+  document.body.appendChild(notification);
+
+  // Remover la notificación después de 3 segundos
+  setTimeout(() => {
+    notification.remove();
+  }, 3000);
 }
 
-// Llamar a la función cuando se cargue la página
+// Evento para el botón .btnAddCookie
+document.querySelectorAll('.btnAddCookie').forEach(button => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // Obtener datos de la galleta
+    const flavor = button.getAttribute('data-flavor');
+    const price = parseInt(button.getAttribute('data-price'), 10);
+
+    // Mostrar notificación
+    showNotification(`Se añadió "${flavor}" al carrito por $${price}.`, "success");
+  });
+});
+
+// Evento para el botón .btnBuy
+document.querySelectorAll('.btnBuy').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const selectedFlavors = cookies.map(slider => {
+      const imgElement = document.querySelector(`${slider.selector} .imgCookie`);
+      if (!imgElement) return null;
+
+      const flavorIndex = parseInt(imgElement.getAttribute('data-index') || '0', 10);
+      return slider.images[flavorIndex];
+    });
+
+    const validFlavors = selectedFlavors.filter(flavor => flavor !== null);
+
+    if (validFlavors.length === 3) {
+      // Mostrar notificación mencionando los sabores seleccionados
+      const flavorList = validFlavors.map(flavor => flavor.flavor).join(", ");
+      const totalPrice = validFlavors.reduce((sum, flavor) => sum + flavor.price, 0);
+      showNotification(`Caja de 3 galletas seleccionada: ${flavorList}. Total: $${totalPrice}`, "success");
+    } else {
+      showNotification("Debes seleccionar exactamente 3 galletas visibles.", "error");
+    }
+  });
+});
+
+// Eventos de carga inicial
 window.addEventListener('load', () => {
   loadCartFromLocalStorage();
+  moveBuyButtonToBottom();
+  updateTotalPrice();
 });
 
 
 
+// Función para abrir el modal con el pedido
+// Función para abrir el modal con el pedido
+function openCopyOrderModal() {
+  const orderContent = getOrderContent(); // Obtener el contenido del pedido
+  const orderText = `Pedido: ${orderContent}`;
+  const whatsappMessage = encodeURIComponent(orderText); // Codificar para WhatsApp
 
+  // Establecer el contenido dinámico y el enlace de WhatsApp
+  document.getElementById('orderContent').textContent = orderText;
+  document.getElementById('whatsappLink').href = `https://wa.me/?text=${whatsappMessage}`;
 
+  // Mostrar el modal
+  document.getElementById('copyOrderModal').style.display = 'block';
+}
 
+// Función para cerrar el modal de copiar pedido
+function closeCopyOrderModal() {
+  document.getElementById('copyOrderModal').style.display = 'none';
+}
 
+// Obtener el contenido del pedido (esto depende de cómo gestiones el carrito)
+function getOrderContent() {
+  // Aquí puedes crear una lógica para obtener el contenido del carrito y devolverlo como texto.
+  // Por ejemplo, si tienes un array `cookieFlavorsInCart` con los sabores y precios:
+  let orderContent = '';
+  cookieFlavorsInCart.forEach(cookie => {
+    orderContent += `${cookie.flavor} - $${cookie.price}\n`;
+  });
+  return orderContent.trim();
+}
 
+// Mostrar el modal al hacer clic en "Comprar"
+document.querySelector('.cart-total').addEventListener('click', openCopyOrderModal);
+
+// Función para cerrar el modal principal de página
+function closeModal() {
+  document.getElementById('pageCart').style.display = 'none';
+}
