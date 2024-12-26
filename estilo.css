@@ -733,6 +733,9 @@ h3{
   .btnBuy {
     transform: rotate(0deg);
   }
+  .contentModal{
+    width: 80%;
+  }
   .contentFlavor{
     flex-direction: column;
     width: 80%;
