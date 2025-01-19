@@ -3,37 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Disfruta de las irresistibles galletas Caro, hechas con amor y los mejores ingredientes. ¡Ordena ahora y prueba nuestros sabores únicos!">
+  <meta name="keywords" content="galletas, Cecilie, sabores, crumble cookies, chocolate, vainilla, red velvet">
+  <meta name="author" content="Joselin">
   <link rel="stylesheet" href="estilo.css">
-  <title>Delizz</title>
+  <title>Caro</title>
 </head>
 <body>
-  <!-- Header Menu de navegacion ------------------------------------------------------------------------------------------------------------------- -->
+  <!-- hr Menu de navegacion ------------------------------------------------------------------------------------------------------------------- -->
  
-  <header class="header">
-    <nav class="navbar-responsive">
-      <a href="#home"><h2 class="logo">Delizz</h2></a>
-      <input type="checkbox" id="menu" class="checkbox-menu">
+  <header class="hr">
+    <nav class="hrNavBarRve">
+      <a class="hrACart" href="#pageCart" title="Contacto"><ion-icon class="iconCart" name="cart-outline"></ion-icon></a>
+      <a href="#home"><h2 class="hrLogo">Caro</h2></a>
+      <input type="checkbox" id="menu" class="hrCheckBox">
       <label for="menu">
-        <ion-icon class="icon-menu" name="grid-outline"></ion-icon>
-        <ion-icon class="icon-menu-solid" name="grid"></ion-icon>
+        <ion-icon class="hrIconNavBar" name="grid-outline"></ion-icon>
+        <ion-icon class="hrIconNavBarSolid" name="grid"></ion-icon>
       </label>
-      <ul class="container-links">
-        <li class="li-menu"><a class="a-menu" href="#home" title="Inicio">Inicio</a></li>
-        <li class="li-menu"><a class="a-menu" href="#product" title="Cookies">Cookies</a></li>
-        <li class="li-menu"><a class="a-menu" href="#aboutus" title="Nosotros">Nosotros</a></li>
-        <li class="li-menu"><a class="a-menu" href="#contact" title="Contacto">Contacto</a></li>
-        <li class="li-menu"><a class="a-menu" href="#pageCart" title="Contacto"><ion-icon class="iconCart" name="cart-outline"></ion-icon></a></li>
-
-      </ul>
-    </nav>
-    <nav class="navbar">
-      <h2 class="logo">Delizz</h2>
-      <ul class="container-links2">
-        <li class="li-menu2"><a class="a-menu" href="#home" title="Inicio">Inicio</a></li>
-        <li class="li-menu2"><a class="a-menu" href="#product" title="Cookies">Cookies</a></li>
-        <li class="li-menu2"><a class="a-menu" href="#aboutus" title="Nosotros">Nosotros</a></li>
-        <li class="li-menu2"><a class="a-menu" href="#contact" title="Contacto">Contacto</a></li>
-        <li class="li-menu2 cart"><a class="a-menu" href="#pageCart" title="Contacto"><ion-icon class="iconCart" name="cart-outline"></ion-icon></a></li>
+      <ul class="hrUlRve">
+        <li class="hrUlLiRve"><a class="hrLiA" href="#home" title="Inicio">Inicio</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#order" title="Cookies">Orden</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#ubicacion" title="Nosotros">Ubicación</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#catering" title="Contacto">Catering</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#tienda" title="Contacto">Tienda</a></li>
       </ul>
     </nav>
   </header>
@@ -47,7 +41,7 @@
           <h3>Carrito de Compras</h3>
           <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
         </div>
-        <button class="cart-total">Comprar</button>
+        <a href="./buyWeb/buy.html" target="_blank" class="cart-total">Comprar</a>
         <p class="total"></p>
       </div>
     </div>
@@ -55,13 +49,14 @@
   <div id="copyOrderModal" class="orderModal">
     <div class="orderContainer">
       <div class="orderContent">
-        <div class="orderHeader">
+        <div class="orderhr">
           <h3>Copia tu pedido</h3>
           <a href="#" class="orderClose" onclick="closeCopyOrderModal()">
             <ion-icon name="close-outline"></ion-icon>
           </a>
         </div>
         <p id="orderContent">Pedido: </p>
+        <p class="orderTotal"></p>
         <p class="pasos">Copia el siguiente pedido y envíalo al chat de WhatsApp para confirmar tu compra.</p>
         <a id="whatsappLink" href="" target="_blank">Enviar al chat de WhatsApp</a>
       </div>
@@ -73,57 +68,55 @@
   
   <main class="frontPage" id="home">
     <div class="containerTitle">
-      <h1 class="title">Delizz</h1>
-      <p>Sabores irresistibles, calidad incomparable. Crumble Cookies, la experiencia perfecta en cada bocado.</p>
-    </div>
-    <div class="containerBuy">
-      <div class="containerBox">
-        <div class="cookieOne">
-          <ion-icon class="btnIzq" name="arrow-back-outline"></ion-icon>
-          <img class="imgCookie" src="./resourse/webp/redVelvetCookie.webp" alt="Red Velvet" loading="lazy"
-            data-index="0">
-          <ion-icon class="btnDer" name="arrow-forward-outline"></ion-icon>
-        </div>
-        <div class="cookieTwo">
-          <ion-icon class="btnIzq" name="arrow-back-outline"></ion-icon>
-          <img class="imgCookie" src="./resourse/webp/cookieChocolateCacao.webp" alt="Chocolate Cacao" loading="lazy"
-            data-index="0">
-          <ion-icon class="btnDer" name="arrow-forward-outline"></ion-icon>
-        </div>
-        <div class="cookieThree">
-          <ion-icon class="btnIzq" name="arrow-back-outline"></ion-icon>
-          <img class="imgCookie" src="./resourse/webp/cookieStarwberry.webp" alt="Strawberry" loading="lazy"
-            data-index="0">
-          <ion-icon class="btnDer" name="arrow-forward-outline"></ion-icon>
-        </div>
+      <h1 class="title">Caro</h1>
+      <p class="pMain">Sabores irresistibles, calidad incomparable. Caro Pasteleria, la experiencia perfecta en cada bocado.</p>
+      <div>
+        <a href="https://www.facebook.com/caroo.caceres.7" target="_blank" class="iconContact" title="FaceBook">
+          <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <a href="https://www.instagram.com/caro.pasteleria_/" target="_blank" class="iconContact" title="Instagram">
+          <ion-icon name="logo-instagram"></ion-icon>
+        </a>
+        <a href="wa.me/message/4HJNLZJT5H67G1" target="_blank" class="iconContact" title="WhatsApp">
+          <ion-icon name="logo-whatsapp"></ion-icon>
+        </a>
       </div>
-      <!-- Un solo botón para ordenar -->
-      <a class="btnBuy">
-        <div class="button__icon-wrapper">
-          <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
-          <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
-        </div>
-        Ordenar
-      </a>
+    </div>
+    <div>
+      <div>
+        <h3 class="mainTitle">Orden</h3>
+        <img src="" alt="">
+        <a href="./orden/ordenar.html" class="conteainerAjedresBtn">
+          <div class="ajedresBtn">
+            <p class="btn-ajedrez" id="local">Ordenar</>
+          </div>
+        </a>
+      </div>
+      <div>
+        <h3 class="mainTitle">Catering</h3>
+        <img src="" alt="">
+        <a href="./catering/catering.html" class="conteainerAjedresBtn">
+          <div class="ajedresBtn">
+            <p class="btn-ajedrez" id="local">Ver Opciones</>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="imgPasteleria">
+      <img src="" alt="">
     </div>
   </main>
-
   <!-- Seccion Sabores -------------------------------------------------------------------------------------------------------------------- -->
   <section class="ourFlavor">
-    <input type="checkbox" id="verMass" class="inputCookies">
-    <h2 class="titleFlavor">Nuestros sabores </ion-icon></h2>
+    <h2 class="titleFlavor">Tienda</h2>
     <!-- Cookie Vainilla con chocolate y maní -->
     
     <div class="containerFLavor" id="cookies">
       <div class="contentFlavor">
-        <img class="imgCookieFlavor" src="./resourse/webp/chocolateChipsAndMany.webp" alt="Crumble Cookie Vainilla con chocolate y maní" loading="lazy"/>
+        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/cinco.jpeg" alt="Crumble Cookie Vainilla con chocolate y maní" loading="lazy"/>
         <div class="cotainerDescipFlavor">
-          <h3>Vainilla con chocolate y maní</h3>
+          <h3>Vainilla con chocolate</h3>
           <p class="price" data-price="700">Precio: $700</p>
-          <p>
-            Una base suave y cremosa de vainilla, mezclada con crujientes chips de chocolate y el
-            toque crocante del maní tostado. Un equilibrio perfecto entre dulce y salado.
-          </p>
           <a class="btnAddCookie btnColorLila" href="#" data-flavor="Vainilla con chocolate y maní" data-price="700">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
@@ -135,14 +128,11 @@
       </div>
       <!-- Cookie Chocolate doble -->
       <div class="contentFlavor colorLila">
+        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/ocho.jpeg" alt="Crumble Cookie Chocolate doble"
+          loading="lazy">
         <div class="cotainerDescipFlavor">
           <h3>Chocolate doble</h3>
           <p class="price" data-price="900">Precio: $900</p>
-          <p>
-            Para los amantes del chocolate intenso, esta galleta tiene una textura densa y suave con chips que se derriten
-            al primer
-            mordisco. Una explosión de cacao en cada bocado.
-          </p>
           <a class="btnAddCookie" href="#" data-flavor="Chocolate doble" data-price="900">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
@@ -151,20 +141,14 @@
             Añadir
           </a>
         </div>
-        <img class="imgCookieFlavorDer" src="./resourse/webp/cookieChocolate.webp" alt="Crumble Cookie Chocolate doble"
-          loading="lazy">
+        
       </div>
       <!-- Cookie Chocolate -->
       <div class="contentFlavor colorCream">
-        <img class="imgCookieFlavor" src="./resourse/webp/cookieChocolateCacao.webp" alt="Crumble Cookie Cookie Chocolate" loading="lazy">
+        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/nueve.jpeg" alt="Crumble Cookie Cookie Chocolate" loading="lazy">
         <div class="cotainerDescipFlavor">
           <h3>Chocolate</h3>
           <p class="price" data-price="650">Precio: $650</p>
-          <p>
-            Rico sabor a chocolate con un final aterciopelado gracias a su capa de cacao finamente espolvoreado. Una
-            experiencia
-            suave y ligeramente amarga que enamora.
-          </p>
           <a class="btnAddCookie btnChangeColor" href="#" data-flavor="Chocolate" data-price="650">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
@@ -176,14 +160,11 @@
       </div>
       <!-- Cookie Vainilla con frutilla -->
       <div class="contentFlavor">
+        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/catorce.jpeg" alt="Crumble Cookie Vainilla con frutilla"
+          loading="lazy">
         <div class="cotainerDescipFlavor">
           <h3>Vainilla con frutilla</h3>
           <p class="price" data-price="950">Precio: $950</p>
-          <p>
-            Una combinación fresca y dulce con la suavidad de la vainilla, los chips de chocolate cremosos y trocitos de
-            frutilla
-            que aportan un toque frutal y jugoso.
-          </p>
           <a class="btnAddCookie btnColorLila" href="#" data-flavor="Vainilla con frutilla" data-price="950">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
@@ -192,20 +173,14 @@
             Añadir
           </a>
         </div>
-        <img class="imgCookieFlavorDer" src="./resourse/webp/cookieStarwberry.webp" alt="Crumble Cookie Vainilla con frutilla"
-          loading="lazy">
+       
       </div>
       <!-- Cookie Red Velvet -->
       <div class="contentFlavor colorLila">
-        <img class="imgCookieFlavor" src="./resourse/webp/redVelvetCookie.webp" alt="Crumble Cookie Red Velvet" loading="lazy">
+        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/doce.jpeg" alt="Crumble Cookie Red Velvet" loading="lazy">
         <div class="cotainerDescipFlavor">
           <h3>Red Velvet</h3>
           <p class="price" data-price="890">Precio: $890</p>
-          <p>
-            Su textura esponjosa y su distintivo sabor a cacao suave se complementan con chips de chocolate que añaden un
-            contraste
-            cremoso. Un clásico elegante en cada mordida.
-          </p>
           <a class="btnAddCookie" href="#" data-flavor="Red Velvet" data-price="890">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
@@ -217,14 +192,10 @@
       </div>
       <!-- Cookie Vainilla clásica -->
       <div class="contentFlavor colorCream">
+        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/dos.jpeg" alt="Cookie Vainilla clásica" loading="lazy">
         <div class="cotainerDescipFlavor">
           <h3>Vainilla clásica</h3>
           <p class="price" data-price="560">Precio: $560</p>
-          <p>
-            La simplicidad hecha perfección, con una masa tierna y ligeramente dorada de vainilla, complementada con chips
-            de
-            chocolate que se funden en el paladar.
-          </p>
           <a class="btnAddCookie btnChangeColor" href="#" data-flavor="Vainilla clásica" data-price="560">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
@@ -233,14 +204,9 @@
             Añadir
           </a>
         </div>
-        <img class="imgCookieFlavorDer" src="./resourse/webp/cookieVainilla.webp" alt="Cookie Vainilla clásica"
-          loading="lazy">
+        
       </div>
     </div>
-    <label for="verMass">
-      <p class="varMas">Ver Más</p>
-    </label>
-    
   </section>
 
   <!-- Seccion Nosotros ----------------------------------------------------------------------------------------------------------------- -->
@@ -255,10 +221,17 @@
         conquistaron corazones. Hoy seguimos creciendo, llevando el calor del hogar y la excelencia en cada una de nuestras
         galletas. ¡Ven a probar el sabor de la tradición familiar! 🍪❤️
       </p>
-      <p>
-        <ion-icon name="location-outline"></ion-icon>
-         Un lugar al 1234
-      </p>
+      <div>
+        
+        <p>
+          <ion-icon name="location-outline"></ion-icon>
+          Ubicación: Constancio C. Vigil 720, X5000 Córdoba
+        </p>
+        <iframe class="gps"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3407.215882158021!2d-64.16477829999997!3d-31.353021400000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x943299b673950a91%3A0xe9f8bb351bf91f6!2sCaro%20Pasteler%C3%ADa!5e0!3m2!1ses!2sar!4v1736796736976!5m2!1ses!2sar"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
     </div>
   </section>
   <footer>
@@ -266,17 +239,17 @@
       <div class="containerContact">
         <h3>Contactanos</h3>
         <div>
-          <a href="#" class="aContact" title="FaceBook">
-            <ion-icon name="logo-facebook"></ion-icon>
+          <a href="#" title="FaceBook">
+            <ion-icon class="aContact" name="hrLogo-facebook"></ion-icon>
           </a>
-          <a href="#" class="aContact" title="Instagram">
-            <ion-icon name="logo-instagram"></ion-icon>
+          <a href="#" title="Instagram">
+            <ion-icon name="hrLogo-instagram"></ion-icon>
           </a>
-          <a href="#" class="aContact" title="WhatsApp">
-            <ion-icon name="logo-whatsapp"></ion-icon>
+          <a href="#" title="WhatsApp">
+            <ion-icon class="aContact" name="hrLogo-whatsapp"></ion-icon>
           </a>
-          <a href="#" class="aContact" title="TikTok">
-            <ion-icon name="logo-tiktok"></ion-icon>
+          <a href="#" title="TikTok">
+            <ion-icon class="aContact" name="hrLogo-tiktok"></ion-icon>
           </a>
         </div>
         <p>© 2024 all rights reserved.</p>
@@ -287,5 +260,6 @@
   <script src="script.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  
 </body>
 </html>

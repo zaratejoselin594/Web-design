@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Ephesis&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
+
+:root {
+  --primaryColor: #BF1523;
+  --secondColor: #D91438;
+  --thirdColor: #F1F2D5;
+  --fourthColor: #F2C2CB;
+  --borderRadius: .7em;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "Nunito", serif;
+}
+.frontPageOrder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.imgPasteleria{
+  width: 100%;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.heroCatering{
+  margin-top: 3.7em;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: column;
+  width: 50%;
+  gap: 1em;
+  text-align: start;
+}
+.imgPasteleria img{
+  margin-top: 3.7em;
+  width: 20em;
+  height: 20em;
+  object-position: center;
+  border-radius: var(--borderRadius);
+}
+.contenedorCatering{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.divContenedorCatering{
+  width: 80%;
+  height: 15em;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  flex-direction: row;
+  margin: 1em;
+  gap: 2em;
+}
+.divContenedorCatering img{
+  width: 15em;
+  height: 15em;
+  border-radius: var(--borderRadius);
+}
+
+.divContenidoCatering {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: start;
+  gap: 1em;
+}

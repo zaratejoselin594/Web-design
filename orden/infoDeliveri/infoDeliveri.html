@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../main.css">
+  <link rel="stylesheet" href="estilo.css">
+  <title>Ordenar</title>
+</head>
+
+<body>
+  <header class="hr">
+    <nav class="hrNavBarRve">
+      <a class="hrACart" href="#pageCart" title="Contacto"><ion-icon class="iconCart"
+          name="cart-outline"></ion-icon></a>
+      <a href="../../index.html">
+        <h2 class="hrLogo">Caro</h2>
+      </a>
+      <input type="checkbox" id="menu" class="hrCheckBox">
+      <label for="menu">
+        <ion-icon class="hrIconNavBar" name="grid-outline"></ion-icon>
+        <ion-icon class="hrIconNavBarSolid" name="grid"></ion-icon>
+      </label>
+      <ul class="hrUlRve">
+        <li class="hrUlLiRve"><a class="hrLiA" href="../../index.html" title="Inicio">Inicio</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#order" title="Cookies">Orden</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#ubicacion" title="Nosotros">Ubicación</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#catering" title="Contacto">Catering</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#tienda" title="Contacto">Tienda</a></li>
+      </ul>
+    </nav>
+  </header>
+  <div id="pageCart" class="modal">
+    <div class="containerModal">
+      <div class="contentModal">
+        <div class="topModal">
+          <h3>Carrito de Compras</h3>
+          <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
+        </div>
+        <a href="./buyWeb/buy.html" target="_blank" class="cart-total">Comprar</a>
+        <p class="total"></p>
+      </div>
+    </div>
+  </div>
+  <div id="copyOrderModal" class="orderModal">
+    <div class="orderContainer">
+      <div class="orderContent">
+        <div class="orderhr">
+          <h3>Copia tu pedido</h3>
+          <a href="#" class="orderClose" onclick="closeCopyOrderModal()">
+            <ion-icon name="close-outline"></ion-icon>
+          </a>
+        </div>
+        <p id="orderContent">Pedido: </p>
+        <p class="orderTotal"></p>
+        <p class="pasos">Copia el siguiente pedido y envíalo al chat de WhatsApp para confirmar tu compra.</p>
+        <a id="whatsappLink" href="" target="_blank">Enviar al chat de WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <main class="frontPageOrder" id="home">
+    <div class="form-container">
+      <h2>Formulario</h2>
+      <form id="registroForm">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="nombre" required>
+          <div class="error" id="errorNombre"></div>
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido:</label>
+          <input type="text" id="apellido" required>
+          <div class="error" id="errorApellido"></div>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" id="telefono" required>
+          <div class="error" id="errorTelefono"></div>
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección:</label>
+          <input type="text" id="direccion" required>
+          <div class="error" id="errorDireccion"></div>
+        </div>
+        <div class="form-group">
+          <label for="dni">DNI:</label>
+          <input type="text" id="dni" required>
+          <div class="error" id="errorDni"></div>
+        </div>
+        <div class="form-group">
+          <label for="cbu">CBU:</label>
+          <input type="text" id="cbu" required>
+          <div class="error" id="errorCbu"></div>
+        </div>
+        <div class="form-group">
+          <button type="submit">Enviar</button>
+        </div>
+      </form>
+    </div>
+    <div>
+      <div class="infoCarrito">
+  
+      </div>
+      <a href="./orden/ordenar.html" class="conteainerAjedresBtn">
+        <div class="ajedresBtn">
+          <p class="btn-ajedrez" id="local">Ver Tienda</p>
+        </div>
+      </a>
+    </div>
+  </main>
+  <footer>
+    <section class="sectionContact" id="contact">
+      <div class="containerContact">
+        <h3>Contactanos</h3>
+        <div>
+          <a href="#" title="FaceBook">
+            <ion-icon class="aContact" name="hrLogo-facebook"></ion-icon>
+          </a>
+          <a href="#" title="Instagram">
+            <ion-icon name="hrLogo-instagram"></ion-icon>
+          </a>
+          <a href="#" class="aContact" title="WhatsApp">
+            <ion-icon class="aContact" name="hrLogo-whatsapp"></ion-icon>
+          </a>
+          <a href="#" title="TikTok">
+            <ion-icon class="aContact" name="hrLogo-tiktok"></ion-icon>
+          </a>
+        </div>
+        <p>© 2024 all rights reserved.</p>
+      </div>
+    </section>
+  </footer>
+  <script src="script.js"></script>
+  <script src="../../script.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

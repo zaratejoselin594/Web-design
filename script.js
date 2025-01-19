@@ -1,80 +1,52 @@
-// Slider
 const cookies = [
   {
-    selector: '.cookieOne',
+    selector: '.imgPasteleria img',
     images: [
-      { src: "./resourse/webp/redVelvetCookie.webp", flavor: "Red Velvet", price: 890 },
-      { src: "./resourse/webp/cookieChocolateCacao.webp", flavor: "Chocolate Doble", price: 900 },
-      { src: "./resourse/webp/cookieStarwberry.webp", flavor: "Vainilla con Frutilla", price: 950 },
-      { src: "./resourse/webp/chocolateChipsAndMany.webp", flavor: "Vainilla con Chocolate y Maní", price: 700 },
-      { src: "./resourse/webp/cookieChocolate.webp", flavor: "Chocolate", price: 650 },
-      { src: "./resourse/webp/cookieVainilla.webp", flavor: "Vainilla Clásica", price: 560 }
-    ]
-  },
-  {
-    selector: '.cookieTwo',
-    images: [
-      { src: "./resourse/webp/redVelvetCookie.webp", flavor: "Red Velvet", price: 890 },
-      { src: "./resourse/webp/cookieChocolateCacao.webp", flavor: "Chocolate Doble", price: 900 },
-      { src: "./resourse/webp/cookieStarwberry.webp", flavor: "Vainilla con Frutilla", price: 950 },
-      { src: "./resourse/webp/chocolateChipsAndMany.webp", flavor: "Vainilla con Chocolate y Maní", price: 700 },
-      { src: "./resourse/webp/cookieChocolate.webp", flavor: "Chocolate", price: 650 },
-      { src: "./resourse/webp/cookieVainilla.webp", flavor: "Vainilla Clásica", price: 560 }
-    ]
-  },
-  {
-    selector: '.cookieThree',
-    images: [
-      { src: "./resourse/webp/redVelvetCookie.webp", flavor: "Red Velvet", price: 890 },
-      { src: "./resourse/webp/cookieChocolateCacao.webp", flavor: "Chocolate Doble", price: 900 },
-      { src: "./resourse/webp/cookieStarwberry.webp", flavor: "Vainilla con Frutilla", price: 950 },
-      { src: "./resourse/webp/chocolateChipsAndMany.webp", flavor: "Vainilla con Chocolate y Maní", price: 700 },
-      { src: "./resourse/webp/cookieChocolate.webp", flavor: "Chocolate", price: 650 },
-      { src: "./resourse/webp/cookieVainilla.webp", flavor: "Vainilla Clásica", price: 560 }
+      { src: "../resourse/pasteleria/sinconvertir/diecinueve.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/dieciocho.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/diecisiete.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/dieciseis.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/quince.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/catorce.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/trece.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/doce.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/once.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/diez.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/nueve.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/ocho.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/siete.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/seis.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/cinco.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/cuatro.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/tres.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/dos.jpeg" },
+      { src: "../resourse/pasteleria/sinconvertir/uno.jpeg" },
     ]
   }
 ];
 
-function changeImage(sliderIndex, direction) {
-  const cookie = cookies[sliderIndex];
-  const images = document.querySelectorAll(`${cookie.selector} .imgCookie`);
+// Cambio automático de imágenes sin flechas
+cookies.forEach(item => {
+  const imgElement = document.querySelector(item.selector);
+  let currentIndex = 0;
 
-  if (!images.length) return;
-
-  let currentIndex = parseInt(images[0].getAttribute("data-index") || "0");
-
-  if (direction === 'left') {
-    currentIndex = (currentIndex - 1 + cookie.images.length) % cookie.images.length;
-  } else if (direction === 'right') {
-    currentIndex = (currentIndex + 1) % cookie.images.length;
+  if (imgElement) {
+    imgElement.src = item.images[currentIndex].src;
+    imgElement.draggable = false; // Desactiva arrastrar la imagen
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % item.images.length;
+      imgElement.src = item.images[currentIndex].src;
+    }, 3000);
   }
-
-  images.forEach((img) => {
-    img.setAttribute("src", cookie.images[currentIndex].src);
-    img.setAttribute("data-index", currentIndex);
-    img.setAttribute("alt", cookie.images[currentIndex].flavor);
-  });
-}
-
-document.querySelectorAll('.btnIzq').forEach((btn, index) => {
-  btn.addEventListener('click', () => {
-    changeImage(index, 'left');
-  });
-});
-
-document.querySelectorAll('.btnDer').forEach((btn, index) => {
-  btn.addEventListener('click', () => {
-    changeImage(index, 'right');
-  });
 });
 
 // Cierre del menú al tocar fuera
 const menuCheckbox = document.getElementById('menu');
-const navLinks = document.querySelectorAll('.container-links a');
+const navLinks = document.querySelectorAll('.hrUlRve a');
 const body = document.body;
 
 body.addEventListener('click', (event) => {
-  if (!event.target.closest('.navbar-responsive') && !event.target.closest('.container-links')) {
+  if (!event.target.closest('.hrNavBarRve') && !event.target.closest('.hrUlRve')) {
     menuCheckbox.checked = false;
   }
 });
@@ -102,6 +74,7 @@ const cartContainer = document.querySelector('.contentModal');
 function createCookieBox(cookieFlavors) {
   const articleCookie = document.createElement('div');
   articleCookie.classList.add('articleCookie');
+ 
 
   const cookieCount = cookieFlavors.length;
   const title = `Caja de ${cookieCount} cookie${cookieCount > 1 ? 's' : ''}`;
@@ -137,6 +110,7 @@ function createCookieBox(cookieFlavors) {
 
   if (cartContainer) {
     cartContainer.appendChild(articleCookie);
+    document.querySelector(".infoCarrito").appendChild(articleCookie);
   }
 
   setupQuantityButtons(articleCookie);
@@ -201,7 +175,10 @@ function updateTotalPrice() {
   if (totalPriceElement) {
     totalPriceElement.textContent = `Total: $${total}`;
   }
-
+  
+  const ordertTotal = document.querySelector(".orderTotal");
+  ordertTotal.textContent = `Total: ${total}`;
+  
   const buyButton = document.querySelector('.cart-total');
   if (cartContainer) {
     cartContainer.appendChild(totalPriceElement);
@@ -383,11 +360,12 @@ window.addEventListener('load', () => {
 function openCopyOrderModal() {
   const orderContent = getOrderContent(); // Obtener el contenido del pedido
   const orderText = `Pedido: ${orderContent}`;
-  const whatsappMessage = encodeURIComponent(orderText); // Codificar para WhatsApp
-
+  const whatsappMessage = encodeURIComponent(orderText);
+  
+  
   // Establecer el contenido dinámico y el enlace de WhatsApp
   document.getElementById('orderContent').textContent = orderText;
-  document.getElementById('whatsappLink').href = `https://wa.me/?text=${whatsappMessage}`;
+  document.getElementById('whatsappLink').href = `https://wa.me/5493513039104?text=${whatsappMessage}`;
 
   // Mostrar el modal
   document.getElementById('copyOrderModal').style.display = 'block';
@@ -416,3 +394,4 @@ document.querySelector('.cart-total').addEventListener('click', openCopyOrderMod
 function closeModal() {
   document.getElementById('pageCart').style.display = 'none';
 }
+
