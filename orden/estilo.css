@@ -39,3 +39,313 @@ body {
   border-radius: var(--borderRadius);
   box-shadow: 5px 5px 20px rgba(66, 66, 66, 0.2);
 }
+.form-container{
+  width: 18em;
+}
+input{
+  outline: none;
+  border: none;
+  border-bottom: solid 2px var(--primaryColor);
+}
+.input{
+  width: 100%;
+}
+.cart-total {
+  border: #fff solid 1px;
+  border-radius: var(--borderRadius);
+  background-color: var(--primaryColor);
+  color: #fff;
+  padding: .5em;
+  cursor: pointer;
+}
+
+.cart-total:hover {
+  background-color: var(--fourthColor);
+}
+
+.total {
+  text-align: end;
+  padding: .5em;
+  color: var(--secondColor);
+  font-size: 1.2em;
+}
+
+.carritoContainer{
+  display: none;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
+/* Modal Container */
+.containerModalOrder {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 1001;
+}
+
+/* Modal Content */
+.contentModalOrder {
+  border-radius: var(--borderRadius);
+  z-index: 1029;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1em;
+  font-size: .8em;
+  top: 4.6em;
+  background-color: var(--thirdColor);
+  box-shadow: 4px 0px 8px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+}
+
+/* Modal hr */
+.topModalOrder {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  border-bottom: 2px solid #000;
+  width: 100%;
+  padding: 0.3em;
+  margin-bottom: 1em;
+}
+
+.closeModal {
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.closeModal:hover {
+  color: #ff4747;
+  /* Red hover effect for close button */
+}
+
+/* Modal Body */
+.articleCookie {
+  display: flex;
+  gap: 2em;
+  padding-top: 2.4em;
+  padding-bottom: 1em;
+  border-top: #ccc solid 1px;
+}
+
+.articleCookie h3 {
+  font-family: "Nunito", sans-serif;
+  font-size: 1.2em;
+}
+
+.articleCookie p {
+  color: #777;
+}
+
+.infoCart {
+  height: 10em;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+.monto {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-left: 2em;
+  gap: 1.5em;
+}
+
+/* Buttons */
+.btnHowMany {
+  border: none;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0.5em;
+  border-radius: var(--borderRadius);
+  transition: background-color 0.3s ease;
+}
+
+.btnHowMany:hover {
+  background-color: #e0e0e0;
+  /* Light background on hover */
+}
+
+/* Input Field */
+.howManyCookies {
+  width: 15%;
+  padding: 0.5em;
+  font-size: 1em;
+  color: #333;
+  text-align: center;
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: var(--borderRadius);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.howManyCookies::-webkit-inner-spin-button,
+.howManyCookies::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.howManyCookies:focus {
+  border-color: #ccc;
+  background-color: #fff;
+}
+
+/* Cart and Product Styling */
+.cart {
+  padding: 0 1em;
+}
+
+.cart a {
+  position: relative;
+  top: 0.2em;
+}
+
+/* Image and Title Styling */
+.imgProduct {
+  width: 5em;
+  height: 5em;
+  object-fit: cover;
+  /* Ensure the image covers the box without distortion */
+}
+
+.titleCart {
+  display: flex;
+  gap: 2em;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Modal visibility trigger */
+
+
+.iconContact {
+  color: var(--primaryColor);
+  font-size: 1.8em;
+}
+
+/* Small Improvements for Accessibility */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.closeModal:focus {
+  outline: 2px solid #ff4747;
+  /* Improved focus indicator for better accessibility */
+  font-size: 1.2em;
+}
+
+.iconTrash {
+  font-size: 2em;
+  cursor: pointer;
+}
+
+/* Estilos para el modal */
+.orderModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo semi-transparente */
+  z-index: 1030;
+}
+
+.orderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.orderContent {
+  background-color: var(--thirdColor);
+  padding: 20px;
+  border-radius: var(--borderRadius);
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.orderhr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.orderhr h3 {
+  margin: 0;
+  font-size: 1.5em;
+}
+
+.orderClose {
+  font-size: 1.5em;
+  cursor: pointer;
+  color: #333;
+  text-decoration: none;
+}
+
+.orderClose:hover {
+  color: #ff0000;
+}
+
+/* Estilo para el contenido del pedido */
+#orderContent {
+  font-size: 1.2em;
+  margin-top: 15px;
+}
+
+#whatsappLink {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 15px;
+  background-color: #25d366;
+  /* Color de WhatsApp */
+  color: #fff;
+  text-decoration: none;
+  border-radius: var(--borderRadius);
+  font-size: 1.1em;
+  transition: background-color 0.3s;
+}
+
+#whatsappLink:hover {
+  background-color: #128c7e;
+  /* Color de hover */
+}
+
+#whatsappLink:active {
+  background-color: #075e54;
+  /* Color de clic */
+}
+
+.pasos {
+  color: #888;
+}
+.hidden {
+  display: none;
+}
+.cartTotal {
+  border: #fff solid 1px;
+  border-radius: var(--borderRadius);
+  background-color: var(--primaryColor);
+  color: #fff;
+  padding: .5em;
+  cursor: pointer;
+}
+
+.cartTotal:hover {
+  background-color: #ba86e2;
+}

@@ -19,7 +19,7 @@ body{
 /* Reducir codigo ------------------------------------------------------------------------------------------------------------------------------ */
 
 .containerBuy, .hrUlLiRve, 
-.navbar, .hrUl, .frontPage, .btnAddCookie, .btnBuy,
+.navbar, .hrUl, .frontPage, .btnAddCart, .btnBuy,
 .ourFlavor, .contentFlavor, .cotainerDescipFlavor, 
 .sectionOur, .sectionContact, .containerAbout, .containerFlavor,
 .containerContact, .containerTitle, .productCookie, .productContainer, .hrNavBarRve{
@@ -382,7 +382,7 @@ a {
   border-radius: var(--borderRadius);
 }
 
-.btnAddCookie, .btnBuy {
+.btnAddCart, .btnBuy {
   width: 7em;
   height: 1.5em;
   line-height: 1;
@@ -404,7 +404,7 @@ a {
 .btnBuy{
   transform: rotate(-90deg);
 }
-.btnAddCookie .button__icon-wrapper, .btnBuy .button__icon-wrapper{
+.btnAddCart .button__icon-wrapper, .btnBuy .button__icon-wrapper{
   flex-shrink: 0;
   width: 1.8em;
   height: 1.8em;
@@ -417,7 +417,7 @@ a {
   place-items: center;
   overflow: hidden;
 }
-.btnAddCookie .button__icon-cart--copy,  .btnBuy .button__icon-cart--copy{
+.btnAddCart .button__icon-cart--copy,  .btnBuy .button__icon-cart--copy{
   position: absolute;
   transform: translate(-150%, 150%);
 }
@@ -655,11 +655,11 @@ h3{
 
 @media(min-width: 1200px) {
  
-  .btnAddCookie:hover .button__icon-cart:first-child, .btnBuy:hover .button__icon-cart:first-child {
+  .btnAddCart:hover .button__icon-cart:first-child, .btnBuy:hover .button__icon-cart:first-child {
     transition: transform 0.3s ease-in-out;
     transform: translate(150%, -150%);
   }
-  .btnAddCookie:hover .button__icon-cart--copy, .btnBuy:hover .button__icon-cart--copy {
+  .btnAddCart:hover .button__icon-cart--copy, .btnBuy:hover .button__icon-cart--copy {
     transition: transform 0.3s ease-in-out 0.1s;
     transform: translate(0);
   }
@@ -727,10 +727,14 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  outline: none;
+  background-color: #00000000;
+  font-size: 1.2em;
 }
 .ajedresBtn{
-  width: 10em;
-  height: 1.9em;
+  width: 9em;
+  height: 1.6em;
   overflow: hidden;
   background-color: #F2C2CB;
   opacity: 0.8;
@@ -741,7 +745,7 @@ a {
 }
 .btn-ajedrez {
   text-align: center;
-  font-size: 1.3em;
+  font-size: 1.2em;
   color:#fff;
   font-weight: bold;
   text-shadow: 

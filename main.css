@@ -24,7 +24,7 @@ body {
 .navbar,
 .hrUl,
 .frontPage,
-.btnAddCookie,
+.btnAddCart,
 .btnBuy,
 .ourFlavor,
 .contentFlavor,
@@ -468,11 +468,15 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: none;
+  outline: none;
+  font-size: 1.2em;
+  background-color: #00000000;
 }
 
 .ajedresBtn {
-  width: 10em;
-  height: 1.9em;
+  width: 9em;
+  height: 1.6em;
   overflow: hidden;
   background-color: #F2C2CB;
   opacity: 0.8;
@@ -484,7 +488,7 @@ a {
 }
 
 .btn-ajedrez {
-  font-size: 1.3em;
+  font-size: 1.2em;
   color: #fff;
   font-weight: bold;
   text-shadow:
@@ -496,5 +500,5 @@ a {
 }
 
 .aContact {
-  color: #fff;
+  color: var(--thirdColor);
 }

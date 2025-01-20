@@ -41,24 +41,8 @@
           <h3>Carrito de Compras</h3>
           <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
         </div>
-        <a href="./buyWeb/buy.html" target="_blank" class="cart-total">Comprar</a>
+        <a href="./orden/ordenar.html" target="_blank" class="cart-total">Comprar</a>
         <p class="total"></p>
-      </div>
-    </div>
-  </div>
-  <div id="copyOrderModal" class="orderModal">
-    <div class="orderContainer">
-      <div class="orderContent">
-        <div class="orderhr">
-          <h3>Copia tu pedido</h3>
-          <a href="#" class="orderClose" onclick="closeCopyOrderModal()">
-            <ion-icon name="close-outline"></ion-icon>
-          </a>
-        </div>
-        <p id="orderContent">Pedido: </p>
-        <p class="orderTotal"></p>
-        <p class="pasos">Copia el siguiente pedido y envíalo al chat de WhatsApp para confirmar tu compra.</p>
-        <a id="whatsappLink" href="" target="_blank">Enviar al chat de WhatsApp</a>
       </div>
     </div>
   </div>
@@ -107,7 +91,7 @@
     </div>
   </main>
   <!-- Seccion Sabores -------------------------------------------------------------------------------------------------------------------- -->
-  <section class="ourFlavor">
+  <section class="ourFlavor" id="tienda">
     <h2 class="titleFlavor">Tienda</h2>
     <!-- Cookie Vainilla con chocolate y maní -->
     
@@ -117,7 +101,7 @@
         <div class="cotainerDescipFlavor">
           <h3>Vainilla con chocolate</h3>
           <p class="price" data-price="700">Precio: $700</p>
-          <a class="btnAddCookie btnColorLila" href="#" data-flavor="Vainilla con chocolate y maní" data-price="700">
+          <a class="btnAddCart btnColorLila" href="#" data-flavor="Vainilla con chocolate y maní" data-price="700">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
               <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
@@ -133,7 +117,7 @@
         <div class="cotainerDescipFlavor">
           <h3>Chocolate doble</h3>
           <p class="price" data-price="900">Precio: $900</p>
-          <a class="btnAddCookie" href="#" data-flavor="Chocolate doble" data-price="900">
+          <a class="btnAddCart" href="#" data-flavor="Chocolate doble" data-price="900">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
               <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
@@ -149,7 +133,7 @@
         <div class="cotainerDescipFlavor">
           <h3>Chocolate</h3>
           <p class="price" data-price="650">Precio: $650</p>
-          <a class="btnAddCookie btnChangeColor" href="#" data-flavor="Chocolate" data-price="650">
+          <a class="btnAddCart btnChangeColor" href="#" data-flavor="Chocolate" data-price="650">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
               <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
@@ -165,7 +149,7 @@
         <div class="cotainerDescipFlavor">
           <h3>Vainilla con frutilla</h3>
           <p class="price" data-price="950">Precio: $950</p>
-          <a class="btnAddCookie btnColorLila" href="#" data-flavor="Vainilla con frutilla" data-price="950">
+          <a class="btnAddCart btnColorLila" href="#" data-flavor="Vainilla con frutilla" data-price="950">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
               <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
@@ -181,7 +165,7 @@
         <div class="cotainerDescipFlavor">
           <h3>Red Velvet</h3>
           <p class="price" data-price="890">Precio: $890</p>
-          <a class="btnAddCookie" href="#" data-flavor="Red Velvet" data-price="890">
+          <a class="btnAddCart" href="#" data-flavor="Red Velvet" data-price="890">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
               <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
@@ -196,7 +180,7 @@
         <div class="cotainerDescipFlavor">
           <h3>Vainilla clásica</h3>
           <p class="price" data-price="560">Precio: $560</p>
-          <a class="btnAddCookie btnChangeColor" href="#" data-flavor="Vainilla clásica" data-price="560">
+          <a class="btnAddCart btnChangeColor" href="#" data-flavor="Vainilla clásica" data-price="560">
             <div class="button__icon-wrapper">
               <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
               <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
@@ -240,16 +224,16 @@
         <h3>Contactanos</h3>
         <div>
           <a href="#" title="FaceBook">
-            <ion-icon class="aContact" name="hrLogo-facebook"></ion-icon>
+            <ion-icon class="aContact" name="Logo-facebook"></ion-icon>
           </a>
           <a href="#" title="Instagram">
-            <ion-icon name="hrLogo-instagram"></ion-icon>
+            <ion-icon name="Logo-instagram"></ion-icon>
           </a>
           <a href="#" title="WhatsApp">
-            <ion-icon class="aContact" name="hrLogo-whatsapp"></ion-icon>
+            <ion-icon class="aContact" name="Logo-whatsapp"></ion-icon>
           </a>
           <a href="#" title="TikTok">
-            <ion-icon class="aContact" name="hrLogo-tiktok"></ion-icon>
+            <ion-icon class="aContact" name="Logo-tiktok"></ion-icon>
           </a>
         </div>
         <p>© 2024 all rights reserved.</p>

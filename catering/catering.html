@@ -24,10 +24,10 @@
       </label>
       <ul class="hrUlRve">
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html" title="Inicio">Inicio</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#order" title="Cookies">Orden</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#ubicacion" title="Nosotros">Ubicación</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#catering" title="Contacto">Catering</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#tienda" title="Contacto">Tienda</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../orden/ordenar.html" title="Cookies">Orden</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#ubicacion" title="Nosotros">Ubicación</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#contact" title="Contacto">Catering</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#tienda" title="Contacto">Tienda</a></li>
       </ul>
     </nav>
   </header>
@@ -63,17 +63,13 @@
     <div class="imgPasteleria">
       <div class="heroCatering">
         <h1 class="title">Catering</h1>
-        <p>Todos lo del catering es personalizado, Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus vel culpa numquam recusandae? Dolorem itaque eligendi repudiandae? Quibusdam optio molestias vitae esse labore, fuga quia cumque voluptatibus aliquam minus itaque.</p>
-        <a href="./orden/ordenar.html" class="conteainerAjedresBtn">
+        <p>Ofrecemos un servicio de catering dulce que incluye pasteles personalizados y mesas dulces completas adaptados a la temática de cada evento. Ideal para cumpleaños, bodas y celebraciones
+        especiales, brindando una experiencia deliciosa y visualmente atractiva.</p>
+        <button class="conteainerAjedresBtn" onclick="openModal()">
           <div class="ajedresBtn">
-            <p class="btn-ajedrez" id="local">Una Torta</p>
+            <p class="btn-ajedrez" id="local">Pastel</p>
           </div>
-        </a>
-        <a href="./orden/ordenar.html" class="conteainerAjedresBtn">
-          <div class="ajedresBtn">
-            <p class="btn-ajedrez" id="local">Mesa Dulce</>
-          </div>
-        </a>
+        </button>
       </div>
       <img src="../resourse/pasteleria/sinconvertir/diecisiete.jpeg" alt="">
     </div>
@@ -82,25 +78,82 @@
         <img src="../resourse/pasteleria/sinconvertir/doce.jpeg" alt="">
         <div class="divContenidoCatering">
           <h3>Pasteles Personalizados</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor distinctio repudiandae quibusdam, esse placeat deleniti hic beatae suscipit ipsa? Quidem dicta voluptate molestiae totam! Rem culpa animi est sed ab.</p>
-          <a href="./orden/ordenar.html" class="conteainerAjedresBtn">
+          <p>Para garantizar que tu pastel o mesa dulce sea exactamente como lo imaginas, es importante que nos expliques con detalle
+          tu idea. Cuéntanos sobre la temática, colores, sabores y cualquier referencia que tengas en mente. ¡Queremos hacer
+          realidad tu visión y crear algo único para tu celebración!</p>
+          <!-- Botón para abrir el modal -->
+          <button class="conteainerAjedresBtn" onclick="openModal()">
             <div class="ajedresBtn">
-              <p class="btn-ajedrez" id="local">Una Torta</p>
+              <p class="btn-ajedrez" id="local">Pastel</p>
             </div>
-          </a>
-        </div>
-      </div>
-      <div class="divContenedorCatering">
-        <img src="../resourse/pasteleria/sinconvertir/cuatro.jpeg" alt="">
-        <div class="divContenidoCatering">
-          <h3>Mesas dulces completas Personalizados</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor distinctio repudiandae quibusdam, esse placeat
-            deleniti hic beatae suscipit ipsa? Quidem dicta voluptate molestiae totam! Rem culpa animi est sed ab.</p>
-          <a href="./orden/ordenar.html" class="conteainerAjedresBtn">
-            <div class="ajedresBtn">
-              <p class="btn-ajedrez" id="local">Mesa Dulce</>
+          </button>
+          
+          <!-- Modal -->
+          <div id="customModal" class="modalCatering">
+            <div class="modal-content">
+              <span class="close-btn" onclick="closeModal()">&times;</span>
+              <h2>Personaliza tu torta</h2>
+              <form id="cakeForm">
+                <div>
+                  <label for="flavor">Sabor de la torta:</label>
+                  <select id="flavor" name="flavor" required>
+                    <option value="chocolate">Chocolate</option>
+                    <option value="vainilla">Vainilla</option>
+                    <option value="fresa">Fresa</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="size">Tamaño:</label>
+                  <select id="size" name="size" required>
+                    <option value="pequeña">Pequeña</option>
+                    <option value="mediana">Mediana</option>
+                    <option value="grande">Grande</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="grams">Cantidad en gramos:</label>
+                  <input type="number" id="grams" name="grams" placeholder="Ejemplo: 500" required>    
+                </div>
+                <div>
+                  <label for="people">¿Para cuántas personas?</label>
+                  <input type="number" id="people" name="people" placeholder="Ejemplo: 10" required>
+                </div>
+                <div>
+                  <label for="style">Estilo:</label>
+                  <input type="text" id="style" name="style" placeholder="Ejemplo: Elegante, Divertido" required>
+                </div>
+                <div>
+                  <label for="decorations">Describe:</label>
+                  <textarea id="decorations" name="decorations" placeholder="Describe la torta "
+                    required></textarea>
+                </div>
+                <div>
+                  <label for="images">Sube hasta 3 imágenes de referencia:</label>
+                  <input type="file" id="images" name="images" accept="image/*" multiple required>
+                  <p id="imageLimitWarning" style="color: red; display: none;">Máximo 3 imágenes permitidas.</p>
+                </div>
+                <div>
+                  <label for="canvas">Dibuja algo para personalizar:</label>
+                  <canvas id="canvas" width="300" height="300" style="border: 1px solid black;"></canvas>
+                  <div>
+                    <label for="lineWidth">Grosor:</label>
+                    <input type="range" id="lineWidth" min="1" max="10" value="5">
+                    <label for="lineColor">Color:</label>
+                    <input type="color" id="lineColor" value="#000000">
+                    <button type="button" onclick="clearCanvas()">Borrar dibujo</button>
+                  </div>
+                </div>
+              
+                <button type="submit" class="conteainerAjedresBtn">
+                  <div class="ajedresBtn">
+                    <p class="btn-ajedrez" id="local">Enviar</>
+                  </div>
+                </button>
+              </form>
+
             </div>
-          </a>
+          </div>
+
         </div>
       </div>
     </div>
@@ -111,23 +164,23 @@
         <h3>Contactanos</h3>
         <div>
           <a href="#" title="FaceBook">
-            <ion-icon class="aContact" name="hrLogo-facebook"></ion-icon>
+            <ion-icon class="aContact" name="Logo-facebook"></ion-icon>
           </a>
           <a href="#" title="Instagram">
-            <ion-icon name="hrLogo-instagram"></ion-icon>
+            <ion-icon name="Logo-instagram"></ion-icon>
           </a>
           <a href="#" class="aContact" title="WhatsApp">
-            <ion-icon class="aContact" name="hrLogo-whatsapp"></ion-icon>
+            <ion-icon class="aContact" name="Logo-whatsapp"></ion-icon>
           </a>
           <a href="#" title="TikTok">
-            <ion-icon class="aContact" name="hrLogo-tiktok"></ion-icon>
+            <ion-icon class="aContact" name="Logo-tiktok"></ion-icon>
           </a>
         </div>
         <p>© 2024 all rights reserved.</p>
       </div>
     </section>
   </footer>
-  <script src="script.js"></script>
+  <script  src="script.js"></script>
   <script src="../script.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
