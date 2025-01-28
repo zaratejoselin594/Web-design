@@ -15,9 +15,7 @@
   font-family: "Nunito", serif;
 }
 
-body {
-  background-color: var(--thirdColor);
-}
+
 .frontPageOrder{
   padding: 5em;
   height: 30em;
@@ -119,10 +117,6 @@ input{
   transition: color 0.3s ease;
 }
 
-.closeModal:hover {
-  color: #ff4747;
-  /* Red hover effect for close button */
-}
 
 /* Modal Body */
 .articleCookie {
@@ -239,7 +233,6 @@ a {
 }
 
 .closeModal:focus {
-  outline: 2px solid #ff4747;
   /* Improved focus indicator for better accessibility */
   font-size: 1.2em;
 }
@@ -298,9 +291,7 @@ a {
   text-decoration: none;
 }
 
-.orderClose:hover {
-  color: #ff0000;
-}
+
 
 /* Estilo para el contenido del pedido */
 #orderContent {
@@ -348,4 +339,8 @@ a {
 
 .cartTotal:hover {
   background-color: #ba86e2;
+}
+body {
+  background-color: var(--thirdColor);
+  color: #fff;
 }

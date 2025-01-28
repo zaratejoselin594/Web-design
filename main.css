@@ -219,15 +219,31 @@ h3 {
   font-size: .8em;
   position: fixed;
   top: 4.6em;
+  width: 40%;
   background-color: var(--thirdColor);
   box-shadow: 4px 0px 8px rgba(0, 0, 0, 0.2);
   border-bottom-right-radius: 1em;
-  width: 38%;
   max-height: 90vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
+.contentModal img {
+  width: 5em;
+  height: 5em;
+}
 
+.contentCart {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .contentModal{
+    width: 70%;
+  }
+}
 /* Modal hr */
 .topModal {
   display: flex;
@@ -480,6 +496,11 @@ a {
   overflow: hidden;
   background-color: #F2C2CB;
   opacity: 0.8;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  gap: 1em;
   background-image: repeating-linear-gradient(45deg, #D91438 25%, transparent 25%, transparent 75%, #D91438 75%, #D91438), repeating-linear-gradient(45deg, #D91438 25%, #F2C2CB 25%, #F2C2CB 75%, #D91438 75%, #D91438);
   background-position: 0 0, 10px 10px;
   background-size: 20px 20px;

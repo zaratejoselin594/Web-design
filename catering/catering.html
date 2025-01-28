@@ -33,29 +33,13 @@
   </header>
   <div id="pageCart" class="modal">
     <div class="containerModal">
-      <div class="contentModal">
+      <div class="contentModal cartHtml">
         <div class="topModal">
           <h3>Carrito de Compras</h3>
           <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
         </div>
         <a href="./buyWeb/buy.html" target="_blank" class="cart-total">Comprar</a>
         <p class="total"></p>
-      </div>
-    </div>
-  </div>
-  <div id="copyOrderModal" class="orderModal">
-    <div class="orderContainer">
-      <div class="orderContent">
-        <div class="orderhr">
-          <h3>Copia tu pedido</h3>
-          <a href="#" class="orderClose" onclick="closeCopyOrderModal()">
-            <ion-icon name="close-outline"></ion-icon>
-          </a>
-        </div>
-        <p id="orderContent">Pedido: </p>
-        <p class="orderTotal"></p>
-        <p class="pasos">Copia el siguiente pedido y envíalo al chat de WhatsApp para confirmar tu compra.</p>
-        <a id="whatsappLink" href="" target="_blank">Enviar al chat de WhatsApp</a>
       </div>
     </div>
   </div>
@@ -71,11 +55,11 @@
           </div>
         </button>
       </div>
-      <img src="../resourse/pasteleria/sinconvertir/diecisiete.jpeg" alt="">
+      <img src="../resourse/img/diecisiete.webp" alt="">
     </div>
     <div class="contenedorCatering">
       <div class="divContenedorCatering">
-        <img src="../resourse/pasteleria/sinconvertir/doce.jpeg" alt="">
+        <img src="../resourse/img/trece.webp" alt="">
         <div class="divContenidoCatering">
           <h3>Pasteles Personalizados</h3>
           <p>Para garantizar que tu pastel o mesa dulce sea exactamente como lo imaginas, es importante que nos expliques con detalle
@@ -103,15 +87,7 @@
                   </select>
                 </div>
                 <div>
-                  <label for="size">Tamaño:</label>
-                  <select id="size" name="size" required>
-                    <option value="pequeña">Pequeña</option>
-                    <option value="mediana">Mediana</option>
-                    <option value="grande">Grande</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="grams">Cantidad en gramos:</label>
+                  <label for="grams">Gramos:</label>
                   <input type="number" id="grams" name="grams" placeholder="Ejemplo: 500" required>    
                 </div>
                 <div>
@@ -119,16 +95,12 @@
                   <input type="number" id="people" name="people" placeholder="Ejemplo: 10" required>
                 </div>
                 <div>
-                  <label for="style">Estilo:</label>
-                  <input type="text" id="style" name="style" placeholder="Ejemplo: Elegante, Divertido" required>
-                </div>
-                <div>
                   <label for="decorations">Describe:</label>
                   <textarea id="decorations" name="decorations" placeholder="Describe la torta "
                     required></textarea>
                 </div>
                 <div>
-                  <label for="images">Sube hasta 3 imágenes de referencia:</label>
+                  <label for="images">Sube 1 imagen de referencia:</label>
                   <input type="file" id="images" name="images" accept="image/*" multiple required>
                   <p id="imageLimitWarning" style="color: red; display: none;">Máximo 3 imágenes permitidas.</p>
                 </div>
@@ -181,7 +153,7 @@
     </section>
   </footer>
   <script  src="script.js"></script>
-  <script src="../script.js"></script>
+  <script src="../cart.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

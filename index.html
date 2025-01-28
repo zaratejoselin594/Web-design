@@ -7,6 +7,7 @@
     content="Disfruta de las irresistibles galletas Caro, hechas con amor y los mejores ingredientes. ¡Ordena ahora y prueba nuestros sabores únicos!">
   <meta name="keywords" content="galletas, Cecilie, sabores, crumble cookies, chocolate, vainilla, red velvet">
   <meta name="author" content="Joselin">
+  <link rel="stylesheet" href="main.css">
   <link rel="stylesheet" href="estilo.css">
   <title>Caro</title>
 </head>
@@ -36,7 +37,7 @@
   
   <div id="pageCart" class="modal">
     <div class="containerModal">
-      <div class="contentModal">
+      <div class="contentModal cartHtml">
         <div class="topModal">
           <h3>Carrito de Compras</h3>
           <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
@@ -97,98 +98,89 @@
     
     <div class="containerFLavor" id="cookies">
       <div class="contentFlavor">
-        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/cinco.jpeg" alt="Crumble Cookie Vainilla con chocolate y maní" loading="lazy"/>
+        <img class="imgCookieFlavor" src="./resourse/img/cuatro.webp" alt="Crumble Cookie Vainilla con chocolate y maní" loading="lazy"/>
         <div class="cotainerDescipFlavor">
-          <h3>Vainilla con chocolate</h3>
-          <p class="price" data-price="700">Precio: $700</p>
-          <a class="btnAddCart btnColorLila" href="#" data-flavor="Vainilla con chocolate y maní" data-price="700">
-            <div class="button__icon-wrapper">
-              <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
-              <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
+          <h3>Mesa Dulce</h3>
+          <p class="price" data-price="20999">Precio: $20999</p>
+          <button class="conteainerAjedresBtn btnAñadir" data-item="Mesa Dulce 1" data-price="20999"
+            data-src="./resourse/img/cuatro.webp">
+            <div class="ajedresBtn">
+              <p class="btn-ajedrez" id="local">Añadir</p>
             </div>
-            Añadir
-          </a>
+          </button>
         </div>
       </div>
       <!-- Cookie Chocolate doble -->
       <div class="contentFlavor colorLila">
-        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/ocho.jpeg" alt="Crumble Cookie Chocolate doble"
+        <img class="imgCookieFlavor" src="./resourse/img/diecisiete.webp" alt="Crumble Cookie Chocolate doble"
           loading="lazy">
         <div class="cotainerDescipFlavor">
-          <h3>Chocolate doble</h3>
-          <p class="price" data-price="900">Precio: $900</p>
-          <a class="btnAddCart" href="#" data-flavor="Chocolate doble" data-price="900">
-            <div class="button__icon-wrapper">
-              <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
-              <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
+          <h3>Mesa Dulce</h3>
+          <p class="price" data-price="21000">Precio: $21000</p>
+          <button class="conteainerAjedresBtn btnAñadir" data-item="Mesa Dulce 2" data-price="21000"
+            data-src="./resourse/img/diecisiete.webp">
+            <div class="ajedresBtn">
+              <p class="btn-ajedrez" id="local">Añadir</p>
             </div>
-            Añadir
-          </a>
+          </button>
         </div>
-        
       </div>
       <!-- Cookie Chocolate -->
       <div class="contentFlavor colorCream">
-        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/nueve.jpeg" alt="Crumble Cookie Cookie Chocolate" loading="lazy">
+        <img class="imgCookieFlavor" src="./resourse/img/diez.webp" alt="Crumble Cookie Cookie Chocolate" loading="lazy">
         <div class="cotainerDescipFlavor">
-          <h3>Chocolate</h3>
-          <p class="price" data-price="650">Precio: $650</p>
-          <a class="btnAddCart btnChangeColor" href="#" data-flavor="Chocolate" data-price="650">
-            <div class="button__icon-wrapper">
-              <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
-              <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
+          <h3>Torta de Chocolate</h3>
+          <p class="price" data-price="7500">Precio: $7500</p>
+          <button class="conteainerAjedresBtn btnAñadir" data-item="Torta de chocolate" data-price="7500"
+            data-src="./resourse/img/diez.webp">
+            <div class="ajedresBtn">
+              <p class="btn-ajedrez" id="local">Añadir</p>
             </div>
-            Añadir
-          </a>
+          </button>
         </div>
       </div>
       <!-- Cookie Vainilla con frutilla -->
       <div class="contentFlavor">
-        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/catorce.jpeg" alt="Crumble Cookie Vainilla con frutilla"
+        <img class="imgCookieFlavor" src="./resourse/img/ocho.webp" alt="Crumble Cookie Vainilla con frutilla"
           loading="lazy">
         <div class="cotainerDescipFlavor">
-          <h3>Vainilla con frutilla</h3>
-          <p class="price" data-price="950">Precio: $950</p>
-          <a class="btnAddCart btnColorLila" href="#" data-flavor="Vainilla con frutilla" data-price="950">
-            <div class="button__icon-wrapper">
-              <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
-              <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
+          <h3>Torta de Vainilla</h3>
+          <p class="price" data-price="7000">Precio: $7000</p>
+          <button class="conteainerAjedresBtn btnAñadir" data-item="Torta Vainilla" data-price="7000"
+            data-src="./resourse/img/ocho.webp">
+            <div class="ajedresBtn">
+              <p class="btn-ajedrez" id="local">Añadir</p>
             </div>
-            Añadir
-          </a>
+          </button>
         </div>
        
       </div>
       <!-- Cookie Red Velvet -->
       <div class="contentFlavor colorLila">
-        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/doce.jpeg" alt="Crumble Cookie Red Velvet" loading="lazy">
+        <img class="imgCookieFlavor" src="./resourse/img/once.webp" alt="Crumble Cookie Red Velvet" loading="lazy">
         <div class="cotainerDescipFlavor">
-          <h3>Red Velvet</h3>
-          <p class="price" data-price="890">Precio: $890</p>
-          <a class="btnAddCart" href="#" data-flavor="Red Velvet" data-price="890">
-            <div class="button__icon-wrapper">
-              <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
-              <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
+          <h3>Torta Helada</h3>
+          <p class="price" data-price="8000">Precio: $8000</p>
+          <button class="conteainerAjedresBtn btnAñadir" data-item="Torta Helada" data-price="8000"
+            data-src="./resourse/img/once.webp">
+            <div class="ajedresBtn">
+              <p class="btn-ajedrez" id="local">Añadir</p>
             </div>
-            Añadir
-          </a>
+          </button>
         </div>
       </div>
-      <!-- Cookie Vainilla clásica -->
+      <!-- Cookie Mesa dulce -->
       <div class="contentFlavor colorCream">
-        <img class="imgCookieFlavor" src="./resourse/pasteleria/sinconvertir/dos.jpeg" alt="Cookie Vainilla clásica" loading="lazy">
+        <img class="imgCookieFlavor" src="./resourse/img/trece.webp" alt="Mesa dulce 3" loading="lazy">
         <div class="cotainerDescipFlavor">
-          <h3>Vainilla clásica</h3>
-          <p class="price" data-price="560">Precio: $560</p>
-          <a class="btnAddCart btnChangeColor" href="#" data-flavor="Vainilla clásica" data-price="560">
-            <div class="button__icon-wrapper">
-              <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
-              <ion-icon class="button__icon-cart--copy" name="cart-outline"></ion-icon>
+          <h3>Mesa dulce</h3>
+          <p class="price" data-price="19950">Precio: $19950</p>
+          <button class="conteainerAjedresBtn btnAñadir" data-item="Mesa dulce 3" data-price="19950" data-src="./resourse/img/trece.webp">
+            <div class="ajedresBtn">
+              <p class="btn-ajedrez" id="local">Añadir</p>
             </div>
-            Añadir
-          </a>
+          </button>
         </div>
-        
       </div>
     </div>
   </section>
@@ -242,6 +234,7 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="cart.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   

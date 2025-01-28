@@ -12,8 +12,6 @@
 <body>
   <header class="hr">
     <nav class="hrNavBarRve">
-      <a class="hrACart" href="#pageCart" title="Contacto"><ion-icon class="iconCart"
-          name="cart-outline"></ion-icon></a>
       <a href="../../index.html">
         <h2 class="hrLogo">Caro</h2>
       </a>
@@ -31,66 +29,26 @@
       </ul>
     </nav>
   </header>
-  <div id="pageCart" class="modal">
-    <div class="containerModal">
-      <div class="contentModal">
-        <div class="topModal">
-          <h3>Carrito de Compras</h3>
-          <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
-        </div>
-        <a href="#home" class="cart-total">Comprar</a>
-        <p class="total"></p>
-      </div>
-    </div>
-  </div>
-  <div id="copyOrderModal" class="orderModal">
-    <div class="orderContainer">
-      <div class="orderContent">
-        <div class="orderhr">
-          <h3>Copia tu pedido</h3>
-          <a href="#" class="orderClose" onclick="closeCopyOrderModal()">
-            <ion-icon name="close-outline"></ion-icon>
-          </a>
-        </div>
-        <p id="orderContent">Pedido: </p>
-        <p class="orderTotal"></p>
-        <a id="whatsappLink" href="" target="_blank">Enviar al chat de WhatsApp</a>
-      </div>
-    </div>
-  </div>
   <main class="frontPageOrder" id="home">
     <div class="form-container">
       <h1>Realizar Pedido</h1>
-      <p>Se cancela el pedido si la info es falsa</p>
-      <form id="registroForm" onsubmit="handleSubmit(event)">
+      <form id="registroForm">
         <div class="form-group">
-          <label for="nombre">Nombre:</label>
+          <label for="nombre">Nombre y Apellido</label>
           <input type="text" id="nombre" required class="input">
         </div>
         <div class="form-group">
-          <label for="apellido">Apellido:</label>
-          <input type="text" id="apellido" required class="input">
-        </div>
-        <div class="form-group">
-          <label for="telefono">Teléfono:</label>
+          <label for="telefono">Teléfono</label>
           <input type="tel" id="telefono" pattern="[0-9]{10}" required class="input">
-        </div>
-        <div class="form-group">
-          <label for="dni">DNI:</label>
-          <input type="text" id="dni" pattern="\d{7,8}" required class="input">
-        </div>
-        <div class="form-group">
-          <label for="cbu">CBU:</label>
-          <input type="number" id="cbu" pattern="\d{7,10}" required class="input">
         </div>
         <p>¿Cómo deseas recibir tu pedido?</p>
         <label>
           <input type="radio" name="deliveryOption" value="local" id="localOption" required>
-          <span class="icon">🏬</span> Retirar en Local
+          <ion-icon name="business-outline"></ion-icon> Retirar en Local
         </label><br>
         <label>
           <input type="radio" name="deliveryOption" value="delivery" id="deliveryOption" required>
-          <span class="icon">🏍️</span> Envío por Moto
+          <ion-icon name="bicycle-outline"></ion-icon> Delivery
         </label><br><br>
       
         <div id="localCode" class="hidden">
@@ -114,18 +72,16 @@
     </div>
     <div class="carritoContainer">
       <div class="infoCarrito">
-        <div id="pageCartOrder" class="modalOrder">
-          <div class="containerModalOrder">
-            <div class="contentModalOrder">
-              <div class="topModalOrder">
-                <h3>Carrito de Compras</h3>
-                <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
-              </div>
-              <div class="form-group">
-                <button class="cartTotal" onclick="openCopyOrderModal()">Comprar</button>
-              </div>
-              <p class="total"></p>
+        <div class="containerModal">
+          <div class="contentModal cartHtml">
+            <div class="topModal">
+              <h3>Carrito de Compras</h3>
+              <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
             </div>
+            <div class="form-group">
+              <button class="cartTotal" id="comprar" onclick="openCopyOrderModal()">Comprar</button>
+            </div>
+            <p class="total"></p>
           </div>
         </div>
         <div id="copyOrderModal" class="orderModal">
@@ -139,7 +95,7 @@
               </div>
               <p id="orderContent">Pedido: </p>
               <p class="orderTotal"></p>
-              <a id="whatsappLink" href="" target="_blank">Enviar al chat de WhatsApp</a>
+              <button id="whatsappLink" onclick="guardarYMostrarPedidos()">Hacer Pedido</button>
             </div>
           </div>
         </div>
@@ -173,10 +129,13 @@
       </div>
     </section>
   </footer>
-  <script  src="script.js"></script>
-  <script src="../script.js"></script>
+  <script src="../cart.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="script.js"></script>
+
 </body>
 
 </html>
