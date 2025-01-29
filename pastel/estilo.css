@@ -32,7 +32,7 @@
   margin-top: 3em;
   padding: 2em 0 2em 0;
 }
-.heroCatering{
+.heropastel{
   display: flex;
   align-items: start;
   justify-content: center;
@@ -49,13 +49,13 @@
   object-position: center;
   border-radius: var(--borderRadius);
 }
-.contenedorCatering{
+.contenedorpastel{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.divContenedorCatering{
+.divContenedorpastel{
   width: 80%;
   display: flex;
   flex-wrap: wrap;
@@ -65,13 +65,13 @@
   margin: 1em;
   gap: 2em;
 }
-.divContenedorCatering img{
+.divContenedorpastel img{
   width: 15em;
   height: 15em;
   border-radius: var(--borderRadius);
 }
 
-.divContenidoCatering {
+.divContenidopastel {
   width: 70%;
   display: flex;
   flex-direction: column;
@@ -81,7 +81,7 @@
 }
 
 /* Estilos del modal */
-.modalCatering {
+.modalpastel {
   display: none;
   position: fixed;
   z-index: 1;
@@ -140,4 +140,7 @@ input::placeholder{
 .contentModal img{
   width: 5em;
   height: 5em;
+}
+.canvasModal{
+  display: none;
 }

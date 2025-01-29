@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../../main.css">
   <link rel="stylesheet" href="estilo.css">
-  <title>Ordenar</title>
+  <title>comprar</title>
 </head>
 
 <body>
   <header class="hr">
     <nav class="hrNavBarRve">
-      <a href="../../index.html">
+      <a href="../index.html">
         <h2 class="hrLogo">Caro</h2>
       </a>
       <input type="checkbox" id="menu" class="hrCheckBox">
@@ -21,11 +21,11 @@
         <ion-icon class="hrIconNavBarSolid" name="grid"></ion-icon>
       </label>
       <ul class="hrUlRve">
-        <li class="hrUlLiRve"><a class="hrLiA" href="../../index.html" title="Inicio">Inicio</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#order" title="Cookies">Orden</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#ubicacion" title="Nosotros">Ubicación</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#catering" title="Contacto">Catering</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#tienda" title="Contacto">Tienda</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html" title="Inicio">Inicio</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#order" title="Cookies">Comprar</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#ubicacion" title="Nosotros">Ubicación</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../pastel/pastel.html" title="Contacto">pastel Personalizada</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#tienda" title="Contacto">Tienda</a></li>
       </ul>
     </nav>
   </header>
@@ -93,9 +93,12 @@
                   <ion-icon name="close-outline"></ion-icon>
                 </a>
               </div>
-              <p id="orderContent">Pedido: </p>
+              <div class="conenidoPedido">
+
+                <div class="imageContainer"></div>
+              </div>
               <p class="orderTotal"></p>
-              <button id="whatsappLink" onclick="guardarYMostrarPedidos()">Hacer Pedido</button>
+              <button id="whatsappLink" onclick="guardarYMostrarPedidos()">Pedir por WhatsApp</button>
             </div>
           </div>
         </div>
@@ -112,16 +115,16 @@
       <div class="containerContact">
         <h3>Contactanos</h3>
         <div>
-          <a href="#" title="FaceBook">
+          <a href="https://www.facebook.com/caroo.caceres.7" title="FaceBook" target="_blank">
             <ion-icon class="aContact" name="Logo-facebook"></ion-icon>
           </a>
-          <a href="#" title="Instagram">
+          <a href="https://www.instagram.com/caro.pasteleria_/" title="Instagram" target="_blank">
             <ion-icon name="Logo-instagram"></ion-icon>
           </a>
-          <a href="#" class="aContact" title="WhatsApp">
+          <a href="https://wa.me/+5493513039104" class="aContact" title="WhatsApp" target="_blank">
             <ion-icon class="aContact" name="Logo-whatsapp"></ion-icon>
           </a>
-          <a href="#" title="TikTok">
+          <a href="#" title="TikTok" target="_blank">
             <ion-icon class="aContact" name="Logo-tiktok"></ion-icon>
           </a>
         </div>

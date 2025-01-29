@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../main.css">
   <link rel="stylesheet" href="estilo.css">
-  <title>Ordenar</title>
+  <title>comprar</title>
 </head>
 
 <body>
@@ -24,9 +24,9 @@
       </label>
       <ul class="hrUlRve">
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html" title="Inicio">Inicio</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../orden/ordenar.html" title="Cookies">Orden</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../orden/comprar.html" title="Cookies">Comprar</a></li>
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#ubicacion" title="Nosotros">Ubicación</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#contact" title="Contacto">Catering</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#pastel" title="Contacto">pastel Personalizada</a></li>
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#tienda" title="Contacto">Tienda</a></li>
       </ul>
     </nav>
@@ -38,16 +38,16 @@
           <h3>Carrito de Compras</h3>
           <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
         </div>
-        <a href="./buyWeb/buy.html" target="_blank" class="cart-total">Comprar</a>
+        <a href="../orden/ordenar.html" target="_blank" class="cart-total">Comprar</a>
         <p class="total"></p>
       </div>
     </div>
   </div>
   <main class="frontPageOrder" id="home">
     <div class="imgPasteleria">
-      <div class="heroCatering">
-        <h1 class="title">Catering</h1>
-        <p>Ofrecemos un servicio de catering dulce que incluye pasteles personalizados y mesas dulces completas adaptados a la temática de cada evento. Ideal para cumpleaños, bodas y celebraciones
+      <div class="heropastel">
+        <h1 class="title">Pastel</h1>
+        <p>Ofrecemos un servicio de pastel dulce que incluye pasteles personalizados y mesas dulces completas adaptados a la temática de cada evento. Ideal para cumpleaños, bodas y celebraciones
         especiales, brindando una experiencia deliciosa y visualmente atractiva.</p>
         <button class="conteainerAjedresBtn" onclick="openModal()">
           <div class="ajedresBtn">
@@ -57,29 +57,23 @@
       </div>
       <img src="../resourse/img/diecisiete.webp" alt="">
     </div>
-    <div class="contenedorCatering">
-      <div class="divContenedorCatering">
+    <div class="contenedorpastel">
+      <div class="divContenedorpastel" id="pastel">
         <img src="../resourse/img/trece.webp" alt="">
-        <div class="divContenidoCatering">
+        <div class="divContenidopastel">
           <h3>Pasteles Personalizados</h3>
           <p>Para garantizar que tu pastel o mesa dulce sea exactamente como lo imaginas, es importante que nos expliques con detalle
           tu idea. Cuéntanos sobre la temática, colores, sabores y cualquier referencia que tengas en mente. ¡Queremos hacer
           realidad tu visión y crear algo único para tu celebración!</p>
-          <!-- Botón para abrir el modal -->
-          <button class="conteainerAjedresBtn" onclick="openModal()">
-            <div class="ajedresBtn">
-              <p class="btn-ajedrez" id="local">Pastel</p>
-            </div>
-          </button>
           
           <!-- Modal -->
-          <div id="customModal" class="modalCatering">
+          <div id="customModal" class="modalpastel">
             <div class="modal-content">
               <span class="close-btn" onclick="closeModal()">&times;</span>
-              <h2>Personaliza tu torta</h2>
+              <h2>Personaliza tu pastel</h2>
               <form id="cakeForm">
                 <div>
-                  <label for="flavor">Sabor de la torta:</label>
+                  <label for="flavor">Sabor de la pastel:</label>
                   <select id="flavor" name="flavor" required>
                     <option value="chocolate">Chocolate</option>
                     <option value="vainilla">Vainilla</option>
@@ -96,7 +90,7 @@
                 </div>
                 <div>
                   <label for="decorations">Describe:</label>
-                  <textarea id="decorations" name="decorations" placeholder="Describe la torta "
+                  <textarea id="decorations" name="decorations" placeholder="Describe la pastel "
                     required></textarea>
                 </div>
                 <div>
@@ -104,7 +98,11 @@
                   <input type="file" id="images" name="images" accept="image/*" multiple required>
                   <p id="imageLimitWarning" style="color: red; display: none;">Máximo 3 imágenes permitidas.</p>
                 </div>
-                <div>
+                <div class="contenedorBtn">
+                  <label for="inputCanvas">Dibujar Mi pastel</label>
+                  <input type="checkbox" id="inputCanvas"/>
+                </div>
+                <div class="canvasModal">
                   <label for="canvas">Dibuja algo para personalizar:</label>
                   <canvas id="canvas" width="300" height="300" style="border: 1px solid black;"></canvas>
                   <div>
@@ -135,16 +133,16 @@
       <div class="containerContact">
         <h3>Contactanos</h3>
         <div>
-          <a href="#" title="FaceBook">
+          <a href="https://www.facebook.com/caroo.caceres.7" title="FaceBook" target="_blank">
             <ion-icon class="aContact" name="Logo-facebook"></ion-icon>
           </a>
-          <a href="#" title="Instagram">
+          <a href="https://www.instagram.com/caro.pasteleria_/" title="Instagram" target="_blank">
             <ion-icon name="Logo-instagram"></ion-icon>
           </a>
-          <a href="#" class="aContact" title="WhatsApp">
+          <a href="https://wa.me/+5493513039104" class="aContact" title="WhatsApp" target="_blank">
             <ion-icon class="aContact" name="Logo-whatsapp"></ion-icon>
           </a>
-          <a href="#" title="TikTok">
+          <a href="#" title="TikTok" target="_blank">
             <ion-icon class="aContact" name="Logo-tiktok"></ion-icon>
           </a>
         </div>

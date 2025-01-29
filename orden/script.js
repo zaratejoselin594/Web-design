@@ -16,13 +16,22 @@ function closeModal() {
   document.getElementById('pageCart').style.display = 'none';
 }
 
-
 document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("registroForm");
   const localOption = document.getElementById("localOption");
   const deliveryOption = document.getElementById("deliveryOption");
   const localCode = document.getElementById("localCode");
   const deliveryDetails = document.getElementById("deliveryDetails");
   const randomCode = document.getElementById("randomCode");
+  const orderContent = document.querySelector(".conenidoPedido");
+  const imageContainer = document.querySelector(".imageContainer");
+  const shareContainer = document.querySelector(".shareContainer");
+  
+
+  form?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    document.querySelector(".carritoContainer").style.display = "flex";
+  });
 
   const toggleVisibility = () => {
     if (localOption.checked) {
@@ -35,130 +44,74 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  localOption.addEventListener("change", toggleVisibility);
-  deliveryOption.addEventListener("change", toggleVisibility);
-});
+  localOption?.addEventListener("change", toggleVisibility);
+  deliveryOption?.addEventListener("change", toggleVisibility);
 
-function guardarYMostrarPedidos() {
-  // Obtener datos del cliente
-  const nombre = document.getElementById("nombre").value;
-  const telefono = document.getElementById("telefono").value;
+  window.guardarYMostrarPedidos = () => {
+    const nombre = document.getElementById("nombre").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    let infoCliente = `👤 *Cliente*\n*Nombre y Apellido:* ${nombre}\n*Teléfono 📞:* ${telefono}\n`;
 
-  let infoCliente = `👤 *Cliente*\n`;
-  infoCliente += `*Nombre y Apellido:* ${nombre}\n*Teléfono 📞:* ${telefono}\n`;
+    if (localOption?.checked) {
+      infoCliente += `*Código de Pedido 📌:* ${randomCode.textContent}\n`;
+    } else if (deliveryOption?.checked) {
+      const address = document.getElementById("address").value.trim();
+      const instructions = document.getElementById("instructions").value.trim();
+      infoCliente += `*Dirección 📍:* ${address}\n*Instrucciones:* ${instructions}\n`;
+    }
 
-  const localOption = document.getElementById("localOption");
-  const deliveryOption = document.getElementById("deliveryOption");
-  const randomCode = document.getElementById("randomCode");
+    const cartData = localStorage.getItem("cart");
+    if (!cartData) {
+      console.error("No hay datos en el carrito.");
+      return;
+    }
 
-  if (localOption && localOption.checked) {
-    infoCliente += `*Código de Pedido 📌:* ${randomCode.textContent}\n`;
-  } else if (deliveryOption && deliveryOption.checked) {
-    const address = document.getElementById("address").value.trim();
-    const instructions = document.getElementById("instructions").value.trim();
-    infoCliente += `*Dirección 📍:* ${address}\n*Instrucciones:* ${instructions}\n`;
-  }
+    const pedidos = JSON.parse(cartData);
+    let total = 0;
+    const archivos = [];
 
-  // Obtener los datos del carrito
-  const cartData = localStorage.getItem("cart");
-  if (!cartData) {
-    console.error("No hay datos en el carrito.");
-    return;
-  }
-
-  const pedidos = JSON.parse(cartData);
-  let total = 0; // Inicializar el total a pagar
-  const archivos = []; // Lista para guardar las imágenes como archivos
-
-  // Generar mensaje de los pedidos
-  const mensajesPedidos = pedidos
-    .map((pedido) => {
+    const mensajesPedidos = pedidos.map((pedido) => {
       if (pedido.flavor) {
-        // Caso: Tortas Personalizadas
-        const { flavor, grams, people, style = null, decorations = null, drawing = null } = pedido;
+        total += 27000;
+        if (pedido.drawing) archivos.push(pedido.drawing);
 
-        total += 27000; // Agregar precio fijo de torta personalizada
-
-        // Si hay un dibujo, agregarlo como archivo
-        if (drawing) {
-          archivos.push(drawing); // Agregar URL o base64 de la imagen
-        }
-
-        return `🎂 *Pedido de Pastel Personalizado*\n\n*Detalles del Pedido:*\n\n` +
-          `*🍰 Sabor:* ${flavor}\n` +
-          `*⚖️ Peso:* ${grams} gramos\n` +
-          `*👥 Cantidad de Personas:* ${people}\n` +
-          `${style ? `*🎨 Estilo:* ${style}\n` : ""}` +
-          `${decorations ? `*🎉 Decoraciones:* ${decorations}\n` : ""}` +
-          `*🖼️ Imagen del Dibujo:* ${drawing ? "[Incluido]" : "No incluida"}\n` +
-          `*💰 Precio:* $27,000\n---`;
+        return `🎂 *Pedido de Pastel Personalizado*\n\n🍰 *Sabor:* ${pedido.flavor}\n⚖️ *Peso:* ${pedido.grams} gramos\n👥 *Cantidad de Personas:* ${pedido.people}\n${pedido.decorations ? `📋 *Descripción:* ${pedido.decorations}\n` : ""}🖼️ *Imagen del Dibujo:* ${pedido.drawing ? "[Incluido]" : "No incluida"}\n💰 *Precio:* $27,000\n---`;
       } else if (pedido.name) {
-        // Caso: Tortas de Tienda
-        const { name, price, image } = pedido;
-
-        total += price; // Sumar el precio de la torta de tienda
-
-        return `🎂 *Pedido de Pastel de Tienda*\n\n*Detalles del Pedido:*\n\n` +
-          `*🍰 Nombre:* ${name}\n` +
-          `*💰 Precio:* $${price}\n---`;
+        total += pedido.price;
+        return `🎂 *Pedido de Pastel de Tienda*\n\n🍰 *Nombre:* ${pedido.name}\n💰 *Precio:* $${pedido.price}\n---`;
       }
+      return "";
+    }).filter(msg => msg).join("\n\n");
 
-      return ""; // Caso no identificado
-    })
-    .filter((mensaje) => mensaje) // Eliminar mensajes vacíos
-    .join("\n\n");
+    const mensajeCompleto = `${infoCliente}\n\n${mensajesPedidos}\n\n💵 *Total a Pagar:* $${total}\n\n¡Gracias por elegirnos! 😊`;
 
-  // Agregar el total al final del mensaje
-  const mensajeCompleto = `${infoCliente}\n\n${mensajesPedidos}\n\n*💵 Total a Pagar:* $${total}\n\n¡Gracias por elegirnos! 😊`;
-
-  // Mostrar mensaje en el contenedor
-  const orderContent = document.querySelector(".orderContent");
-  if (orderContent) {
-    orderContent.innerHTML = mensajeCompleto.replace(/\n/g, "<br>"); // Reemplazar saltos de línea por <br> para mostrar en HTML
-  } else {
-    console.error("No se encontró el contenedor .orderContent.");
-  }
-
-  // Recuperar la imagen del canvas desde localStorage y mostrarla
-  const canvasImage = localStorage.getItem("canvasImage");
-  if (canvasImage) {
-    // Crear un elemento <img> para mostrar la imagen
-    const imgElement = document.createElement("img");
-    imgElement.src = canvasImage;
-    imgElement.alt = "Imagen del Pedido";
-    imgElement.style.maxWidth = "300px"; // Tamaño de la imagen en el DOM
-    imgElement.style.margin = "10px";
-
-    // Insertar la imagen en el contenedor correspondiente en el DOM
-    const imageContainer = document.querySelector(".imageContainer");
+    if (orderContent) orderContent.innerHTML = mensajeCompleto.replace(/\n/g, "<br>");
     if (imageContainer) {
-      imageContainer.appendChild(imgElement);
+      imageContainer.innerHTML = archivos.map(img => `<img src="${img}" alt="Imagen del Pedido" style="max-width: 200px; margin: 5px;">`).join("");
     }
 
-    // Preparar el enlace para compartir en WhatsApp
-    const whatsappLink = `https://api.whatsapp.com/send?text=Texto%20personalizado%20aquí%20${encodeURIComponent(canvasImage)}`;
+    // window.open(`https://wa.me/+5493513039104?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
+    window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
+  };
 
-    // Crear un enlace para abrir WhatsApp con la imagen y el mensaje
-    const shareButton = document.createElement("a");
-    shareButton.href = whatsappLink;
-    shareButton.target = "_blank";
-    shareButton.textContent = "Compartir en WhatsApp";
-    shareButton.style.display = "inline-block";
-    shareButton.style.padding = "10px 20px";
-    shareButton.style.backgroundColor = "#25d366"; // Color de WhatsApp
-    shareButton.style.color = "#fff";
-    shareButton.style.textDecoration = "none";
-    shareButton.style.borderRadius = "5px";
+  guardarYMostrarPedidos();
 
-    // Insertar el enlace en el DOM
-    if (imageContainer) {
-      imageContainer.appendChild(shareButton);
-    }
-  } else {
-    console.error("No se encontró la imagen en localStorage.");
+  const canvasDataURL = localStorage.getItem('drawing');
+  if (canvasDataURL && imageContainer) {
+    const imgElement = document.createElement('img');
+    imgElement.src = canvasDataURL;
+    imgElement.alt = 'Imagen del Pedido';
+    imgElement.style.maxWidth = '300px';
+    imgElement.style.margin = '10px';
+    imageContainer.appendChild(imgElement);
   }
 
-  // Abrir WhatsApp con el mensaje (sin imágenes)
-  const whatsappURL = `https://wa.me/+5493513039104?text=${encodeURIComponent(mensajeCompleto)}`;
-  window.open(whatsappURL, "_blank");
-}
+  if (canvasDataURL && shareContainer) {
+    const whatsappButton = document.createElement('a');
+    whatsappButton.href = `https://api.whatsapp.com/send?text=${encodeURIComponent('¡Mira esta increíble imagen de nuestro pastel personalizado! 😍')}%20${encodeURIComponent(canvasDataURL)}%20+5493513039104`;
+    whatsappButton.target = '_blank';
+    whatsappButton.textContent = 'Compartir en WhatsApp';
+    shareContainer.appendChild(whatsappButton);
+    document.querySelector('.imageContainer').appendChild(whatsappButton)
+  }
+});

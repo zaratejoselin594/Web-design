@@ -28,6 +28,8 @@ cookies.forEach(item => {
   }
 });
 
+
+
 // Abrir y cerrar el modal
 function openModal() {
   const modal = document.getElementById('customModal');
@@ -91,6 +93,7 @@ function draw(e) {
   ctx.stroke();
   ctx.beginPath();
   ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+  ctx.fillStyle = '#ffffff';
 }
 
 function clearCanvas() {
@@ -145,9 +148,14 @@ function saveFormData() {
   const people = formData.get("people");
   const decorations = formData.get("decorations");
 
-  const canvas = document.getElementById('canvas');
-  const drawing = canvas.toDataURL('image/jpeg', 0.5); // Formato JPEG con calidad al 50%
-  console.log(drawing); // Será más corto que PNG
+  const inputCanvas = document.getElementById('inputCanvas');
+  let drawing = "";
+
+  // Guardar el canvas solo si inputCanvas.checked es true
+  if (inputCanvas.checked) {
+    const canvas = document.getElementById('canvas');
+    drawing = canvas.toDataURL('image/jpeg', 0.2); // Formato JPEG con calidad al 50%
+  }
 
   const images = [];
   const imageFiles = formData.getAll("images");
@@ -173,6 +181,7 @@ function saveFormData() {
   }
 }
 
+
 // Función para guardar el pedido en localStorage
 function saveTolocalStorage(orderData) {
   let cartItems = loadCartFromLocalStorage();
@@ -191,13 +200,22 @@ function addProductToDOM(product) {
   const cartItem = document.createElement('div');
   cartItem.classList.add('cartItem');
   cartItem.setAttribute('data-id', product.id);
-  cartItem.innerHTML = `
-    <img src="${product.images || 'default-image.jpg'}" alt="" class="imgProduct">
-    <img src="${product.drawing || 'default-image.jpg'}" alt="" class="imgProduct">
+  let productHTML = `
+    <img src="${product.images.length > 0 ? product.images[0] : 'default-image.jpg'}" alt="" class="imgProduct">
+  `;
+
+  // Solo mostrar el dibujo si existe y no está vacío
+  if (product.drawing) {
+    productHTML += `
+      <img src="${product.drawing}" alt="" class="imgProduct">
+    `;
+  }
+
+  productHTML += `
     <div class="titleCart">
       <div class="infoCart">
         <h3>${product.flavor}</h3>
-        <p>Para ${product.people} personas - ${product.grams} gramos - Descripcion ${product.decorations}</p>
+        <p>Para ${product.people} personas - ${product.grams} gramos - Descripción: ${product.decorations}</p>
       </div>
       <div class="monto">
         <ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
@@ -205,6 +223,9 @@ function addProductToDOM(product) {
       </div>
     </div>
   `;
+
+  cartItem.innerHTML = productHTML;
+  contentModal.appendChild(cartItem);
 
   contentModal.appendChild(cartItem);
   cartItem.querySelector('.iconTrash').addEventListener('click', () => removeItem(cartItem, product.id));
@@ -214,3 +235,12 @@ function addProductToDOM(product) {
 function addItemToCart(item) {
   console.log("Artículo agregado al carrito:", item);
 }
+const inputCanvas = document.getElementById('inputCanvas');
+const canvasModal = document.querySelector('.canvasModal');
+inputCanvas.addEventListener('change', () => {
+  if (inputCanvas.checked) {
+    canvasModal.style.display = 'flex';
+  } else {
+    canvasModal.style.display = 'none';
+  }
+});
