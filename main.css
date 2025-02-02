@@ -387,7 +387,7 @@ h3 {
 .titleCart {
   display: flex;
   gap: 2em;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
 }
 

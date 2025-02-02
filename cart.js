@@ -49,11 +49,12 @@ function addProductToDOM(product) {
     `;
 
     cartItem.innerHTML = productHTML;
+    showNotification(product.flavor)
   }
   // Manejo de productos del catálogo (con "name")
   else if (product.name) {
     cartItem.innerHTML = `
-      <img src="${product.image}" alt="" class="imgProduct">
+      <img src=".${product.image}" alt="" class="imgProduct">
       <div class="titleCart">
         <div class="infoCart">
           <h3>${product.name}</h3>
@@ -65,6 +66,7 @@ function addProductToDOM(product) {
         </div>
       </div>
     `;
+    showNotification(product.name)
   }
 
   contentModal.appendChild(cartItem);
@@ -96,6 +98,12 @@ function saveProductToCart(product) {
   addProductToDOM(product);
 }
 
+function loadCartFromLocalStorage() {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  cartItems.forEach(product => {
+    addProductToDOM(product);
+  });
+}
 // Función para mostrar notificaciones (opcional)
 function showNotification(title) {
   const notification = document.createElement('div');

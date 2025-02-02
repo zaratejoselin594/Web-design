@@ -106,10 +106,11 @@ function saveCartToLocalStorage(cartItems) {
 }
 
 function loadCartFromLocalStorage() {
-  const cartData = localStorage.getItem('cart');
-  return cartData ? JSON.parse(cartData) : [];
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  cartItems.forEach(product => {
+    addProductToDOM(product);
+  });
 }
-
 document.addEventListener('DOMContentLoaded', () => {
   // Cargar productos desde localStorage
   const cart = loadCartFromLocalStorage();
@@ -139,8 +140,21 @@ function showNotification(title) {
 function generateUniqueId() {
   return '_' + Math.random().toString(36).substr(2, 9);
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const inputCanvas = document.getElementById('inputCanvas');
+  const canvasModal = document.querySelector('.canvasModal');
 
-// Función para guardar los datos del formulario usando localStorage
+  inputCanvas.addEventListener('change', () => {
+    canvasModal.style.display = inputCanvas.checked ? 'flex' : 'none';
+  });
+
+  document.getElementById('cakeForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    saveFormData();
+  });
+});
+
+// Función para guardar los datos del formulario en localStorage
 function saveFormData() {
   const formData = new FormData(document.getElementById("cakeForm"));
   const flavor = formData.get("flavor");
@@ -148,17 +162,15 @@ function saveFormData() {
   const people = formData.get("people");
   const decorations = formData.get("decorations");
 
-  const inputCanvas = document.getElementById('inputCanvas');
   let drawing = "";
-
-  // Guardar el canvas solo si inputCanvas.checked es true
-  if (inputCanvas.checked) {
+  if (document.getElementById('inputCanvas').checked) {
     const canvas = document.getElementById('canvas');
-    drawing = canvas.toDataURL('image/jpeg', 0.2); // Formato JPEG con calidad al 50%
+    drawing = canvas.toDataURL('image/jpeg', 0.2);
   }
 
   const images = [];
   const imageFiles = formData.getAll("images");
+
   if (imageFiles.length > 0) {
     let processedImages = 0;
     imageFiles.forEach(image => {
@@ -167,48 +179,55 @@ function saveFormData() {
         images.push(e.target.result);
         processedImages++;
         if (processedImages === imageFiles.length) {
-          const product = { id: generateUniqueId(), flavor, grams, people, decorations, drawing, images };
-          saveTolocalStorage(product);
+          const product = createProduct(flavor, grams, people, decorations, drawing, images);
+          saveToLocalStorage(product);
           addProductToDOM(product);
         }
       };
       reader.readAsDataURL(image);
     });
   } else {
-    const product = { id: generateUniqueId(), flavor, grams, people, decorations, drawing, images };
-    saveTolocalStorage(product);
+    const product = createProduct(flavor, grams, people, decorations, drawing, images);
+    saveToLocalStorage(product);
     addProductToDOM(product);
   }
 }
 
+// Función auxiliar para crear un objeto de producto
+function createProduct(flavor, grams, people, decorations, drawing, images) {
+  return {
+    id: generateUniqueId(),
+    flavor,
+    grams,
+    people,
+    decorations,
+    drawing,
+    images
+  };
+}
 
 // Función para guardar el pedido en localStorage
-function saveTolocalStorage(orderData) {
+function saveToLocalStorage(orderData) {
   let cartItems = loadCartFromLocalStorage();
   cartItems.push(orderData);
   saveCartToLocalStorage(cartItems);
 }
 
-// Función para cargar y mostrar el carrito desde localStorage
+// Función para cargar y mostrar el carrito en el DOM
 function addProductToDOM(product) {
   const contentModal = document.querySelector('.cartHtml');
-
-  // Verificar si el producto ya existe en el DOM
   if (!contentModal || contentModal.querySelector(`[data-id="${product.id}"]`)) return;
 
-  // Crear el nuevo elemento del carrito
   const cartItem = document.createElement('div');
   cartItem.classList.add('cartItem');
   cartItem.setAttribute('data-id', product.id);
+
   let productHTML = `
-    <img src="${product.images.length > 0 ? product.images[0] : 'default-image.jpg'}" alt="" class="imgProduct">
+    <img src="${product.images.length > 0 ? product.images[0] : 'default-image.jpg'}" alt="Producto" class="imgProduct">
   `;
 
-  // Solo mostrar el dibujo si existe y no está vacío
   if (product.drawing) {
-    productHTML += `
-      <img src="${product.drawing}" alt="" class="imgProduct">
-    `;
+    productHTML += `<img src="${product.drawing}" alt="Dibujo" class="imgProduct">`;
   }
 
   productHTML += `
@@ -226,21 +245,15 @@ function addProductToDOM(product) {
 
   cartItem.innerHTML = productHTML;
   contentModal.appendChild(cartItem);
+  showNotification(product.flavor);
 
-  contentModal.appendChild(cartItem);
   cartItem.querySelector('.iconTrash').addEventListener('click', () => removeItem(cartItem, product.id));
 }
 
-// Función para agregar un artículo al carrito
-function addItemToCart(item) {
-  console.log("Artículo agregado al carrito:", item);
+// Función para eliminar un producto del carrito
+function removeItem(cartItem, productId) {
+  let cartItems = loadCartFromLocalStorage();
+  cartItems = cartItems.filter(item => item.id !== productId);
+  saveCartToLocalStorage(cartItems);
+  cartItem.remove();
 }
-const inputCanvas = document.getElementById('inputCanvas');
-const canvasModal = document.querySelector('.canvasModal');
-inputCanvas.addEventListener('change', () => {
-  if (inputCanvas.checked) {
-    canvasModal.style.display = 'flex';
-  } else {
-    canvasModal.style.display = 'none';
-  }
-});
