@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const orderContent = document.querySelector(".conenidoPedido");
   const imageContainer = document.querySelector(".imageContainer");
   const shareContainer = document.querySelector(".shareContainer");
-  
 
   form?.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -61,20 +60,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const cartData = localStorage.getItem("cart");
-    if (!cartData) {
-      console.error("No hay datos en el carrito.");
+    if (!cartData || cartData === "[]") {
+      alert("El carrito está vacío. Agrega productos antes de hacer el pedido.");
       return;
     }
 
     const pedidos = JSON.parse(cartData);
     let total = 0;
-    const archivos = [];
+    let archivos = [];
 
     const mensajesPedidos = pedidos.map((pedido) => {
       if (pedido.flavor) {
         total += 27000;
         if (pedido.drawing) archivos.push(pedido.drawing);
-
         return `🎂 *Pedido de Pastel Personalizado*\n\n🍰 *Sabor:* ${pedido.flavor}\n⚖️ *Peso:* ${pedido.grams} gramos\n👥 *Cantidad de Personas:* ${pedido.people}\n${pedido.decorations ? `📋 *Descripción:* ${pedido.decorations}\n` : ""}🖼️ *Imagen del Dibujo:* ${pedido.drawing ? "[Incluido]" : "No incluida"}\n💰 *Precio:* $27,000\n---`;
       } else if (pedido.name) {
         total += pedido.price;
@@ -90,28 +88,24 @@ document.addEventListener("DOMContentLoaded", () => {
       imageContainer.innerHTML = archivos.map(img => `<img src="${img}" alt="Imagen del Pedido" style="max-width: 200px; margin: 5px;">`).join("");
     }
 
-    // window.open(`https://wa.me/+5493513039104?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
     window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
   };
 
   guardarYMostrarPedidos();
 
-  const canvasDataURL = localStorage.getItem('drawing');
-  if (canvasDataURL && imageContainer) {
-    const imgElement = document.createElement('img');
-    imgElement.src = canvasDataURL;
-    imgElement.alt = 'Imagen del Pedido';
-    imgElement.style.maxWidth = '300px';
-    imgElement.style.margin = '10px';
-    imageContainer.appendChild(imgElement);
-  }
-
-  if (canvasDataURL && shareContainer) {
-    const whatsappButton = document.createElement('a');
-    whatsappButton.href = `https://api.whatsapp.com/send?text=${encodeURIComponent('¡Mira esta increíble imagen de nuestro pastel personalizado! 😍')}%20${encodeURIComponent(canvasDataURL)}%20+5493513039104`;
-    whatsappButton.target = '_blank';
-    whatsappButton.textContent = 'Compartir en WhatsApp';
-    shareContainer.appendChild(whatsappButton);
-    document.querySelector('.imageContainer').appendChild(whatsappButton)
+  const cartData = localStorage.getItem("cart");
+  if (cartData) {
+    const pedidos = JSON.parse(cartData);
+    pedidos.forEach(pedido => {
+      if (pedido.drawing && imageContainer) {
+        const imgElement = document.createElement("img");
+        imgElement.src = pedido.drawing;
+        imgElement.alt = "Dibujo en el Pedido";
+        imgElement.style.maxWidth = "300px";
+        imgElement.style.margin = "10px";
+        imageContainer.appendChild(imgElement);
+      }
+    });
   }
 });
+

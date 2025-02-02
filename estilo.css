@@ -20,36 +20,14 @@ body{
 
 .containerBuy, .hrUlLiRve, 
 .navbar, .hrUl, .frontPage, .btnAddCart, .btnBuy,
-.ourFlavor, .contentFlavor, .cotainerDescipFlavor, 
-.sectionOur, .sectionContact, .containerAbout, .containerFlavor,
+.contentFlavor, .cotainerDescipFlavor, 
+.sectionOur, .sectionContact, .containerAbout, .itemsTiendaContainer,
 .containerContact, .containerTitle, .productCookie, .productContainer, .hrNavBarRve{
   display: flex;
   align-items: center;
   justify-content: center;
 }
-/*--scrool----------------------------------------------------------------------------------------------------------------------------------------------*/
-/* Estilo general de la barra de scroll */
-::-webkit-scrollbar {
-  width: 8px;
-  /* Ancho de la barra vertical */
-  height: 8px;
-  /* Altura de la barra horizontal */
-}
 
-/* Estilo del riel de la barra */
-::-webkit-scrollbar-track {
-  background: #333;
-  /* Color del fondo */
-}
-
-/* Estilo de la barra de desplazamiento */
-::-webkit-scrollbar-thumb {
-  background-color:  #555;
-  /* Color de la barra */
-  border-radius: 10px;
-  border: 2px solid #555;
-  /* Borde alrededor de la barra */
-}
 
 /* Menu de navegacion Rve -------------------------------------------------------------------------------------------------------------- */
 
@@ -340,9 +318,7 @@ a {
 /* Seccion Main ---------------------------------------------------------------------------------------------------------------------------- */
 
 .frontPage{
-  padding-top: 7em;
   height: 23em;
-  top: 3.7em;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
@@ -388,13 +364,26 @@ a {
 /* Seccion Nuestros sabores -------------------------------------------------------------------------------------------------------------- */
 .ourFlavor{
   width: 100%;
+  height: 30em;
+  padding: 5em 0 5em 0;
   flex-direction: column;
 }
-.containerFLavor{
-  display: flex;
+.itemsTiendaContainer{
+  width: 100%;
+  height: 100%;
+  margin: 2em;
+  background-color: var(--thirdColor);
+  border-radius: var(--borderRadius);
+  z-index: 10;
+  top: 3.7em;
+  display: none;
   flex-direction: row;
   flex-wrap: wrap;
-  margin:2em;
+  align-items: start;
+  overflow-y: scroll;
+}
+.pastelModal, .mesaDulceModal, .meriendaModal, .budinesModal, .tartaModal{
+  display: none;
 }
 .titleFlavor{
   font-family: "Ephesis", serif;
@@ -402,11 +391,52 @@ a {
   font-size: 6em;
   text-shadow: 3px 3px 0 var(--fourthColor);
 }
+.menuContainer{
+  width: 80em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+.containerMenu{
+  width: 20em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+}
+.pastelContent{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #00000047;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--borderRadius);
+} 
+.imgContainerMenu{
+  width: 20em;
+  border-radius: var(--borderRadius);
+}
+.close-icon{
+  position: fixed;
+  font-size: 1.4em;
+  padding: .3em;
+  border-bottom-left-radius: var(--borderRadius);
+  border-bottom-right-radius: var(--borderRadius);
+  background-color: var(--primaryColor);
+  color: #fff ;
+  right: 0px;
+}
 .contentFlavor{
   color: #000;
-  width: 15em;
-  height: 20em;
-  padding-bottom: 2em;
+  width: 100%;
+  height: 10em;
+  padding: 1em 0 1em 0;
   display: flex;
   flex-direction: column;
   margin: 1em;
@@ -416,10 +446,9 @@ a {
 
 .imgCookieFlavor{
   border-radius: var(--borderRadius);
-  width: 9em;
-  height: 9em;
+  width: 8em;
+  height: 8em;
   position: relative;
-  padding: 2em 1em;
   background-color: #eceac8;
 }
 .cotainerDescipFlavor{
@@ -440,7 +469,7 @@ a {
 .inputCookies{
   display: none;
 }
-.inputCookies:checked ~ .containerFLavor{
+.inputCookies:checked ~ .itemsTiendaContainer{
   height: auto;
 }
 
@@ -664,20 +693,33 @@ h3{
   .containerTitle{
     height: auto;
   }
-  .containerFLavor{
+  .itemsTiendaContainer{
     margin: 0;
+    width: 100%;
+    height: 100vh;
+  }
+  .menuContainer{
+    width: 100%;
+  }
+  .ourFlavor{
+    height: 40em;
   }
   .contentFlavor{
-    flex-direction: column;
-    width: 12em;
-    height: auto;
+    flex-direction: row;
+    width: 100%;
+    height: 10em;
     align-items: center;
     background-color: var(--fourthColor);
-    color: var(--thirdColor);
   }
   .imgCookieFlavor{
-    width: 80%;
+    width: 8em;
     height: 8em;
+    margin: 1em;
+  }
+}
+@media (max-width: 660px) {
+  .ourFlavor{
+    height: 70em;
   }
 }
 a {

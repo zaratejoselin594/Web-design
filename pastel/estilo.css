@@ -94,16 +94,47 @@
   align-items: center;
   justify-content: center;
 }
-
-input{
+.divFrom{
+  width: 100%;
+  height: 4em;
   color: #fff;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  border-bottom: solid #ddd 2px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-input::placeholder{
-  color: #ddd;
+
+input,
+textarea {
+  width: 50%;
+  padding: .2em .8em;
+  text-align: center;
+  border: 2px solid #db2445;
+  background-color: #f7b0bd;
+  border-radius: var(--borderRadius);
+  font-size: 1em;
+  color: #c14158;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #BF1523;
+  opacity: 0.8;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #BF1523;
+  box-shadow: 0 0 5px rgba(191, 21, 35, 0.5);
+}
+
+/* Estilos para el botón de carga de archivos */
+input[type="file"] {
+  border: none;
+  background: none;
 }
 .modal-content {
   background-color: var(--secondColor);
@@ -115,21 +146,73 @@ input::placeholder{
   max-width: 500px;
   color: #eee;
   text-align: left;
+  position: relative;
 }
 #cakeForm{
   display: flex;
-  align-items: start;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
-  gap: .7em;
+  gap: .8em;
+  margin-top: 1em;
+}
+select {
+  appearance: none;
+  /* Elimina el estilo nativo del navegador */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 2px solid #db2445;
+  background-color: #f7b0bd;
+  border-radius: var(--borderRadius);
+  padding: .2em .8em;
+  font-size: 1em;
+  color: #c14158;
+  cursor: pointer;
+  outline: none;
+  width: 58%;
+  transition: all 0.3s ease-in-out;
+}
+
+select:hover {
+  border-color: #BF1523;
+}
+
+select:focus {
+  border-color: #D91438;
+  box-shadow: 0 0 5px #d914388d;
+}
+
+/* Personalizar el ícono del desplegable */
+select::-ms-expand {
+  display: none;
+}
+
+/* Agregar un fondo diferente cuando está abierto en algunos navegadores */
+select:active,
+select:focus {
+  background-color: #f7b0bd;
+}
+
+option:hover {
+  background-color: #db2445;
+  color: #fff;
+}
+option:checked {
+  background-color: #db2445;
+  color: #fff;
 }
 
 .close-btn {
-  float: right;
+  right: .7em;
+  top: .7em;
+  padding: 0 .4em 0 .4em;
+  position: absolute;
+  background-color: var(--fourthColor);
   font-size: 1.5rem;
+  border-radius: var(--borderRadius);
   font-weight: bold;
   cursor: pointer;
-  color: var(--fourthColor);
+  color: #000;
 }
 
 #canvas {

@@ -344,7 +344,3 @@ a {
 .cartTotal:hover {
   background-color: #ba86e2;
 }
-body {
-  background-color: var(--thirdColor);
-  color: #fff;
-}

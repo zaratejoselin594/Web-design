@@ -22,10 +22,9 @@
       </label>
       <ul class="hrUlRve">
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html" title="Inicio">Inicio</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#order" title="Cookies">Comprar</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#ubicacion" title="Nosotros">Ubicación</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../pastel/pastel.html" title="Contacto">pastel Personalizada</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#tienda" title="Contacto">Tienda</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#aboutus" title="Ubicación">Ubicación</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../pastel/pastel.html" title="Pastel Personalizado">pastel Personalizada</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#tienda" title="Tienda">Tienda</a></li>
       </ul>
     </nav>
   </header>
@@ -54,15 +53,23 @@
         <div id="localCode" class="hidden">
           <p>Tu código de pedido es: <span id="randomCode"></span></p>
         </div>
-      
         <div id="deliveryDetails" class="hidden">
           <label for="address">Dirección:</label>
           <input type="text" id="address" name="address"><br><br>
-      
+          <p>El costo de delivery es 1800 adicionales.</p>
           <label for="instructions">Instrucciones adicionales:</label>
           <textarea id="instructions" name="instructions" rows="3"
             placeholder="Escribe alguna instrucción si es necesario..."></textarea>
         </div>
+        <p>¿Cómo deseas pagar?</p>
+        <label>
+          <input type="radio" name="paymentOption" value="efectivo" required>
+          Efectivo
+        </label><br>
+        <label>
+          <input type="radio" name="paymentOption" value="transferencia" required>
+          Transferencia
+        </label><br><br>
         <button type="submit" id="submit" class="conteainerAjedresBtn">
           <div class="ajedresBtn">
             <p class="btn-ajedrez" id="local">Enviar</p>
@@ -98,7 +105,7 @@
                 <div class="imageContainer"></div>
               </div>
               <p class="orderTotal"></p>
-              <button id="whatsappLink" onclick="guardarYMostrarPedidos()">Pedir por WhatsApp</button>
+              <button id="whatsappLink">Pedir por WhatsApp</button>
             </div>
           </div>
         </div>

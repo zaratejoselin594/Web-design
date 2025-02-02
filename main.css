@@ -14,11 +14,36 @@
   margin: 0;
   font-family: "Nunito", serif;
 }
-
+*::selection {
+  color: #fff;
+  background-color: #f1aebb;
+}
 body {
   background-color: var(--thirdColor);
 }
+/*--scrool----------------------------------------------------------------------------------------------------------------------------------------------*/
+/* Estilo general de la barra de scroll */
+::-webkit-scrollbar {
+  width: 8px;
+  /* Ancho de la barra vertical */
+  height: 8px;
+  /* Altura de la barra horizontal */
+}
 
+/* Estilo del riel de la barra */
+::-webkit-scrollbar-track {
+  background: #333;
+  /* Color del fondo */
+}
+
+/* Estilo de la barra de desplazamiento */
+::-webkit-scrollbar-thumb {
+  background-color: #555;
+  /* Color de la barra */
+  border-radius: 10px;
+  border: 2px solid #555;
+  /* Borde alrededor de la barra */
+}
 .containerBuy,
 .hrUlLiRve,
 .navbar,
@@ -32,7 +57,7 @@ body {
 .sectionOur,
 .sectionContact,
 .containerAbout,
-.containerFlavor,
+.itemsTiendaContainer,
 .containerContact,
 .containerTitle,
 .productCookie,

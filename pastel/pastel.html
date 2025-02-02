@@ -24,10 +24,9 @@
       </label>
       <ul class="hrUlRve">
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html" title="Inicio">Inicio</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../orden/comprar.html" title="Cookies">Comprar</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#ubicacion" title="Nosotros">Ubicación</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#pastel" title="Contacto">pastel Personalizada</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#tienda" title="Contacto">Tienda</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#aboutus" title="Ubicación">Ubicación</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#pastel" title="Pastel Personalizado">pastel Personalizada</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#tienda" title="Tienda">Tienda</a></li>
       </ul>
     </nav>
   </header>
@@ -38,7 +37,7 @@
           <h3>Carrito de Compras</h3>
           <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
         </div>
-        <a href="../orden/ordenar.html" target="_blank" class="cart-total">Comprar</a>
+        <a href="../orden/ordenar.html" class="cart-total">Comprar</a>
         <p class="total"></p>
       </div>
     </div>
@@ -72,28 +71,28 @@
               <span class="close-btn" onclick="closeModal()">&times;</span>
               <h2>Personaliza tu pastel</h2>
               <form id="cakeForm">
-                <div>
-                  <label for="flavor">Sabor de la pastel:</label>
+                <div class="divFrom">
+                  <label for="flavor">Sabor de la pastel</label> 
                   <select id="flavor" name="flavor" required>
                     <option value="chocolate">Chocolate</option>
                     <option value="vainilla">Vainilla</option>
                     <option value="fresa">Fresa</option>
                   </select>
                 </div>
-                <div>
-                  <label for="grams">Gramos:</label>
-                  <input type="number" id="grams" name="grams" placeholder="Ejemplo: 500" required>    
-                </div>
-                <div>
+                <div class="divFrom">
                   <label for="people">¿Para cuántas personas?</label>
-                  <input type="number" id="people" name="people" placeholder="Ejemplo: 10" required>
+                  <input type="number" id="people" name="people" placeholder="100g por persona:" required>
                 </div>
-                <div>
-                  <label for="decorations">Describe:</label>
-                  <textarea id="decorations" name="decorations" placeholder="Describe la pastel "
+                <div class="divFrom">
+                  <label for="grams">Gramos</label>
+                  <input type="number" id="grams" name="grams" placeholder="100g por persona:" required>    
+                </div>
+                <div class="divFrom">
+                  <label for="decorations">Describe</label>
+                  <textarea id="decorations" name="decorations" placeholder="Describe el pastel: "
                     required></textarea>
                 </div>
-                <div>
+                <div class="divFrom">
                   <label for="images">Sube 1 imagen de referencia:</label>
                   <input type="file" id="images" name="images" accept="image/*" multiple required>
                   <p id="imageLimitWarning" style="color: red; display: none;">Máximo 3 imágenes permitidas.</p>
@@ -150,7 +149,7 @@
       </div>
     </section>
   </footer>
-  <script  src="script.js"></script>
+  <script  src="prueba.js"></script>
   <script src="../cart.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

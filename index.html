@@ -25,10 +25,9 @@
       </label>
       <ul class="hrUlRve">
         <li class="hrUlLiRve"><a class="hrLiA" href="#home" title="Inicio">Inicio</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="./orden/ordenar.html" title="Cookies">Comprar</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#ubicacion" title="Nosotros">Ubicación</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="./pastel/pastel.html" title="Contacto">pastel Personalizada</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#tienda" title="Contacto">Tienda</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#aboutus" title="Ubicación">Ubicación</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="./pastel/pastel.html" title="Pastel Personalizado">Pastel Personalizado</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#tienda" title="Tienda">Tienda</a></li>
       </ul>
     </nav>
   </header>
@@ -42,18 +41,62 @@
           <h3>Carrito de Compras</h3>
           <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
         </div>
-        <a href="./orden/ordenar.html" target="_blank" class="cart-total">Comprar</a>
+        <a href="./orden/ordenar.html"  class="cart-total">Comprar</a>
         <p class="total"></p>
       </div>
     </div>
   </div>
 
 
-  <!-- Pagina Principal ------------------------------------------------------------------------------------------------------------------------- -->
   
-  <main class="frontPage" id="home">
+  
+  <!-- Seccion Sabores -------------------------------------------------------------------------------------------------------------------- -->
+  <main class="ourFlavor" id="tienda">
+    <h1 class="titleFlavor">Tienda</h1>
+    <div class="menuContainer">  
+      <div class="pastelContainer containerMenu">
+        <img src="./resourse/tortas.jpeg" alt="" class="imgContainerMenu">
+        <div class="pastelContent">
+          <h2>Pasteles</h2>
+        </div>
+      </div>
+      <div class="mesasDulcesContainer containerMenu">
+        <img src="./resourse/mesadulce.jpeg" alt="" class="imgContainerMenu">
+        <div class="pastelContent">
+          <h2>Mesas dulces</h2>
+        </div>
+        
+      </div>
+      <div class="meriendaContainer containerMenu">
+        <img src="./resourse/merienda.jpeg" alt="" class="imgContainerMenu">
+        <div class="pastelContent">
+          <h2>Merienda</h2>
+        </div>
+        
+      </div>
+      <div class="budinesContainer containerMenu">
+        <img src="./resourse/budines.jpeg" alt="" class="imgContainerMenu">
+        <div class="pastelContent">
+          <h2>Budines</h2>
+        </div>
+        
+      </div>
+      <div class="tartasContainer containerMenu">
+        <img src="./resourse/tartas.jpeg" alt="" class="imgContainerMenu">
+        <div class="pastelContent">
+          <h2>Tartas</h2>
+        </div>
+        
+      </div>
+    </div>   
+    <div class="itemsTiendaContainer">
+    </div>
+  </main>
+
+  <!-- Pagina Principal ------------------------------------------------------------------------------------------------------------------------- -->
+  <section class="frontPage" id="home">
     <div class="containerTitle">
-      <h1 class="title">Caro</h1>
+      <h2 class="title">Caro</h2>
       <p class="pMain">Sabores irresistibles, calidad incomparable. Caro Pasteleria, la experiencia perfecta en cada bocado.</p>
       <div>
         <a href="https://www.facebook.com/caroo.caceres.7" target="_blank" class="iconContact" title="FaceBook">
@@ -71,7 +114,7 @@
       <div>
         <h3 class="mainTitle">Realizar</h3>
         <img src="" alt="">
-        <a href="./orden/comprar.html" class="conteainerAjedresBtn">
+        <a href="./orden/ordenar.html" class="conteainerAjedresBtn">
           <div class="ajedresBtn">
             <p class="btn-ajedrez" id="local">Compra</>
           </div>
@@ -90,101 +133,7 @@
     <div class="imgPasteleria">
       <img src="" alt="">
     </div>
-  </main>
-  <!-- Seccion Sabores -------------------------------------------------------------------------------------------------------------------- -->
-  <section class="ourFlavor" id="tienda">
-    <h2 class="titleFlavor">Tienda</h2>
-    <!-- Cookie Vainilla con chocolate y maní -->
-    
-    <div class="containerFLavor" id="cookies">
-      <div class="contentFlavor">
-        <img class="imgCookieFlavor" src="./resourse/img/cuatro.webp" alt="Crumble Cookie Vainilla con chocolate y maní" loading="lazy"/>
-        <div class="cotainerDescipFlavor">
-          <h3>Mesa Dulce</h3>
-          <p class="price" data-price="20999">Precio: $20999</p>
-          <button class="conteainerAjedresBtn btnAñadir" data-item="Mesa Dulce 1" data-price="20999"
-            data-src="./resourse/img/cuatro.webp">
-            <div class="ajedresBtn">
-              <p class="btn-ajedrez" id="local">Añadir</p>
-            </div>
-          </button>
-        </div>
-      </div>
-      <!-- Cookie Chocolate doble -->
-      <div class="contentFlavor colorLila">
-        <img class="imgCookieFlavor" src="./resourse/img/diecisiete.webp" alt="Crumble Cookie Chocolate doble"
-          loading="lazy">
-        <div class="cotainerDescipFlavor">
-          <h3>Mesa Dulce</h3>
-          <p class="price" data-price="21000">Precio: $21000</p>
-          <button class="conteainerAjedresBtn btnAñadir" data-item="Mesa Dulce 2" data-price="21000"
-            data-src="./resourse/img/diecisiete.webp">
-            <div class="ajedresBtn">
-              <p class="btn-ajedrez" id="local">Añadir</p>
-            </div>
-          </button>
-        </div>
-      </div>
-      <!-- Cookie Chocolate -->
-      <div class="contentFlavor colorCream">
-        <img class="imgCookieFlavor" src="./resourse/img/diez.webp" alt="Crumble Cookie Cookie Chocolate" loading="lazy">
-        <div class="cotainerDescipFlavor">
-          <h3>pastel de Chocolate</h3>
-          <p class="price" data-price="7500">Precio: $7500</p>
-          <button class="conteainerAjedresBtn btnAñadir" data-item="pastel de chocolate" data-price="7500"
-            data-src="./resourse/img/diez.webp">
-            <div class="ajedresBtn">
-              <p class="btn-ajedrez" id="local">Añadir</p>
-            </div>
-          </button>
-        </div>
-      </div>
-      <!-- Cookie Vainilla con frutilla -->
-      <div class="contentFlavor">
-        <img class="imgCookieFlavor" src="./resourse/img/ocho.webp" alt="Crumble Cookie Vainilla con frutilla"
-          loading="lazy">
-        <div class="cotainerDescipFlavor">
-          <h3>pastel de Vainilla</h3>
-          <p class="price" data-price="7000">Precio: $7000</p>
-          <button class="conteainerAjedresBtn btnAñadir" data-item="pastel Vainilla" data-price="7000"
-            data-src="./resourse/img/ocho.webp">
-            <div class="ajedresBtn">
-              <p class="btn-ajedrez" id="local">Añadir</p>
-            </div>
-          </button>
-        </div>
-       
-      </div>
-      <!-- Cookie Red Velvet -->
-      <div class="contentFlavor colorLila">
-        <img class="imgCookieFlavor" src="./resourse/img/once.webp" alt="Crumble Cookie Red Velvet" loading="lazy">
-        <div class="cotainerDescipFlavor">
-          <h3>pastel Helada</h3>
-          <p class="price" data-price="8000">Precio: $8000</p>
-          <button class="conteainerAjedresBtn btnAñadir" data-item="pastel Helada" data-price="8000"
-            data-src="./resourse/img/once.webp">
-            <div class="ajedresBtn">
-              <p class="btn-ajedrez" id="local">Añadir</p>
-            </div>
-          </button>
-        </div>
-      </div>
-      <!-- Cookie Mesa dulce -->
-      <div class="contentFlavor colorCream">
-        <img class="imgCookieFlavor" src="./resourse/img/trece.webp" alt="Mesa dulce 3" loading="lazy">
-        <div class="cotainerDescipFlavor">
-          <h3>Mesa dulce</h3>
-          <p class="price" data-price="19950">Precio: $19950</p>
-          <button class="conteainerAjedresBtn btnAñadir" data-item="Mesa dulce 3" data-price="19950" data-src="./resourse/img/trece.webp">
-            <div class="ajedresBtn">
-              <p class="btn-ajedrez" id="local">Añadir</p>
-            </div>
-          </button>
-        </div>
-      </div>
-    </div>
   </section>
-
   <!-- Seccion Nosotros ----------------------------------------------------------------------------------------------------------------- -->
 
   <section class="sectionOur" id="aboutus">

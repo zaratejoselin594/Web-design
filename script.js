@@ -109,3 +109,111 @@ function addProductToDOM(product) {
 
 // Event Listener para todos los botones de "Añadir"
 document.addEventListener('click', handleAddToCart);
+
+const pastel = document.querySelector('.pastelContainer');
+const mesaDulce = document.querySelector('.mesasDulcesContainer');
+const merienda = document.querySelector('.meriendaContainer');
+const budines = document.querySelector('.budinesContainer');
+const tarta = document.querySelector('.tartasContainer');
+
+function abrirModal(itemMenu, modalClass) {
+  if (!(itemMenu instanceof Element)) {
+    console.error('itemMenu no es un elemento del DOM:', itemMenu);
+    return;
+  }
+
+  itemMenu.addEventListener('click', () => {
+    let modal = document.querySelector(`.${modalClass}Modal`);
+
+    if (!modal) {
+      console.error(`No se encontró el modal: .${modalClass}Modal`);
+      return;
+    } else {
+      modal.style.display = 'flex';
+      modal.style.position = 'fixed';
+    }
+
+    // Buscar o crear el botón de cierre
+    let close = modal.querySelector('.close-icon');
+    if (!close) {
+      close = document.createElement('ion-icon');
+      close.name = 'close-outline';
+      close.classList.add('close-icon');
+      modal.appendChild(close);
+    }
+
+    close.onclick = () => {
+      modal.style.display = 'none';
+    };
+  });
+}
+
+function createModalItem(className, src, alt, itemMenu, price, titulo) {
+  let modalContainer = document.querySelector(`.${className}Modal`);
+
+  // Si el contenedor no existe, créalo
+  if (!modalContainer) {
+    modalContainer = document.createElement('div');
+    modalContainer.className = `${className}Modal itemsTiendaContainer`;
+    document.body.appendChild(modalContainer); // Agrega el modal al body
+  }
+
+  // Crear el nuevo ítem
+  const itemElement = document.createElement('div');
+  itemElement.className = 'contentFlavor';
+  itemElement.innerHTML = `
+    <img class="imgCookieFlavor" src="${src}" alt="${alt}" loading="lazy" />
+    <div class="cotainerDescipFlavor">
+      <h3>${titulo}</h3>
+      <p class="price" data-price="${price}">Precio: $${price}</p>
+      <button class="conteainerAjedresBtn btnAñadir" data-item="${titulo}" data-price="${price}" data-src="${src}">
+        <div class="ajedresBtn">
+          <p class="btn-ajedrez" id="local">Añadir</p>
+        </div>
+      </button>
+    </div>
+  `;
+
+  // Agregar el nuevo ítem dentro del modal
+  modalContainer.appendChild(itemElement);
+
+  abrirModal(itemMenu, className);
+}
+
+// Llamadas a la función con referencias al DOM en lugar de cadenas de texto
+createModalItem('pastel', './resourse/img/ocho.webp', 'pastel Vainilla helado', pastel, 12000, 'Pastel de Vainilla helado');
+createModalItem('pastel', './resourse/img/diez.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('pastel', './resourse/img/once.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('pastel', './resourse/img/siete.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
+
+createModalItem('mesaDulce', './resourse/img/once.webp', 'pastel chocolate con frutilla', mesaDulce, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('mesaDulce', './resourse/img/diez.webp', 'pastel chocolate con frutilla', mesaDulce, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('mesaDulce', './resourse/img/siete.webp', 'pastel chocolate con frutilla', mesaDulce, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('mesaDulce', './resourse/img/ocho.webp', 'pastel Vainilla helado', mesaDulce, 12000, 'Pastel de Vainilla helado');
+
+createModalItem('merienda', './resourse/img/ocho.webp', 'pastel Vainilla helado', merienda, 12000, 'Pastel de Vainilla helado');
+createModalItem('merienda', './resourse/img/diez.webp', 'pastel chocolate con frutilla', merienda, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('merienda', './resourse/img/once.webp', 'pastel chocolate con frutilla', merienda, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('merienda', './resourse/img/siete.webp', 'pastel chocolate con frutilla', merienda, 12500, 'Pastel Chocolate con Frutilla');
+
+createModalItem('budines', './resourse/img/ocho.webp', 'pastel Vainilla helado', budines, 12000, 'Pastel de Vainilla helado');
+createModalItem('budines', './resourse/img/diez.webp', 'pastel chocolate con frutilla', budines, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('budines', './resourse/img/once.webp', 'pastel chocolate con frutilla', budines, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('budines', './resourse/img/siete.webp', 'pastel chocolate con frutilla', budines, 12500, 'Pastel Chocolate con Frutilla');
+
+createModalItem('tarta', './resourse/img/ocho.webp', 'pastel Vainilla helado', tarta, 12000, 'Pastel de Vainilla helado');
+createModalItem('tarta', './resourse/img/diez.webp', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('tarta', './resourse/img/once.webp', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('tarta', './resourse/img/siete.webp', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
+
+function loadCartFromLocalStorage() {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  cartItems.forEach(product => {
+    addProductToDOM(product);
+  });
+}
+
+// Cargar carrito al iniciar la página
+document.addEventListener('DOMContentLoaded', () => {
+  loadCartFromLocalStorage();
+});

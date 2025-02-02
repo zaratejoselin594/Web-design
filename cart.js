@@ -1,105 +1,21 @@
-// Guardar y cargar desde localStorage
+// Función para guardar productos en localStorage
 function saveToLocalStorage(cartItems) {
   localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
+// Función para cargar los productos desde localStorage
 function loadFromLocalStorage() {
   const cartData = localStorage.getItem('cart');
-  return cartData ? JSON.parse(cartData) : [];
+  return cartData ? JSON.parse(cartData) : []; // Aseguramos que siempre sea un array
 }
 
+// Función para cargar los productos desde localStorage al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
   const cart = loadFromLocalStorage();
   cart.forEach(product => addProductToDOM(product));
-
-  const cakeForm = document.getElementById('cakeForm');
-  if (cakeForm) {
-    cakeForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      saveFormData();
-    });
-  }
 });
 
-function showNotification(title) {
-  const notification = document.createElement('div');
-  notification.classList.add('notification');
-  notification.textContent = `${title} ha sido agregado al carrito`;
-  document.body.appendChild(notification);
-  setTimeout(() => {
-    notification.style.opacity = 1;
-  }, 100);
-  setTimeout(() => {
-    notification.style.opacity = 0;
-    setTimeout(() => notification.remove(), 300);
-  }, 3000);
-}
-
-function generateUniqueId() {
-  return '_' + Math.random().toString(36).substr(2, 9);
-}
-
-function saveFormData() {
-  const formData = new FormData(document.getElementById("cakeForm"));
-  const flavor = formData.get("flavor");
-  const grams = formData.get("grams");
-  const people = formData.get("people");
-  const decorations = formData.get("decorations");
-
-  const inputCanvas = document.getElementById('inputCanvas');
-  let drawing = "";
-
-  // Guardar el canvas solo si inputCanvas.checked es true
-  if (inputCanvas.checked) {
-    const canvas = document.getElementById('canvas');
-    drawing = canvas.toDataURL('image/jpeg', 0.2); // Formato JPEG con calidad al 50%
-  }
-
-  const images = [];
-  const imageFiles = formData.getAll("images");
-
-  if (imageFiles.length > 0) {
-    const image = imageFiles[0]; // Selecciona solo la primera imagen
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      images.push(e.target.result);
-      const product = { id: generateUniqueId(), flavor, grams, people, decorations, drawing, images };
-      saveTolocalStorage(product);
-      addProductToDOM(product);
-    };
-    reader.readAsDataURL(image);
-  } else {
-    const product = { id: generateUniqueId(), flavor, grams, people, decorations, drawing, images };
-    saveTolocalStorage(product);
-    addProductToDOM(product);
-  }
-
-}
-
-
-function handleAddToCart(event) {
-  const button = event.target.closest('.btnAñadir');
-  if (!button) return;
-
-  const product = {
-    id: generateUniqueId(),
-    name: button.getAttribute('data-item'),
-    price: parseFloat(button.getAttribute('data-price')),
-    image: button.getAttribute('data-src')
-  };
-
-  saveProductToCart(product);
-}
-
-function saveProductToCart(product) {
-  let cartItems = loadFromLocalStorage();
-  if (!cartItems.some(item => item.id === product.id)) {
-    cartItems.push(product);
-    saveToLocalStorage(cartItems);
-    addProductToDOM(product);
-  }
-}
-
+// Función para agregar un producto al DOM
 function addProductToDOM(product) {
   const contentModal = document.querySelector('.cartHtml');
   if (!contentModal || contentModal.querySelector(`[data-id="${product.id}"]`)) return;
@@ -108,36 +24,36 @@ function addProductToDOM(product) {
   cartItem.classList.add('cartItem');
   cartItem.setAttribute('data-id', product.id);
 
+  // Manejo de productos personalizados (con "flavor")
   if (product.flavor) {
     let productHTML = `
-    <img src="${product.images.length > 0 ? product.images[0] : 'default-image.jpg'}" alt="" class="imgProduct">
-  `;
-
-    // Solo mostrar el dibujo si existe y no está vacío
+      <img src="${product.images.length > 0 ? product.images[0] : 'default-image.jpg'}" alt="" class="imgProduct">
+    `;
     if (product.drawing) {
       productHTML += `
-      <img src="${product.drawing}" alt="" class="imgProduct">
-    `;
+        <img src="${product.drawing}" alt="" class="imgProduct">
+      `;
     }
 
     productHTML += `
-    <div class="titleCart">
-      <div class="infoCart">
-        <h3>${product.flavor}</h3>
-        <p>Para ${product.people} personas - ${product.grams} gramos - Descripción: ${product.decorations}</p>
+      <div class="titleCart">
+        <div class="infoCart">
+          <h3>${product.flavor}</h3>
+          <p>Para ${product.people} personas - ${product.grams} gramos - Descripción: ${product.decorations}</p>
+        </div>
+        <div class="monto">
+          <ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
+          <p>$${product.price || 100}</p>
+        </div>
       </div>
-      <div class="monto">
-        <ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
-        <p>$100</p>
-      </div>
-    </div>
-  `;
+    `;
 
     cartItem.innerHTML = productHTML;
-    contentModal.appendChild(cartItem);
-  } else if (product.name) {
+  }
+  // Manejo de productos del catálogo (con "name")
+  else if (product.name) {
     cartItem.innerHTML = `
-      <img src="${`.`+product.image}" alt="" class="imgProduct">
+      <img src="${product.image}" alt="" class="imgProduct">
       <div class="titleCart">
         <div class="infoCart">
           <h3>${product.name}</h3>
@@ -155,9 +71,42 @@ function addProductToDOM(product) {
   cartItem.querySelector('.iconTrash').addEventListener('click', () => removeItem(cartItem, product.id));
 }
 
+// Función para eliminar un producto del carrito
 function removeItem(element, id) {
   let cartItems = loadFromLocalStorage();
   cartItems = cartItems.filter(item => item.id !== id);
   saveToLocalStorage(cartItems);
   element.remove();
+}
+
+// Función para agregar un producto al carrito
+function saveProductToCart(product) {
+  let cartItems = loadFromLocalStorage();
+
+  // Si el producto es del tipo personalizado (con "flavor")
+  if (product.flavor) {
+    cartItems.push(product);
+  }
+  // Si el producto es del tipo de catálogo (con "name")
+  else if (product.name) {
+    cartItems.push(product);
+  }
+
+  saveToLocalStorage(cartItems);
+  addProductToDOM(product);
+}
+
+// Función para mostrar notificaciones (opcional)
+function showNotification(title) {
+  const notification = document.createElement('div');
+  notification.classList.add('notification');
+  notification.textContent = `${title} ha sido agregado al carrito`;
+  document.body.appendChild(notification);
+  setTimeout(() => {
+    notification.style.opacity = 1;
+  }, 100);
+  setTimeout(() => {
+    notification.style.opacity = 0;
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
 }
