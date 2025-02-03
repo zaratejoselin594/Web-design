@@ -1,19 +1,16 @@
-// Función para guardar productos en localStorage
-function saveToLocalStorage(cartItems) {
-  localStorage.setItem('cart', JSON.stringify(cartItems));
-}
+// Función para cargar productos desde localStorage y mostrarlos en el DOM
+function loadCartFromLocalStorage() {
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const cartObject = JSON.parse(localStorage.getItem('cart')); // Puede ser un objeto o null
 
-// Función para cargar los productos desde localStorage
-function loadFromLocalStorage() {
-  const cartData = localStorage.getItem('cart');
-  return cartData ? JSON.parse(cartData) : []; // Aseguramos que siempre sea un array
-}
+  // Agregar productos del catálogo (cartItems)
+  cartItems.forEach(product => addProductToDOM(product));
 
-// Función para cargar los productos desde localStorage al cargar la página
-document.addEventListener('DOMContentLoaded', () => {
-  const cart = loadFromLocalStorage();
-  cart.forEach(product => addProductToDOM(product));
-});
+  // Agregar el producto personalizado (cart), si existe
+  if (cartObject && cartObject.id) {
+    addProductToDOM(cartObject);
+  }
+}
 
 // Función para agregar un producto al DOM
 function addProductToDOM(product) {
@@ -24,36 +21,29 @@ function addProductToDOM(product) {
   cartItem.classList.add('cartItem');
   cartItem.setAttribute('data-id', product.id);
 
-  // Manejo de productos personalizados (con "flavor")
-  if (product.flavor) {
-    let productHTML = `
-      <img src="${product.images.length > 0 ? product.images[0] : 'default-image.jpg'}" alt="" class="imgProduct">
-    `;
-    if (product.drawing) {
-      productHTML += `
-        <img src="${product.drawing}" alt="" class="imgProduct">
-      `;
-    }
+  let productHTML = '';
 
-    productHTML += `
+  // Si el producto tiene 'flavor', es un producto personalizado
+  if (product.flavor) {
+    productHTML = `
+      <img src="${product.images?.length > 0 ? product.images[0] : 'default-image.jpg'}" alt="Producto" class="imgProduct">
+      ${product.drawing ? `<img src="${product.drawing}" alt="Dibujo" class="imgProduct">` : ''}
       <div class="titleCart">
         <div class="infoCart">
           <h3>${product.flavor}</h3>
-          <p>Para ${product.people} personas - ${product.grams} gramos - Descripción: ${product.decorations}</p>
+          <p>Para ${product.people} personas - ${product.grams} gramos - Decoraciones: ${product.decorations}</p>
         </div>
         <div class="monto">
           <ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
-          <p>$${product.price || 100}</p>
+          <p>$100</p>
         </div>
       </div>
     `;
-
-    cartItem.innerHTML = productHTML;
-    showNotification(product.flavor)
   }
-  // Manejo de productos del catálogo (con "name")
-  else if (product.name) {
-    cartItem.innerHTML = `
+
+  // Si el producto tiene 'name', es un producto del catálogo
+  if (product.name) {
+    productHTML = `
       <img src=".${product.image}" alt="" class="imgProduct">
       <div class="titleCart">
         <div class="infoCart">
@@ -66,55 +56,31 @@ function addProductToDOM(product) {
         </div>
       </div>
     `;
-    showNotification(product.name)
   }
 
+  cartItem.innerHTML = productHTML;
   contentModal.appendChild(cartItem);
+
+  // Agregar funcionalidad al botón de eliminar
   cartItem.querySelector('.iconTrash').addEventListener('click', () => removeItem(cartItem, product.id));
 }
 
 // Función para eliminar un producto del carrito
 function removeItem(element, id) {
-  let cartItems = loadFromLocalStorage();
+  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  let cartObject = JSON.parse(localStorage.getItem('cart')) || null;
+
+  // Si el producto eliminado es del catálogo
   cartItems = cartItems.filter(item => item.id !== id);
-  saveToLocalStorage(cartItems);
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+  // Si el producto eliminado es el personalizado
+  if (cartObject && cartObject.id === id) {
+    localStorage.removeItem('cart');
+  }
+
   element.remove();
 }
 
-// Función para agregar un producto al carrito
-function saveProductToCart(product) {
-  let cartItems = loadFromLocalStorage();
-
-  // Si el producto es del tipo personalizado (con "flavor")
-  if (product.flavor) {
-    cartItems.push(product);
-  }
-  // Si el producto es del tipo de catálogo (con "name")
-  else if (product.name) {
-    cartItems.push(product);
-  }
-
-  saveToLocalStorage(cartItems);
-  addProductToDOM(product);
-}
-
-function loadCartFromLocalStorage() {
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  cartItems.forEach(product => {
-    addProductToDOM(product);
-  });
-}
-// Función para mostrar notificaciones (opcional)
-function showNotification(title) {
-  const notification = document.createElement('div');
-  notification.classList.add('notification');
-  notification.textContent = `${title} ha sido agregado al carrito`;
-  document.body.appendChild(notification);
-  setTimeout(() => {
-    notification.style.opacity = 1;
-  }, 100);
-  setTimeout(() => {
-    notification.style.opacity = 0;
-    setTimeout(() => notification.remove(), 300);
-  }, 3000);
-}
+// Cargar carrito desde localStorage al cargar la página
+document.addEventListener('DOMContentLoaded', loadCartFromLocalStorage);

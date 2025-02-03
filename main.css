@@ -383,12 +383,31 @@ h3 {
   object-fit: cover;
   /* Ensure the image covers the box without distortion */
 }
-
-.titleCart {
+.cartItem {
   display: flex;
   gap: 2em;
   align-items: start;
   justify-content: space-between;
+  margin-bottom: 1.4em;
+}
+
+.cartItem img {
+  border-radius: var(--borderRadius);
+  width: 8em;
+  height: 8em;
+}
+
+.titleCart {
+  display: flex;
+  gap: .6em;
+  align-items: start;
+  justify-content: space-between;
+  height: 8em;
+}
+
+.infoCart {
+  overflow: auto;
+  height: 7em;
 }
 
 /* Modal visibility trigger */
