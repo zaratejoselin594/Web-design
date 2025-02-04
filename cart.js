@@ -1,15 +1,32 @@
+function showNotification(title) {
+  const notification = document.createElement('div');
+  notification.classList.add('notification');
+  notification.textContent = `${title} ha sido agregado al carrito`;
+  document.body.appendChild(notification);
+  setTimeout(() => notification.style.opacity = 1, 100);
+  setTimeout(() => {
+    notification.style.opacity = 0;
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
+}
+
 // Función para cargar productos desde localStorage y mostrarlos en el DOM
 function loadCartFromLocalStorage() {
+  // Recuperar y validar cartItems (productos del catálogo)
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  const cartObject = JSON.parse(localStorage.getItem('cart')); // Puede ser un objeto o null
 
-  // Agregar productos del catálogo (cartItems)
+  // Recuperar y validar cart (productos personalizados)
+  let cartObjects = JSON.parse(localStorage.getItem('cart')) || [];
+
+  // Asegurar que sean arrays
+  if (!Array.isArray(cartItems)) cartItems = [];
+  if (!Array.isArray(cartObjects)) cartObjects = [];
+
+  // Agregar productos del catálogo al DOM
   cartItems.forEach(product => addProductToDOM(product));
 
-  // Agregar el producto personalizado (cart), si existe
-  if (cartObject && cartObject.id) {
-    addProductToDOM(cartObject);
-  }
+  // Agregar productos personalizados al DOM
+  cartObjects.forEach(product => addProductToDOM(product));
 }
 
 // Función para agregar un producto al DOM
@@ -29,16 +46,13 @@ function addProductToDOM(product) {
       <img src="${product.images?.length > 0 ? product.images[0] : 'default-image.jpg'}" alt="Producto" class="imgProduct">
       ${product.drawing ? `<img src="${product.drawing}" alt="Dibujo" class="imgProduct">` : ''}
       <div class="titleCart">
-        <div class="infoCart">
-          <h3>${product.flavor}</h3>
-          <p>Para ${product.people} personas - ${product.grams} gramos - Decoraciones: ${product.decorations}</p>
-        </div>
-        <div class="monto">
-          <ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
-          <p>$100</p>
-        </div>
+        <div class="infoCart"><h3>${product.flavor}</h3>
+        <p>Para ${product.people} personas - ${product.grams} gramos - ${product.decorations}</p></div>
+        <div class="monto"><ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
+        <p>$${product.price}</p></div>
       </div>
     `;
+    showNotification(product.flavor)
   }
 
   // Si el producto tiene 'name', es un producto del catálogo
@@ -56,6 +70,7 @@ function addProductToDOM(product) {
         </div>
       </div>
     `;
+    showNotification(product.name)
   }
 
   cartItem.innerHTML = productHTML;
@@ -68,16 +83,15 @@ function addProductToDOM(product) {
 // Función para eliminar un producto del carrito
 function removeItem(element, id) {
   let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  let cartObject = JSON.parse(localStorage.getItem('cart')) || null;
+  let cartObjects = JSON.parse(localStorage.getItem('cart')) || [];
 
   // Si el producto eliminado es del catálogo
   cartItems = cartItems.filter(item => item.id !== id);
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
-  // Si el producto eliminado es el personalizado
-  if (cartObject && cartObject.id === id) {
-    localStorage.removeItem('cart');
-  }
+  // Si el producto eliminado es un producto personalizado
+  cartObjects = cartObjects.filter(item => item.id !== id);
+  localStorage.setItem('cart', JSON.stringify(cartObjects));
 
   element.remove();
 }

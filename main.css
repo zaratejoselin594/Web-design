@@ -408,6 +408,7 @@ h3 {
 .infoCart {
   overflow: auto;
   height: 7em;
+  width: 8em;
 }
 
 /* Modal visibility trigger */
