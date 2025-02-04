@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../main.css">
+  <link rel="stylesheet" href="../main/main.css">
   <link rel="stylesheet" href="estilo.css">
-  <link rel="stylesheet" href="../normalize.css">
+  <link rel="stylesheet" href="../main/normalize.css">
 
   <title>comprar</title>
 </head>
@@ -14,7 +14,7 @@
 <body>
   <header class="hr">
     <nav class="hrNavBarRve">
-      <a href="../index.html">
+      <a href="../main/index.html">
         <h2 class="hrLogo">Caro</h2>
       </a>
       <input type="checkbox" id="menu" class="hrCheckBox">
@@ -23,10 +23,10 @@
         <ion-icon class="hrIconNavBarSolid" name="grid"></ion-icon>
       </label>
       <ul class="hrUlRve">
-        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html" title="Inicio">Inicio</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#aboutus" title="Ubicación">Ubicación</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../main/index.html" title="Inicio">Inicio</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../main/index.html#aboutus" title="Ubicación">Ubicación</a></li>
         <li class="hrUlLiRve"><a class="hrLiA" href="../pastel/pastel.html" title="Pastel Personalizado">pastel Personalizada</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#tienda" title="Tienda">Tienda</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../main/index.html#tienda" title="Tienda">Tienda</a></li>
       </ul>
     </nav>
   </header>
@@ -43,52 +43,59 @@
           <input type="tel" id="telefono" pattern="[0-9]{10}" required class="input">
         </div>
         <p>¿Cómo deseas recibir tu pedido?</p>
-        <label>
-          <input type="radio" name="deliveryOption" value="local" id="localOption" required>
-          <ion-icon name="business-outline"></ion-icon> Retirar en Local
-        </label><br>
-        <label>
-          <input type="radio" name="deliveryOption" value="delivery" id="deliveryOption" required>
-          <ion-icon name="bicycle-outline"></ion-icon> Delivery
-        </label><br><br>
-      
-        <div id="localCode" class="hidden">
-          <p>Tu código de pedido es: <span id="randomCode"></span></p>
+        <div class="form-group datosImportantes">
+          <label class="datosImp">
+            <input type="radio" name="deliveryOption" value="local" id="localOption" >
+            <ion-icon name="business-outline" class="radio-icon"></ion-icon> Retirar
+          </label><br>
+          <label class="datosImp">
+            <input type="radio" name="deliveryOption" value="delivery" id="deliveryOption" >
+            <ion-icon name="bicycle-outline" class="radio-icon"></ion-icon> Delivery
+          </label><br><br>
         </div>
-        <div id="deliveryDetails" class="hidden">
-          <label for="address">Dirección:</label>
-          <input type="text" id="address" name="address"><br><br>
-          <p>El costo de delivery es 1800 adicionales.</p>
-          <label for="instructions">Instrucciones adicionales:</label>
-          <textarea id="instructions" name="instructions" rows="3"
-            placeholder="Escribe alguna instrucción si es necesario..."></textarea>
+        <div class="form-group modalOpcion">
+          <div id="localCode" class="hidden">
+            <p>Tu código de pedido es: <span id="randomCode"></span></p>
+          </div>
+          <div id="deliveryDetails" class="hidden">
+            <label for="address">Dirección:</label>
+            <input type="text" id="address" name="address" required><br><br>
+            <p>El costo de delivery es 1800 adicionales.</p>
+            <label for="instructions">Instrucciones adicionales:</label>
+            <textarea id="instructions" name="instructions" rows="3"
+              placeholder="Escribe alguna instrucción si es necesario..."></textarea>
+          </div>
         </div>
         <p>¿Cómo deseas pagar?</p>
-        <label>
-          <input type="radio" name="paymentOption" value="efectivo" required>
-          Efectivo
-        </label><br>
-        <label>
-          <input type="radio" name="paymentOption" value="transferencia" required>
-          Transferencia
-        </label><br><br>
+        <div class="form-group datosImportantes">
+          <label class="datosImp">
+            <input type="radio" name="paymentOption" value="efectivo" >
+            Efectivo
+          </label><br>
+          <label class="datosImp">
+            <input type="radio" name="paymentOption" value="transferencia" >
+            Transferencia
+          </label><br><br>
+        </div>
         <button type="submit" id="submit" class="conteainerAjedresBtn">
-          <div class="ajedresBtn">
-            <p class="btn-ajedrez" id="local">Enviar</p>
-          </div>
+          <a href="#cart">
+            <div class="ajedresBtn">
+              <p class="btn-ajedrez" id="local">Enviar</p>
+            </div>
+          </a>
         </button>
       </form> 
     </div>
     <div class="carritoContainer">
       <div class="infoCarrito">
-        <div class="containerModal">
-          <div class="contentModal cartHtml">
+        <div class="containerModalOrder">
+          <div class="contentModalOrder cartHtml" id="cart">
             <div class="topModal">
               <h3>Carrito de Compras</h3>
               <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
             </div>
             <div class="form-group">
-              <button class="cartTotal" id="comprar" onclick="openCopyOrderModal()">Comprar</button>
+              <button class="cartTotal" id="comprar" onclick="openCopyOrderModal()">Hacer pedido 🛒</button>
             </div>
             <p class="total"></p>
           </div>
@@ -114,7 +121,7 @@
       </div>
       <a href="../index.html#tienda" class="conteainerAjedresBtn">
         <div class="ajedresBtn">
-          <p class="btn-ajedrez" id="local">Ver Tienda</p>
+          <p class="btn-ajedrez" id="local">Ver Más</p>
         </div>
       </a>
     </div>
@@ -141,7 +148,7 @@
       </div>
     </section>
   </footer>
-  <script src="../cart.js"></script>
+  <script src="../main/cart.js"></script>
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

@@ -35,6 +35,10 @@ const toggleVisibility = () => {
     localCode.classList.add("hidden");
     deliveryDetails.classList.remove("hidden");
   }
+  const modalElement = document.querySelector('.modalOpcion');
+  if (modalElement) {
+    modalElement.style.height = localOption?.checked ? '5em' : '12em';
+  }
 };
 localOption?.addEventListener("change", toggleVisibility);
 deliveryOption?.addEventListener("change", toggleVisibility);
@@ -131,6 +135,30 @@ function wpLink(mensajeCompleto) {
   })
 }
 cartTotal.addEventListener("click", guardarYMostrarPedidos);
+document.addEventListener("DOMContentLoaded", function () {
+  const localOption = document.getElementById("localOption");
+  const deliveryOption = document.getElementById("deliveryOption");
+  const localCode = document.getElementById("localCode");
+  const deliveryDetails = document.getElementById("deliveryDetails");
+  const addressInput = document.getElementById("address");
+
+  function updateForm() {
+    if (deliveryOption.checked) {
+      deliveryDetails.classList.remove("hidden");
+      addressInput.setAttribute("required", "true");
+      localCode.classList.add("hidden");
+    } else if (localOption.checked) {
+      deliveryDetails.classList.add("hidden");
+      addressInput.removeAttribute("required");
+      localCode.classList.remove("hidden");
+      document.getElementById("randomCode").textContent = Math.floor(1000 + Math.random() * 9000);
+    }
+  }
+
+  localOption.addEventListener("change", updateForm);
+  deliveryOption.addEventListener("change", updateForm);
+});
+
 
 const cartData = localStorage.getItem("cart");
 if (cartData) {

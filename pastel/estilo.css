@@ -81,6 +81,10 @@
 }
 
 /* Estilos del modal */
+h1{
+  color: var(--fourthColor);
+  text-shadow: none;
+}
 .modalpastel {
   display: none;
   position: fixed;
@@ -147,6 +151,7 @@ input[type="file"] {
   color: #eee;
   text-align: left;
   position: relative;
+  text-align: center;
 }
 #cakeForm{
   display: flex;
@@ -171,6 +176,7 @@ select {
   outline: none;
   width: 58%;
   transition: all 0.3s ease-in-out;
+  text-align: center;
 }
 
 select:hover {

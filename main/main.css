@@ -210,7 +210,7 @@ h3 {
 }
 
 .cart-total:hover {
-  background-color: #ba86e2;
+  background-color: var(--fourthColor);
 }
 
 .total {
