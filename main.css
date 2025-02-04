@@ -86,6 +86,13 @@ body {
   color: var(--secondColor);
   text-shadow: 3px 3px 0 var(--fourthColor);
 }
+h1 {
+  font-family: "Ephesis", serif;
+  font-size: 7em;
+  font-weight: 600;
+  color: var(--secondColor);
+  text-shadow: 3px 3px 0 var(--fourthColor);
+}
 .hrACart {
   margin: .7em;
 }
