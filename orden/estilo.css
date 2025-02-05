@@ -50,18 +50,6 @@ input{
 .input{
   width: 100%;
 }
-.cart-total {
-  border: #fff solid 1px;
-  border-radius: var(--borderRadius);
-  background-color: var(--primaryColor);
-  color: #fff;
-  padding: .5em;
-  cursor: pointer;
-}
-
-.cart-total:hover {
-  background-color: var(--fourthColor);
-}
 
 .total {
   text-align: end;

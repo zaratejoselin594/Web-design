@@ -42,13 +42,12 @@ const toggleVisibility = () => {
 };
 localOption?.addEventListener("change", toggleVisibility);
 deliveryOption?.addEventListener("change", toggleVisibility);
-
 function guardarYMostrarPedidos() {
   const nombre = document.getElementById("nombre").value.trim();
   const telefono = document.getElementById("telefono").value.trim();
   let infoCliente = `👤 *Cliente*\n*Nombre y Apellido:* ${nombre}\n*Teléfono 📞:* ${telefono}\n`;
 
-  let total = 0;  // Asegúrate de que total sea un número
+  let total = 0;
   let archivos = [];
 
   // Verificar si el cliente ha elegido recogida o entrega
@@ -100,6 +99,13 @@ function guardarYMostrarPedidos() {
     }
   }
 
+  // Recuperar el orderID del localStorage o generar uno nuevo si no existe
+  let orderID = localStorage.getItem('orderID');
+  if (!orderID) {
+    orderID = generateOrderID();  // Si no existe, generar uno nuevo
+    localStorage.setItem('orderID', orderID);  // Guardar el orderID en el localStorage
+  }
+
   // Construcción del mensaje con los pedidos
   const mensajesPedidos = pedidos.map((pedido) => {
     if (pedido.flavor) {  // Si es un pastel personalizado
@@ -115,7 +121,16 @@ function guardarYMostrarPedidos() {
   }).filter(msg => msg).join("\n\n");
 
   // Mensaje completo con la información del cliente y los pedidos
-  const mensajeCompleto = `${infoCliente}\n\n${mensajesPedidos}\n\n💵 *Total a Pagar:* $${total.toFixed(2)}\n\n¡Gracias por elegirnos! 😊`;
+  const mensajeCompleto = `${infoCliente}\n\n${mensajesPedidos}\n\n 💵 *Total a Pagar:* $${total.toFixed(2)}\n\n¡Gracias por elegirnos! 😊`;
+
+  // Guardar el pedido con el mismo orderID en el localStorage
+  const orderData = {
+    orderID: orderID,
+    clienteInfo: infoCliente,
+    pedidos: pedidos,
+    totalPrice: total
+  };
+  localStorage.setItem('pedido_' + orderID, JSON.stringify(orderData));  // Guardar en localStorage usando el orderID
 
   // Mostrar el mensaje completo en el HTML
   if (orderContent) orderContent.innerHTML = mensajeCompleto.replace(/\n/g, "<br>");
@@ -124,17 +139,22 @@ function guardarYMostrarPedidos() {
   }
 
   // Mostrar el total en el carrito
-  cartTotal.innerHTML = `<p>${mensajeCompleto.replace(/\n/g, "<br>")}</p>`;
-  wpLink(mensajeCompleto);
-};
-
-
-function wpLink(mensajeCompleto) {
-  document.getElementById('whatsappLink').addEventListener('click', () => {
-    window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
-  })
+  orderContent.innerHTML = `<p>${mensajeCompleto.replace(/\n/g, "<br>")}</p>`;
+  sendOrderToWhatsApp(mensajeCompleto);
 }
-cartTotal.addEventListener("click", guardarYMostrarPedidos);
+
+// Generar un ID de pedido único
+function generateOrderID() {
+  return Math.random().toString(36).substr(2, 9).toUpperCase();
+}
+
+function sendOrderToWhatsApp(order) {
+  const orderID = localStorage.getItem('orderID');
+  const mensaje = `${order}\n\nTu pedido ha sido registrado. Puedes verlo aquí: ${window.location.origin}/ver_pedido.html?order=${orderID}`;
+  document.getElementById('whatsappLink').addEventListener('click', () => {
+    window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensaje)}`, "_blank");
+  });
+}
 document.addEventListener("DOMContentLoaded", function () {
   const localOption = document.getElementById("localOption");
   const deliveryOption = document.getElementById("deliveryOption");
@@ -158,27 +178,7 @@ document.addEventListener("DOMContentLoaded", function () {
   localOption.addEventListener("change", updateForm);
   deliveryOption.addEventListener("change", updateForm);
 });
-
-
-const cartData = localStorage.getItem("cart");
-if (cartData) {
-  let pedidos;
-  try {
-    pedidos = JSON.parse(cartData);
-    if (!Array.isArray(pedidos)) throw new Error();
-  } catch (error) {
-    pedidos = [];
-  }
-  pedidos.forEach(pedido => {
-    if (pedido.drawing && imageContainer) {
-      const imgElement = document.createElement("img");
-      imgElement.src = pedido.drawing;
-      imgElement.alt = "Dibujo en el Pedido";
-      imgElement.style.maxWidth = "300px";
-      imgElement.style.margin = "10px";
-      imageContainer.appendChild(imgElement);
-    }
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => { });
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevenir el comportamiento por defecto (recarga de página)
+  guardarYMostrarPedidos();
+});

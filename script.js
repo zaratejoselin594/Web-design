@@ -217,3 +217,28 @@ function loadCartFromLocalStorage() {
 document.addEventListener('DOMContentLoaded', () => {
   loadCartFromLocalStorage();
 });
+
+
+/*
+web:
+  index.html
+  estilo.css
+  script.js
+  main
+    cart.js
+    main.css
+  pastel 
+    pastel.html
+    estilo.css
+    pastel.js
+  ordenar
+    odenar.html
+    estilo.css
+    ordenar.js
+  resourse
+    img
+      pastel
+      torta
+      budin
+;
+*/

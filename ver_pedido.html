@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles del Pedido</title>
+  <link rel="stylesheet" href="main/main.css">
+  <link rel="stylesheet" href="main/normalize.css">
+</head>
+
+<body>
+  <h1>Detalles de tu Pedido</h1>
+  <div id="orderDetails"></div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderID = urlParams.get('order');
+
+    if (!orderID) {
+      document.getElementById('orderDetails').innerHTML = "<p>No se proporcionó un ID de pedido.</p>";
+      return; // Este return es adecuado porque está dentro de la función
+    }
+
+    // Recuperar los datos del pedido desde localStorage
+    const orderData = JSON.parse(localStorage.getItem('pedido_' + orderID));
+
+    if (orderData) {
+      const clienteInfo = orderData.clienteInfo;
+
+      // Verificar que clienteInfo contenga lo esperado
+      console.log(clienteInfo);  // Esto te ayudará a verificar si está bien formateado
+
+      // Asegúrate de que la información esté correctamente extraída
+      const nombre = clienteInfo.includes('Nombre y Apellido:')
+        ? clienteInfo.split('*Nombre y Apellido:*')[1].split('\n')[0].trim()
+        : 'Nombre no disponible';
+
+      const telefono = clienteInfo.includes('Teléfono 📞:')
+        ? clienteInfo.split('Teléfono 📞:')[1].split('\n')[0].trim()
+        : 'Teléfono no disponible';
+
+      let orderDetailsHTML = `
+      <h2>Pedido #${orderData.orderID}</h2>
+      <h3>Datos del Cliente:</h3>
+      <p><strong>Nombre:</strong> ${nombre}</p>
+      <p><strong>Teléfono:</strong> ${telefono}</p>
+      <h3>Detalles del Pedido:</h3>
+      <ul>
+    `;
+
+      // Mostrar los productos del pedido
+      orderData.pedidos.forEach(pedido => {
+        const pedidoPrice = parseFloat(pedido.price);
+
+        // Mostrar los productos
+        if (pedido.flavor) {
+          orderDetailsHTML += `
+          <li>
+            <img src="${pedido.images?.length > 0 ? pedido.images[0] : 'default-image.jpg'}" alt="Producto" class="imgProduct">
+            ${pedido.drawing ? `<img src="${pedido.drawing}" alt="Dibujo" class="imgProduct">` : ''}
+            <div class="titleCart">
+              <div class="infoCart">
+                <h3>${pedido.flavor}</h3>
+                <p>Para ${pedido.people} personas - ${pedido.grams} gramos - ${pedido.decorations}</p>
+              </div>
+              <div class="monto">
+                <ion-icon name="trash-outline" class="iconTrash" data-id="${pedido.id}"></ion-icon>
+                <p>$${pedidoPrice.toFixed(2)}</p>
+              </div>
+            </div>
+          </li>
+        `;
+        }
+
+        // Producto personalizado
+        if (pedido.name) {
+          orderDetailsHTML += `
+          <li>
+            <img src="${pedido.image}" alt="" class="imgProduct">
+            <div class="titleCart">
+              <div class="infoCart">
+                <h3>${pedido.name}</h3>
+                <p>Deliciosa opción personalizada</p>
+                <p>$${pedidoPrice.toFixed(2)}</p>
+              </div>
+            </div>
+          </li>
+        `;
+        }
+      });
+
+      // Mostrar el total de la compra
+      const totalPrice = parseFloat(orderData.totalPrice);
+      orderDetailsHTML += `
+      </ul>
+      <h3>Total a Pagar: $${totalPrice.toFixed(2)}</h3>
+    `;
+
+      document.getElementById('orderDetails').innerHTML = orderDetailsHTML;
+    } else {
+      document.getElementById('orderDetails').innerHTML = "<p>No se encontró el pedido.</p>";
+    }
+  });
+
+  </script>
+</body>
+
+</html>

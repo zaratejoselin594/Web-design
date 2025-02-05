@@ -78,18 +78,16 @@
           </label><br><br>
         </div>
         <button type="submit" id="submit" class="conteainerAjedresBtn">
-          <a href="#cart">
-            <div class="ajedresBtn">
-              <p class="btn-ajedrez" id="local">Enviar</p>
-            </div>
-          </a>
+          <div class="ajedresBtn">
+            <p class="btn-ajedrez" id="local">Enviar</p>
+          </div>
         </button>
       </form> 
     </div>
     <div class="carritoContainer">
       <div class="infoCarrito">
         <div class="containerModalOrder">
-          <div class="contentModalOrder cartHtml" id="cart">
+          <div class="contentModalOrder cartHtml">
             <div class="topModal">
               <h3>Carrito de Compras</h3>
               <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
@@ -100,22 +98,22 @@
             <p class="total"></p>
           </div>
         </div>
-        <div id="copyOrderModal" class="orderModal">
-          <div class="orderContainer">
-            <div class="orderContent">
-              <div class="orderhr">
-                <h3>Copia tu pedido</h3>
-                <a href="#" class="orderClose" onclick="closeCopyOrderModal()">
-                  <ion-icon name="close-outline"></ion-icon>
-                </a>
-              </div>
-              <div class="conenidoPedido">
-
-                <div class="imageContainer"></div>
-              </div>
-              <p class="orderTotal"></p>
-              <button id="whatsappLink" onclick="whatsappLink()">Pedir por WhatsApp</button>
+      </div>
+      <div id="copyOrderModal" class="orderModal">
+        <div class="orderContainer">
+          <div class="orderContent">
+            <div class="orderhr">
+              <h3>Copia tu pedido</h3>
+              <a href="#" class="orderClose" onclick="closeCopyOrderModal()">
+                <ion-icon name="close-outline"></ion-icon>
+              </a>
             </div>
+            <div class="conenidoPedido">
+
+              <div class="imageContainer"></div>
+            </div>
+            <p class="orderTotal"></p>
+            <button id="whatsappLink" onclick="whatsappLink()">Pedir por WhatsApp</button>
           </div>
         </div>
       </div>
