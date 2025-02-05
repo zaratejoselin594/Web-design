@@ -393,7 +393,7 @@ a {
   background-color: var(--thirdColor);
   border-radius: var(--borderRadius);
   z-index: 10;
-  top: 3.7em;
+  top: 1.7em;
   display: none;
   flex-direction: row;
   flex-wrap: wrap;
