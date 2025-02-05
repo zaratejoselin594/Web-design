@@ -88,7 +88,7 @@ function addProductToDOM(product) {
   cartItem.classList.add('cartItem');
   cartItem.setAttribute('data-id', product.id); // Añade el id como atributo para identificación
   cartItem.innerHTML = `
-    <img src=".${product.image}" alt="" class="imgProduct">
+    <img src="${product.image}" alt="" class="imgProduct">
     <div class="titleCart">
       <div class="infoCart">
         <h3>${product.name}</h3>
