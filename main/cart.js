@@ -57,8 +57,16 @@ function addProductToDOM(product) {
 
   // Si el producto tiene 'name', es un producto del catálogo
   if (product.name) {
+    function fixImagePath(imagePath) {
+      if (imagePath.startsWith('./')) {
+        return imagePath; // Si comienza con "./", la dejamos igual
+      } else if (imagePath.startsWith('.')) {
+        return imagePath.slice(1); // Si solo tiene un ".", lo eliminamos
+      }
+      return imagePath; // Si no tiene ".", la dejamos igual
+    }
     productHTML = `
-      <img src=".${product.image || product.image}" alt="" class="imgProduct">
+      <img src="${fixImagePath(product.image)}" alt="" class="imgProduct">
       <div class="titleCart">
         <div class="infoCart">
           <h3>${product.name}</h3>
