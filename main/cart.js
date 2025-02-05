@@ -58,7 +58,7 @@ function addProductToDOM(product) {
   // Si el producto tiene 'name', es un producto del catálogo
   if (product.name) {
     productHTML = `
-      <img src=".${product.image}" alt="" class="imgProduct">
+      <img src=".${product.image || product.image}" alt="" class="imgProduct">
       <div class="titleCart">
         <div class="infoCart">
           <h3>${product.name}</h3>
