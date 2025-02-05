@@ -53,20 +53,26 @@ function addProductToDOM(product) {
       </div>
     `;
     showNotification(product.flavor)
-  }
+  } 
 
+  // Detectar si el HTML actual está en una subcarpeta
+  const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+
+  // Ajustar la ruta de la imagen dependiendo de la ubicación
+  function getCorrectImagePath(imagePath) {
+    if (!imagePath) return 'default-image.jpg'; // Si no hay imagen, usar la predeterminada
+    if (isIndexPage) {
+      return `${imagePath}`; // En index.html la ruta es "./img/imagen.jpg"
+    } else {
+      return `.${imagePath}`; // En subcarpetas la ruta es "../img/imagen.jpg"
+    }
+  }
   // Si el producto tiene 'name', es un producto del catálogo
   if (product.name) {
-    function fixImagePath(imagePath) {
-      if (imagePath.startsWith('./')) {
-        return imagePath; // Si comienza con "./", la dejamos igual
-      } else if (imagePath.startsWith('.')) {
-        return imagePath.slice(1); // Si solo tiene un ".", lo eliminamos
-      }
-      return imagePath; // Si no tiene ".", la dejamos igual
-    }
+    let productImage = getCorrectImagePath(product.image);
+
     productHTML = `
-      <img src="${fixImagePath(product.image)}" alt="" class="imgProduct">
+      <img src="${productImage}" alt="" class="imgProduct">
       <div class="titleCart">
         <div class="infoCart">
           <h3>${product.name}</h3>
