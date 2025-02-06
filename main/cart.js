@@ -111,6 +111,6 @@ function removeItem(element, id) {
 }
 
 // Cargar carrito desde localStorage al cargar la página
-localStorage.clear()
+sessionStorage.clear()
 
 document.addEventListener('DOMContentLoaded', loadCartFromlocalStorage);
