@@ -13,7 +13,7 @@ const cookies = [
   }
 ];
 
-// Cambio automático de imágenes
+// Cambio automático de imágenes sin flechas
 cookies.forEach(item => {
   const imgElement = document.querySelector(item.selector);
   let currentIndex = 0;
@@ -81,22 +81,41 @@ function draw(e) {
   ctx.beginPath();
   ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
 }
+function getCanvasImage() {
+  // Crear un nuevo canvas temporal
+  const tempCanvas = document.createElement('canvas');
+  const tempCtx = tempCanvas.getContext('2d');
+
+  // Configurar el tamaño igual al canvas original
+  tempCanvas.width = canvas.width;
+  tempCanvas.height = canvas.height;
+
+  // Dibujar un fondo blanco
+  tempCtx.fillStyle = '#FFFFFF';
+  tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+
+  // Dibujar el contenido del canvas original encima del fondo blanco
+  tempCtx.drawImage(canvas, 0, 0);
+
+  // Convertir a imagen con fondo blanco
+  return tempCanvas.toDataURL('image/jpeg', 0.5);
+}
 
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 // Funciones de almacenamiento
-function saveCartToLocalStorage(cartItems) {
+function saveCartTolocalStorage(cartItems) {
   localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
-function loadCartFromLocalStorage() {
+function loadCartFromlocalStorage() {
   return JSON.parse(localStorage.getItem('cart')) || [];
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const cart = loadCartFromLocalStorage();
+  const cart = loadCartFromlocalStorage();
   cart.forEach(product => addProductToDOM(product));
 });
 
@@ -112,7 +131,19 @@ function showNotification(title) {
     setTimeout(() => notification.remove(), 300);
   }, 3000);
 }
+document.addEventListener('DOMContentLoaded', () => {
+  const inputCanvas = document.getElementById('inputCanvas');
+  const canvasModal = document.querySelector('.canvasModal');
 
+  inputCanvas.addEventListener('change', () => {
+    canvasModal.style.display = inputCanvas.checked ? 'flex' : 'none';
+  });
+
+  document.getElementById('cakeForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    saveFormData();
+  });
+});
 // Generar ID único
 function generateUniqueId() {
   return '_' + Math.random().toString(36).substr(2, 9);
@@ -134,7 +165,7 @@ function saveFormData() {
   let drawing = "";
 
   if (document.getElementById('inputCanvas').checked) {
-    drawing = canvas.toDataURL('image/jpeg', 0.2);
+    drawing = getCanvasImage();
   }
 
   const images = [];
@@ -165,7 +196,7 @@ function calculatePrice(grams) {
 
 function saveProduct(flavor, grams, people, decorations, drawing, images, price) {
   const product = createProduct(flavor, grams, people, decorations, drawing, images, price);
-  saveToLocalStorage(product);
+  saveTolocalStorage(product);
   addProductToDOM(product);
 }
 
@@ -173,16 +204,16 @@ function createProduct(flavor, grams, people, decorations, drawing, images, pric
   return { id: generateUniqueId(), flavor, grams, people, decorations, drawing, images, price };
 }
 
-function saveToLocalStorage(orderData) {
-  let cartItems = loadCartFromLocalStorage();
+function saveTolocalStorage(orderData) {
+  let cartItems = loadCartFromlocalStorage();
   if (!Array.isArray(cartItems)) {
     cartItems = []; // Asegurar que sea un array válido
   }
   cartItems.push(orderData);
-  saveCartToLocalStorage(cartItems);
+  saveCartTolocalStorage(cartItems);
 }
 
-function loadCartFromLocalStorage() {
+function loadCartFromlocalStorage() {
   try {
     const cart = JSON.parse(localStorage.getItem('cart'));
     return Array.isArray(cart) ? cart : [];
@@ -191,7 +222,7 @@ function loadCartFromLocalStorage() {
   }
 }
 
-function saveCartToLocalStorage(cartItems) {
+function saveCartTolocalStorage(cartItems) {
   localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
@@ -213,3 +244,4 @@ function addProductToDOM(product) {
   contentModal.appendChild(cartItem);
   showNotification(product.flavor);
 }
+

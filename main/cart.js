@@ -11,7 +11,7 @@ function showNotification(title) {
 }
 
 // Función para cargar productos desde localStorage y mostrarlos en el DOM
-function loadCartFromLocalStorage() {
+function loadCartFromlocalStorage() {
   // Recuperar y validar cartItems (productos del catálogo)
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
@@ -111,4 +111,6 @@ function removeItem(element, id) {
 }
 
 // Cargar carrito desde localStorage al cargar la página
-document.addEventListener('DOMContentLoaded', loadCartFromLocalStorage);
+localStorage.clear()
+
+document.addEventListener('DOMContentLoaded', loadCartFromlocalStorage);

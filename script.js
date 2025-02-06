@@ -206,7 +206,7 @@ createModalItem('tarta', './resourse/img/diez.webp', 'pastel chocolate con fruti
 createModalItem('tarta', './resourse/img/once.webp', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
 createModalItem('tarta', './resourse/img/siete.webp', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
 
-function loadCartFromLocalStorage() {
+function loadCartFromlocalStorage() {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   cartItems.forEach(product => {
     addProductToDOM(product);
@@ -215,7 +215,7 @@ function loadCartFromLocalStorage() {
 
 // Cargar carrito al iniciar la página
 document.addEventListener('DOMContentLoaded', () => {
-  loadCartFromLocalStorage();
+  loadCartFromlocalStorage();
 });
 
 
