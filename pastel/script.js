@@ -114,11 +114,6 @@ function loadCartFromlocalStorage() {
   return JSON.parse(localStorage.getItem('cart')) || [];
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const cart = loadCartFromlocalStorage();
-  cart.forEach(product => addProductToDOM(product));
-});
-
 // Notificación
 function showNotification(title) {
   const notification = document.createElement('div');
@@ -139,20 +134,18 @@ document.addEventListener('DOMContentLoaded', () => {
     canvasModal.style.display = inputCanvas.checked ? 'flex' : 'none';
   });
 
-  document.getElementById('cakeForm').addEventListener('submit', (e) => {
-    e.preventDefault();
-    saveFormData();
-  });
+  const cart = loadCartFromlocalStorage();
+  cart.forEach(product => addProductToDOM(product));
 });
-// Generar ID único
-function generateUniqueId() {
-  return '_' + Math.random().toString(36).substr(2, 9);
-}
-
 document.getElementById('cakeForm').addEventListener('submit', (e) => {
   e.preventDefault();
   saveFormData();
 });
+
+// Generar ID único
+function generateUniqueId() {
+  return '_' + Math.random().toString(36).substr(2, 9);
+}
 
 // Guardar formulario en localStorage
 function saveFormData() {
@@ -226,7 +219,7 @@ function saveCartTolocalStorage(cartItems) {
   localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
-function addProductToDOM(product) {
+function addProductToDOM(product) { 
   const contentModal = document.querySelector('.cartHtml');
   if (!contentModal || contentModal.querySelector(`[data-id="${product.id}"]`)) return;
 

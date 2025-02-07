@@ -12,21 +12,36 @@ function showNotification(title) {
 
 // Función para cargar productos desde localStorage y mostrarlos en el DOM
 function loadCartFromlocalStorage() {
-  // Recuperar y validar cartItems (productos del catálogo)
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  // Recuperar los datos de `cartItems` y `cart`
+  let cartItems = localStorage.getItem('cartItems');
+  let cartObjects = localStorage.getItem('cart');
 
-  // Recuperar y validar cart (productos personalizados)
-  let cartObjects = JSON.parse(localStorage.getItem('cart')) || [];
+  // Si no existen, inicializarlos como arrays vacíos
+  cartItems = cartItems ? JSON.parse(cartItems) : [];
+  cartObjects = cartObjects ? JSON.parse(cartObjects) : [];
 
-  // Asegurar que sean arrays
+  // Asegurar que sean arrays antes de continuar
   if (!Array.isArray(cartItems)) cartItems = [];
   if (!Array.isArray(cartObjects)) cartObjects = [];
 
-  // Agregar productos del catálogo al DOM
-  cartItems.forEach(product => addProductToDOM(product));
+  // Unir ambos arrays y eliminamos posibles duplicados por ID
+  let allItems = [...cartItems, ...cartObjects];
+  let uniqueItems = [];
 
-  // Agregar productos personalizados al DOM
-  cartObjects.forEach(product => addProductToDOM(product));
+  let seenIds = new Set();
+  allItems.forEach(item => {
+    if (!seenIds.has(item.id)) {
+      seenIds.add(item.id);
+      uniqueItems.push(item);
+    }
+  });
+
+  // Limpiar el carrito antes de recargar los elementos
+  const contentModal = document.querySelector('.cartHtml');
+  if (contentModal) contentModal.innerHTML = '';
+
+  // Agregar productos al DOM
+  uniqueItems.forEach(product => addProductToDOM(product));
 }
 
 // Función para agregar un producto al DOM
@@ -52,22 +67,18 @@ function addProductToDOM(product) {
         <p>$${product.price}</p></div>
       </div>
     `;
-    showNotification(product.flavor)
-  } 
+    showNotification(product.flavor);
+  }
 
   // Detectar si el HTML actual está en una subcarpeta
   const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
 
   // Ajustar la ruta de la imagen dependiendo de la ubicación
   function getCorrectImagePath(imagePath) {
-    if (!imagePath) return 'default-image.jpg'; // Si no hay imagen, usar la predeterminada
-    if (isIndexPage) {
-      return `${imagePath}`; // En index.html la ruta es "./img/imagen.jpg"
-    } else {
-      return `.${imagePath}`; // En subcarpetas la ruta es "../img/imagen.jpg"
-    }
+    if (!imagePath) return 'default-image.jpg';
+    return isIndexPage ? `${imagePath}` : `.${imagePath}`;
   }
-  // Si el producto tiene 'name', es un producto del catálogo
+
   if (product.name) {
     let productImage = getCorrectImagePath(product.image);
 
@@ -84,7 +95,7 @@ function addProductToDOM(product) {
         </div>
       </div>
     `;
-    showNotification(product.name)
+    showNotification(product.name);
   }
 
   cartItem.innerHTML = productHTML;
@@ -99,18 +110,16 @@ function removeItem(element, id) {
   let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   let cartObjects = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Si el producto eliminado es del catálogo
+  // Filtrar los productos eliminados
   cartItems = cartItems.filter(item => item.id !== id);
-  localStorage.setItem('cartItems', JSON.stringify(cartItems));
-
-  // Si el producto eliminado es un producto personalizado
   cartObjects = cartObjects.filter(item => item.id !== id);
+
+  // Guardar nuevamente en `localStorage`
+  localStorage.setItem('cartItems', JSON.stringify(cartItems));
   localStorage.setItem('cart', JSON.stringify(cartObjects));
 
+  // Remover el elemento del DOM
   element.remove();
 }
-
-// Cargar carrito desde localStorage al cargar la página
-sessionStorage.clear()
 
 document.addEventListener('DOMContentLoaded', loadCartFromlocalStorage);

@@ -5,8 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Detalles del Pedido</title>
-  <link rel="stylesheet" href="./main/main.css">
-  <link rel="stylesheet" href="./main/normalize.css">
+  <link rel="stylesheet" href="../main/main.css">
+  <link rel="stylesheet" href="../main/normalize.css">
 </head>
 
 <body>
@@ -53,25 +53,34 @@
         <ul>
     `;
 
-    orderData.pedidos.forEach(pedido => {
-      const pedidoPrice = parseFloat(pedido.price);
+    // Verificar que `orderData.pedidos` es un array antes de iterar
+    if (Array.isArray(orderData.pedidos)) {
+      orderData.pedidos.forEach(pedido => {
+        const pedidoPrice = parseFloat(pedido.price) || 0;
 
-      orderDetailsHTML += `
-            <li>
-                <img src="${pedido.images?.length > 0 ? pedido.images[0] : 'default-image.jpg'}" alt="Producto" class="imgProduct">
-                ${pedido.drawing ? `<img src="${pedido.drawing}" alt="Dibujo" class="imgProduct">` : ''}
-                <div class="titleCart">
-                    <div class="infoCart">
-                        <h3>${pedido.flavor || pedido.name || 'Producto sin nombre'}</h3>
-                        <p>Para ${pedido.people || 'N/A'} personas - ${pedido.grams || 'N/A'} gramos - ${pedido.decorations || 'Sin decoración'}</p>
-                        <p>$${pedidoPrice.toFixed(2)}</p>
+        // Manejo seguro de imágenes
+        const productImage = pedido.images && pedido.images.length > 0 ? pedido.images[0] : 'default-image.jpg';
+        const drawingImage = pedido.drawing ? `<img src="${pedido.drawing}" alt="Dibujo" class="imgProduct">` : '';
+
+        orderDetailsHTML += `
+                <li>
+                    <img src="${productImage}" alt="Producto" class="imgProduct">
+                    ${drawingImage}
+                    <div class="titleCart">
+                        <div class="infoCart">
+                            <h3>${pedido.flavor || pedido.name || 'Producto sin nombre'}</h3>
+                            <p>Para ${pedido.people || 'N/A'} personas - ${pedido.grams || 'N/A'} gramos - ${pedido.decorations || 'Sin decoración'}</p>
+                            <p>$${pedidoPrice.toFixed(2)}</p>
+                        </div>
                     </div>
-                </div>
-            </li>
-        `;
-    });
+                </li>
+            `;
+      });
+    } else {
+      orderDetailsHTML += `<p>No hay productos en este pedido.</p>`;
+    }
 
-    const totalPrice = parseFloat(orderData.totalPrice);
+    const totalPrice = parseFloat(orderData.totalPrice) || 0;
     orderDetailsHTML += `
         </ul>
         <h3>Total a Pagar: $${totalPrice.toFixed(2)}</h3>
