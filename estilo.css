@@ -526,31 +526,7 @@ h3{
 
 
 
-.notification {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: var(--secondColor);
-  /* Verde por defecto */
-  color: white;
-  padding: 10px 20px;
-  border-radius: var(--borderRadius);
-  box-shadow: 0 .4em .2em #6668;
-  font-size: 14px;
-  z-index: 1000;
-  opacity: 0;
-  animation: fadeInOut 3s ease-in-out forwards;
-}
 
-.notification.error {
-  background-color: #f44336;
-  /* Rojo para errores */
-}
-
-.notification.warning {
-  background-color: #ff9800;
-  /* Naranja para advertencias */
-}
 
 @keyframes fadeInOut {
   0% {

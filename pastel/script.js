@@ -47,6 +47,7 @@ document.getElementById('images').addEventListener('change', function () {
 });
 
 // Canvas
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 let painting = false;
@@ -56,9 +57,22 @@ let lineColor = document.getElementById('lineColor').value;
 // Eventos de configuración del canvas
 document.getElementById('lineWidth').addEventListener('input', (e) => lineWidth = e.target.value);
 document.getElementById('lineColor').addEventListener('input', (e) => lineColor = e.target.value);
+
+// Eventos de ratón
 canvas.addEventListener('mousedown', startPosition);
 canvas.addEventListener('mouseup', endPosition);
 canvas.addEventListener('mousemove', draw);
+
+// Eventos táctiles
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault(); // Previene el desplazamiento mientras se dibuja
+  startPosition(e.touches[0]);
+});
+canvas.addEventListener('touchend', endPosition);
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  draw(e.touches[0]);
+});
 
 function startPosition(e) {
   painting = true;
@@ -73,37 +87,39 @@ function endPosition() {
 function draw(e) {
   if (!painting) return;
   const rect = canvas.getBoundingClientRect();
+  let x = e.clientX - rect.left;
+  let y = e.clientY - rect.top;
+
   ctx.lineWidth = lineWidth;
   ctx.lineCap = 'round';
   ctx.strokeStyle = lineColor;
-  ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+
+  ctx.lineTo(x, y);
   ctx.stroke();
   ctx.beginPath();
-  ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+  ctx.moveTo(x, y);
 }
+
 function getCanvasImage() {
-  // Crear un nuevo canvas temporal
   const tempCanvas = document.createElement('canvas');
   const tempCtx = tempCanvas.getContext('2d');
-
-  // Configurar el tamaño igual al canvas original
   tempCanvas.width = canvas.width;
   tempCanvas.height = canvas.height;
 
-  // Dibujar un fondo blanco
+  // Fondo blanco
   tempCtx.fillStyle = '#FFFFFF';
   tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
 
-  // Dibujar el contenido del canvas original encima del fondo blanco
+  // Copiar el dibujo del canvas
   tempCtx.drawImage(canvas, 0, 0);
 
-  // Convertir a imagen con fondo blanco
   return tempCanvas.toDataURL('image/jpeg', 0.5);
 }
 
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
+
 // Función para guardar el pedido en localStorage
 function saveToLocalStorage(orderData) {
   let cartItems = loadCartFromLocalStorage();
@@ -121,7 +137,7 @@ function showNotification(title) {
   const notification = document.createElement('div');
   notification.classList.add('notification');
   notification.textContent = `${title} ha sido agregado al carrito`;
-  document.body.appendChild(notification);
+  document.querySelector('.notContainer').appendChild(notification);
   setTimeout(() => notification.style.opacity = 1, 100);
   setTimeout(() => {
     notification.style.opacity = 0;

@@ -225,6 +225,7 @@ option:checked {
   display: flex;
   margin: 10px 0;
   background-color: #fff;
+  touch-action: none;
 }
 .contentModal img{
   width: 5em;

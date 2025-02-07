@@ -2,7 +2,8 @@ function showNotification(title) {
   const notification = document.createElement('div');
   notification.classList.add('notification');
   notification.textContent = `${title} ha sido agregado al carrito`;
-  document.body.appendChild(notification);
+  document.querySelector('.notContainer').appendChild(notification);
+
   setTimeout(() => notification.style.opacity = 1, 100);
   setTimeout(() => {
     notification.style.opacity = 0;
