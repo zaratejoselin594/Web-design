@@ -104,13 +104,15 @@ function getCanvasImage() {
 function clearCanvas() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-
-// Funciones de almacenamiento
-function saveCartTolocalStorage(cartItems) {
-  localStorage.setItem('cart', JSON.stringify(cartItems));
+// Función para guardar el pedido en localStorage
+function saveToLocalStorage(orderData) {
+  let cartItems = loadCartFromLocalStorage();
+  cartItems.push(orderData);
+  saveCartToLocalStorage(cartItems);
 }
 
-function loadCartFromlocalStorage() {
+// Función para cargar el carrito desde localStorage
+function loadCartFromLocalStorage() {
   return JSON.parse(localStorage.getItem('cart')) || [];
 }
 
@@ -126,6 +128,8 @@ function showNotification(title) {
     setTimeout(() => notification.remove(), 300);
   }, 3000);
 }
+
+// Evento DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   const inputCanvas = document.getElementById('inputCanvas');
   const canvasModal = document.querySelector('.canvasModal');
@@ -134,9 +138,11 @@ document.addEventListener('DOMContentLoaded', () => {
     canvasModal.style.display = inputCanvas.checked ? 'flex' : 'none';
   });
 
-  const cart = loadCartFromlocalStorage();
+  const cart = loadCartFromLocalStorage();
   cart.forEach(product => addProductToDOM(product));
 });
+
+// Evento de envío del formulario
 document.getElementById('cakeForm').addEventListener('submit', (e) => {
   e.preventDefault();
   saveFormData();
@@ -189,7 +195,7 @@ function calculatePrice(grams) {
 
 function saveProduct(flavor, grams, people, decorations, drawing, images, price) {
   const product = createProduct(flavor, grams, people, decorations, drawing, images, price);
-  saveTolocalStorage(product);
+  saveToLocalStorage(product);
   addProductToDOM(product);
 }
 
@@ -197,44 +203,57 @@ function createProduct(flavor, grams, people, decorations, drawing, images, pric
   return { id: generateUniqueId(), flavor, grams, people, decorations, drawing, images, price };
 }
 
-function saveTolocalStorage(orderData) {
-  let cartItems = loadCartFromlocalStorage();
-  if (!Array.isArray(cartItems)) {
-    cartItems = []; // Asegurar que sea un array válido
-  }
-  cartItems.push(orderData);
-  saveCartTolocalStorage(cartItems);
-}
-
-function loadCartFromlocalStorage() {
-  try {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    return Array.isArray(cart) ? cart : [];
-  } catch (e) {
-    return []; // Evitar errores si localStorage contiene datos corruptos
-  }
-}
-
-function saveCartTolocalStorage(cartItems) {
+// Función para guardar los items del carrito en localStorage
+function saveCartToLocalStorage(cartItems) {
   localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
-function addProductToDOM(product) { 
+// Función para añadir un producto al DOM y mostrarlo en la interfaz
+function addProductToDOM(product) {
   const contentModal = document.querySelector('.cartHtml');
-  if (!contentModal || contentModal.querySelector(`[data-id="${product.id}"]`)) return;
+  if (!contentModal || contentModal.querySelector(`[data-id="${product.id}"]`)) return; // Evitar duplicados
 
   const cartItem = document.createElement('div');
   cartItem.classList.add('cartItem');
   cartItem.setAttribute('data-id', product.id);
-  cartItem.innerHTML = `
-    <img src="${product.images.length > 0 ? product.images[0] : 'default-image.jpg'}" alt="Producto" class="imgProduct">
-    <div class="titleCart">
-      <div class="infoCart"><h3>${product.flavor}</h3>
-      <p>Para ${product.people} personas - ${product.grams} gramos - ${product.decorations}</p></div>
-      <div class="monto"><ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
-      <p>$${product.price}</p></div>
-    </div>`;
+
+  let productHTML = `
+    <div class="infoCart">
+      <h3>${product.flavor}</h3>
+      <p>Para ${product.people} personas - ${product.grams} gramos - ${product.decorations}</p>
+    </div>
+    <div class="monto">
+      <ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
+      <p>$${product.price}</p>
+    </div>
+  `;
+
+  if (product.images.length > 0) {
+    productHTML = `<img src="${product.images[0]}" alt="Producto" class="imgProduct">` + productHTML;
+  }
+
+  if (product.drawing) {
+    productHTML = `<img src="${product.drawing}" alt="Dibujo" class="imgProduct">` + productHTML;
+  }
+
+  cartItem.innerHTML = productHTML;
   contentModal.appendChild(cartItem);
+
   showNotification(product.flavor);
+
+  // Agregar evento para eliminar producto
+  cartItem.querySelector('.iconTrash').addEventListener('click', () => removeProductFromCart(product.id));
 }
 
+// Función para eliminar un producto del carrito
+function removeProductFromCart(productId) {
+  let cartItems = loadCartFromLocalStorage();
+  cartItems = cartItems.filter(product => product.id !== productId);
+  saveCartToLocalStorage(cartItems);
+
+  // Remover del DOM
+  const productElement = document.querySelector(`.cartItem[data-id="${productId}"]`);
+  if (productElement) {
+    productElement.remove();
+  }
+}

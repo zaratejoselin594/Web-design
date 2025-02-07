@@ -12,36 +12,15 @@ function showNotification(title) {
 
 // Función para cargar productos desde localStorage y mostrarlos en el DOM
 function loadCartFromlocalStorage() {
-  // Recuperar los datos de `cartItems` y `cart`
-  let cartItems = localStorage.getItem('cartItems');
-  let cartObjects = localStorage.getItem('cart');
-
-  // Si no existen, inicializarlos como arrays vacíos
-  cartItems = cartItems ? JSON.parse(cartItems) : [];
-  cartObjects = cartObjects ? JSON.parse(cartObjects) : [];
-
-  // Asegurar que sean arrays antes de continuar
-  if (!Array.isArray(cartItems)) cartItems = [];
-  if (!Array.isArray(cartObjects)) cartObjects = [];
-
-  // Unir ambos arrays y eliminamos posibles duplicados por ID
-  let allItems = [...cartItems, ...cartObjects];
-  let uniqueItems = [];
-
-  let seenIds = new Set();
-  allItems.forEach(item => {
-    if (!seenIds.has(item.id)) {
-      seenIds.add(item.id);
-      uniqueItems.push(item);
-    }
+  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  const cartObjects = JSON.parse(localStorage.getItem('cart')) || [];
+  cartItems.forEach(product => {
+    addProductToDOM(product);
   });
-
-  // Limpiar el carrito antes de recargar los elementos
-  const contentModal = document.querySelector('.cartHtml');
-  if (contentModal) contentModal.innerHTML = '';
-
-  // Agregar productos al DOM
-  uniqueItems.forEach(product => addProductToDOM(product));
+  cartObjects.forEach(product => {
+    addProductToDOM(product);
+  });
+  // Recuperar y validar cartItems (productos del catálogo)
 }
 
 // Función para agregar un producto al DOM
@@ -67,7 +46,7 @@ function addProductToDOM(product) {
         <p>$${product.price}</p></div>
       </div>
     `;
-    showNotification(product.flavor);
+    showNotification(product.flavor)
   }
 
   // Detectar si el HTML actual está en una subcarpeta
@@ -76,7 +55,11 @@ function addProductToDOM(product) {
   // Ajustar la ruta de la imagen dependiendo de la ubicación
   function getCorrectImagePath(imagePath) {
     if (!imagePath) return 'default-image.jpg';
-    return isIndexPage ? `${imagePath}` : `.${imagePath}`;
+    if (isIndexPage) {
+      return `${imagePath}`;
+    } else {
+      return `.${imagePath}`;
+    }
   }
 
   if (product.name) {
@@ -95,7 +78,7 @@ function addProductToDOM(product) {
         </div>
       </div>
     `;
-    showNotification(product.name);
+    showNotification(product.name)
   }
 
   cartItem.innerHTML = productHTML;
@@ -110,16 +93,16 @@ function removeItem(element, id) {
   let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
   let cartObjects = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Filtrar los productos eliminados
+  // Si el producto eliminado es del catálogo
   cartItems = cartItems.filter(item => item.id !== id);
-  cartObjects = cartObjects.filter(item => item.id !== id);
-
-  // Guardar nuevamente en `localStorage`
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+  // Si el producto eliminado es un producto personalizado
+  cartObjects = cartObjects.filter(item => item.id !== id);
   localStorage.setItem('cart', JSON.stringify(cartObjects));
 
-  // Remover el elemento del DOM
   element.remove();
 }
+
 
 document.addEventListener('DOMContentLoaded', loadCartFromlocalStorage);

@@ -43,7 +43,8 @@ const toggleVisibility = () => {
 localOption?.addEventListener("change", toggleVisibility);
 deliveryOption?.addEventListener("change", toggleVisibility);
 
-document.addEventListener("DOMContentLoaded", function () {
+document.
+addEventListener("DOMContentLoaded", function () {
   const localOption = document.getElementById("localOption");
   const deliveryOption = document.getElementById("deliveryOption");
   const localCode = document.getElementById("localCode");
@@ -66,10 +67,11 @@ document.addEventListener("DOMContentLoaded", function () {
   localOption.addEventListener("change", updateForm);
   deliveryOption.addEventListener("change", updateForm);
 
+  // Recupera el carrito y lo guarda en el localStorage
   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Asegurar que el carrito persiste correctamente
+  // Asegura que el carrito persista correctamente
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
   localStorage.setItem("cart", JSON.stringify(cart));
 });
@@ -92,6 +94,7 @@ function guardarYMostrarPedidos() {
   }
 
   // Recuperar y conservar el carrito
+  // Recuperar y conservar el carrito
   let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
   let pedidos = [...cartItems, ...cart]; // Fusionar los dos carritos
@@ -100,6 +103,7 @@ function guardarYMostrarPedidos() {
     alert("El carrito está vacío. Agrega productos antes de hacer el pedido.");
     return;
   }
+
 
   let orderID = localStorage.getItem('orderID') || generateOrderID();
   localStorage.setItem('orderID', orderID);
