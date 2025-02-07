@@ -23,22 +23,18 @@ function loadCartFromlocalStorage() {
   });
   // Recuperar y validar cartItems (productos del catálogo)
 }
-// Detectar si el HTML actual está en una subcarpeta
 const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
-const isWebPage = window.location.pathname.endsWith("Web-design") || window.location.pathname === "/";
+const isInSubfolder = window.location.pathname.split("/").length > 2;
 
 // Ajustar la ruta de la imagen dependiendo de la ubicación
 function getCorrectImagePath(imagePath) {
   if (!imagePath) return 'default-image.jpg';
-  if (isIndexPage) {
-    return `${imagePath}`;
-  } else {
+
+  // Si estamos en una subcarpeta, ajustar la ruta relativa
+  if (isInSubfolder) {
     return `.${imagePath}`;
-  }
-  if (isWebPage) {
-    return `${imagePath}`;
   } else {
-    return `.${imagePath}`;
+    return imagePath;
   }
 }
 // Función para agregar un producto al DOM
