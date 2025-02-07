@@ -185,7 +185,7 @@ h3 {
 
 .containerAbout,
 .containerContact {
-  width: 80%;
+  width: 90%;
   flex-direction: column;
   gap: 1em;
 }
@@ -273,7 +273,7 @@ h3 {
 
 @media (max-width: 1200px) {
   .contentModal{
-    width: 70%;
+    width: 90%;
   }
 }
 /* Modal hr */
@@ -392,16 +392,16 @@ h3 {
 }
 .cartItem {
   display: flex;
-  gap: 2em;
+  gap: .5em;
   align-items: start;
   justify-content: space-between;
-  margin-bottom: 1.4em;
+  margin-bottom: 1em;
 }
 
 .cartItem img {
   border-radius: var(--borderRadius);
-  width: 8em;
-  height: 8em;
+  width: 6em;
+  height: 6em;
 }
 
 .titleCart {

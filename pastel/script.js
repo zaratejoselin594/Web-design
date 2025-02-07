@@ -191,8 +191,11 @@ function saveFormData() {
     imageFiles.forEach(image => {
       const reader = new FileReader();
       reader.onload = function (e) {
-        images.push(e.target.result);
+        const imageData = e.target.result;
+        images.push(imageData);
+        saveImageToIndexedDB(imageData); // Guardar en IndexedDB
         processedImages++;
+
         if (processedImages === imageFiles.length) {
           saveProduct(flavor, grams, people, decorations, drawing, images, price);
         }
@@ -214,6 +217,32 @@ function saveProduct(flavor, grams, people, decorations, drawing, images, price)
   saveToLocalStorage(product);
   addProductToDOM(product);
 }
+
+/**
+ * Guarda la imagen en IndexedDB
+ */
+function saveImageToIndexedDB(imageData) {
+  const request = indexedDB.open("PasteleriaDB", 1);
+
+  request.onupgradeneeded = function (event) {
+    const db = event.target.result;
+    if (!db.objectStoreNames.contains("imagenes")) {
+      db.createObjectStore("imagenes", { autoIncrement: true });
+    }
+  };
+
+  request.onsuccess = function (event) {
+    const db = event.target.result;
+    const transaction = db.transaction("imagenes", "readwrite");
+    const store = transaction.objectStore("imagenes");
+    store.add(imageData);
+  };
+
+  request.onerror = function () {
+    console.error("Error al abrir IndexedDB.");
+  };
+}
+
 
 function createProduct(flavor, grams, people, decorations, drawing, images, price) {
   return { id: generateUniqueId(), flavor, grams, people, decorations, drawing, images, price };

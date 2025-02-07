@@ -282,16 +282,16 @@ body{
 }
 .cartItem {
   display: flex;
-  gap: 2em;
+  gap: .5em;
   align-items: start;
   justify-content: space-between;
-  margin-bottom: 1.4em;
+  margin-bottom: 1em;
 }
 
 .cartItem img {
   border-radius: var(--borderRadius);
-  width: 8em;
-  height: 8em;
+  width: 6em;
+  height: 6em;
 }
 
 .titleCart {
@@ -395,9 +395,9 @@ a {
   z-index: 10;
   top: 1.7em;
   display: none;
-  flex-direction: row;
   flex-wrap: wrap;
   align-items: start;
+  justify-content: start;
   overflow: scroll;
 }
 .pastelModal, .mesaDulceModal, .meriendaModal, .budinesModal, .tartaModal{
@@ -451,11 +451,12 @@ a {
 }
 .contentFlavor{
   color: #000;
-  width: 100%;
+  width: 25em;
   height: 10em;
-  padding: 1em 0 1em 0;
+  padding: 1em;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: start;
   margin: 1em;
   transition: color .3s;
   border-radius: var(--borderRadius);
@@ -681,7 +682,7 @@ h3{
     transform: rotate(0deg);
   }
   .contentModal{
-    width: 80%;
+    width: 90%;
   }
   .containerTitle{
     height: auto;

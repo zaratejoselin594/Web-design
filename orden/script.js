@@ -46,18 +46,18 @@ deliveryOption?.addEventListener("change", toggleVisibility);
 function guardarYMostrarPedidos() {
   const nombre = document.getElementById("nombre").value.trim();
   const telefono = document.getElementById("telefono").value.trim();
-  let infoCliente = `👤 *Cliente*\n*Nombre y Apellido:* ${nombre}\n*Teléfono 📞:* ${telefono}\n`;
+  let infoCliente = `👤*Cliente*\n🪪*Nombre y Apellido:* ${nombre}\n📞*Teléfono: * ${telefono}\n`;
 
   let total = 0;  // Asegúrate de que total sea un número
   let archivos = [];
 
   // Verificar si el cliente ha elegido recogida o entrega
   if (localOption?.checked) {
-    infoCliente += `*Código de Pedido 📌:* ${randomCode.textContent}\n`;
+    infoCliente += `📌*Código de Pedido: * ${randomCode.textContent}\n`;
   } else if (deliveryOption?.checked) {
     const address = document.getElementById("address").value.trim();
     const instructions = document.getElementById("instructions").value.trim();
-    infoCliente += `*Dirección 📍:* ${address}\n*Instrucciones:* ${instructions}\n Envio por $1800`;
+    infoCliente += `📍*Dirección: * ${address}\n*Instrucciones:* ${instructions}\n Envio por $1800`;
     total += 1800; // Costo adicional por entrega
   }
 
@@ -128,12 +128,75 @@ function guardarYMostrarPedidos() {
   wpLink(mensajeCompleto);
 };
 
-
 function wpLink(mensajeCompleto) {
-  document.getElementById('whatsappLink').addEventListener('click', () => {
-    window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
-  })
+  document.getElementById('whatsappLink').addEventListener('click', async () => {
+    try {
+      // Recuperar la última imagen desde IndexedDB
+      const imageData = await getLastImageFromIndexedDB();
+      if (imageData) {
+        // Copiar la imagen al portapapeles
+        await copyImageToClipboard(imageData);
+        console.log("📸 Imagen copiada al portapapeles");
+
+        // Agregar imagen al mensaje
+        const mensajeConImagen = `${mensajeCompleto} \n\n(Imagen copiada al portapapeles, pégala en WhatsApp)`;
+
+        // Abrir WhatsApp con el mensaje
+        window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeConImagen)}`, "_blank");
+      } else {
+        console.warn("⚠️ No se encontró imagen en IndexedDB.");
+        window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
+      }
+    } catch (error) {
+      console.error("❌ Error al copiar la imagen o abrir WhatsApp:", error);
+      window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
+    }
+  });
 }
+
+/**
+ * Recupera la última imagen guardada en IndexedDB
+ */
+function getLastImageFromIndexedDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("PasteleriaDB", 1);
+
+    request.onsuccess = function (event) {
+      const db = event.target.result;
+      const transaction = db.transaction("imagenes", "readonly");
+      const store = transaction.objectStore("imagenes");
+      const getAllRequest = store.getAll();
+
+      getAllRequest.onsuccess = function () {
+        const images = getAllRequest.result;
+        if (images.length > 0) {
+          resolve(images[images.length - 1]); // Última imagen guardada
+        } else {
+          resolve(null);
+        }
+      };
+
+      getAllRequest.onerror = function () {
+        reject("❌ Error al obtener imágenes de IndexedDB");
+      };
+    };
+
+    request.onerror = function () {
+      reject("❌ Error al abrir IndexedDB");
+    };
+  });
+}
+
+/**
+ * Copia la imagen al portapapeles
+ */
+async function copyImageToClipboard(imageData) {
+  const response = await fetch(imageData);
+  const blob = await response.blob();
+  const item = new ClipboardItem({ "image/png": blob });
+  await navigator.clipboard.write([item]);
+}
+
 cartTotal.addEventListener("click", guardarYMostrarPedidos);
 document.addEventListener("DOMContentLoaded", function () {
   const localOption = document.getElementById("localOption");
