@@ -128,75 +128,12 @@ function guardarYMostrarPedidos() {
   wpLink(mensajeCompleto);
 };
 
+
 function wpLink(mensajeCompleto) {
-  document.getElementById('whatsappLink').addEventListener('click', async () => {
-    try {
-      // Recuperar la última imagen desde IndexedDB
-      const imageData = await getLastImageFromIndexedDB();
-      if (imageData) {
-        // Copiar la imagen al portapapeles
-        await copyImageToClipboard(imageData);
-        console.log("📸 Imagen copiada al portapapeles");
-
-        // Agregar imagen al mensaje
-        const mensajeConImagen = `${mensajeCompleto} \n\n(Imagen copiada al portapapeles, pégala en WhatsApp)`;
-
-        // Abrir WhatsApp con el mensaje
-        window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeConImagen)}`, "_blank");
-      } else {
-        console.warn("⚠️ No se encontró imagen en IndexedDB.");
-        window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
-      }
-    } catch (error) {
-      console.error("❌ Error al copiar la imagen o abrir WhatsApp:", error);
-      window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
-    }
-  });
+  document.getElementById('whatsappLink').addEventListener('click', () => {
+    window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
+  })
 }
-
-/**
- * Recupera la última imagen guardada en IndexedDB
- */
-function getLastImageFromIndexedDB() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open("PasteleriaDB", 1);
-
-    request.onsuccess = function (event) {
-      const db = event.target.result;
-      const transaction = db.transaction("imagenes", "readonly");
-      const store = transaction.objectStore("imagenes");
-      const getAllRequest = store.getAll();
-
-      getAllRequest.onsuccess = function () {
-        const images = getAllRequest.result;
-        if (images.length > 0) {
-          resolve(images[images.length - 1]); // Última imagen guardada
-        } else {
-          resolve(null);
-        }
-      };
-
-      getAllRequest.onerror = function () {
-        reject("❌ Error al obtener imágenes de IndexedDB");
-      };
-    };
-
-    request.onerror = function () {
-      reject("❌ Error al abrir IndexedDB");
-    };
-  });
-}
-
-/**
- * Copia la imagen al portapapeles
- */
-async function copyImageToClipboard(imageData) {
-  const response = await fetch(imageData);
-  const blob = await response.blob();
-  const item = new ClipboardItem({ "image/png": blob });
-  await navigator.clipboard.write([item]);
-}
-
 cartTotal.addEventListener("click", guardarYMostrarPedidos);
 document.addEventListener("DOMContentLoaded", function () {
   const localOption = document.getElementById("localOption");

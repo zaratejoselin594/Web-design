@@ -25,11 +25,17 @@ function loadCartFromlocalStorage() {
 }
 // Detectar si el HTML actual está en una subcarpeta
 const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
+const isWebPage = window.location.pathname.endsWith("Web-design") || window.location.pathname === "/";
 
 // Ajustar la ruta de la imagen dependiendo de la ubicación
 function getCorrectImagePath(imagePath) {
   if (!imagePath) return 'default-image.jpg';
   if (isIndexPage) {
+    return `${imagePath}`;
+  } else {
+    return `.${imagePath}`;
+  }
+  if (isWebPage) {
     return `${imagePath}`;
   } else {
     return `.${imagePath}`;
