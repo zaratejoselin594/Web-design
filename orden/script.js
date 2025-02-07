@@ -43,8 +43,99 @@ const toggleVisibility = () => {
 localOption?.addEventListener("change", toggleVisibility);
 deliveryOption?.addEventListener("change", toggleVisibility);
 
-document.
-addEventListener("DOMContentLoaded", function () {
+function guardarYMostrarPedidos() {
+  const nombre = document.getElementById("nombre").value.trim();
+  const telefono = document.getElementById("telefono").value.trim();
+  let infoCliente = `👤 *Cliente*\n*Nombre y Apellido:* ${nombre}\n*Teléfono 📞:* ${telefono}\n`;
+
+  let total = 0;  // Asegúrate de que total sea un número
+  let archivos = [];
+
+  // Verificar si el cliente ha elegido recogida o entrega
+  if (localOption?.checked) {
+    infoCliente += `*Código de Pedido 📌:* ${randomCode.textContent}\n`;
+  } else if (deliveryOption?.checked) {
+    const address = document.getElementById("address").value.trim();
+    const instructions = document.getElementById("instructions").value.trim();
+    infoCliente += `*Dirección 📍:* ${address}\n*Instrucciones:* ${instructions}\n Envio por $1800`;
+    total += 1800; // Costo adicional por entrega
+  }
+
+  // Recuperar el carrito de compras de 'cartItems'
+  const cartDataItems = localStorage.getItem("cartItems");
+  const cartData = localStorage.getItem("cart");
+
+  if (!cartDataItems && !cartData) {
+    alert("El carrito está vacío. Agrega productos antes de hacer el pedido.");
+    return;
+  }
+
+  let pedidos = [];
+
+  // Procesar el carrito de 'cartItems' si existe
+  if (cartDataItems) {
+    try {
+      const cartItems = JSON.parse(cartDataItems);
+      if (Array.isArray(cartItems)) {
+        pedidos = pedidos.concat(cartItems); // Añadir los productos de 'cartItems'
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      alert("Error al recuperar los datos de cartItems.");
+    }
+  }
+
+  // Procesar el carrito de 'cart' si existe
+  if (cartData) {
+    try {
+      const cart = JSON.parse(cartData);
+      if (Array.isArray(cart)) {
+        pedidos = pedidos.concat(cart); // Añadir los productos de 'cart'
+      } else {
+        throw new Error();
+      }
+    } catch (error) {
+      alert("Error al recuperar los datos de cart.");
+    }
+  }
+
+  // Construcción del mensaje con los pedidos
+  const mensajesPedidos = pedidos.map((pedido) => {
+    if (pedido.flavor) {  // Si es un pastel personalizado
+      total += parseFloat(pedido.price);  // Asegúrate de que 'price' sea tratado como número
+      if (pedido.images && pedido.images.length > 0) archivos.push(pedido.images[0]); // Agregar la primera imagen si existe
+      return `🎂 *Pedido de Pastel Personalizado*\n\n🍰 *Sabor:* ${pedido.flavor}\n⚖️ *Peso:* ${pedido.grams} gramos\n👥 *Cantidad de Personas:* ${pedido.people}\n${pedido.decorations ? `📋 *Descripción:* ${pedido.decorations}\n` : ""}🖼️ *Imagen del Dibujo:* ${pedido.drawing ? "[Incluido]" : "No incluida"}\n💰 *Precio:* $${pedido.price} \n---`;
+    }
+    if (pedido.name) {  // Si es un pastel de tienda
+      total += parseFloat(pedido.price);  // Asegúrate de que 'price' sea tratado como número
+      return `🎂 *Pedido de Pastel de Tienda*\n\n🍰 *Nombre:* ${pedido.name}\n💰 *Precio:* $${pedido.price}\n---`;
+    }
+    return "";
+  }).filter(msg => msg).join("\n\n");
+
+  // Mensaje completo con la información del cliente y los pedidos
+  const mensajeCompleto = `${infoCliente}\n\n${mensajesPedidos}\n\n💵 *Total a Pagar:* $${total.toFixed(2)}\n\n¡Gracias por elegirnos! 😊`;
+
+  // Mostrar el mensaje completo en el HTML
+  if (orderContent) orderContent.innerHTML = mensajeCompleto.replace(/\n/g, "<br>");
+  if (imageContainer) {
+    imageContainer.innerHTML = archivos.map(img => `<img src="${img}" alt="Imagen del Pedido" style="max-width: 200px; margin: 5px;">`).join("");
+  }
+
+  // Mostrar el total en el carrito
+  orderContent.innerHTML = `<p>${mensajeCompleto.replace(/\n/g, "<br>")}</p>`;
+  wpLink(mensajeCompleto);
+};
+
+
+function wpLink(mensajeCompleto) {
+  document.getElementById('whatsappLink').addEventListener('click', () => {
+    window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
+  })
+}
+cartTotal.addEventListener("click", guardarYMostrarPedidos);
+document.addEventListener("DOMContentLoaded", function () {
   const localOption = document.getElementById("localOption");
   const deliveryOption = document.getElementById("deliveryOption");
   const localCode = document.getElementById("localCode");
@@ -66,88 +157,28 @@ addEventListener("DOMContentLoaded", function () {
 
   localOption.addEventListener("change", updateForm);
   deliveryOption.addEventListener("change", updateForm);
-
-  // Recupera el carrito y lo guarda en el localStorage
-  let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-  // Asegura que el carrito persista correctamente
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  localStorage.setItem("cart", JSON.stringify(cart));
 });
 
-function guardarYMostrarPedidos() {
-  const nombre = document.getElementById("nombre").value.trim();
-  const telefono = document.getElementById("telefono").value.trim();
-  let infoCliente = `👤 *Cliente*\n*Nombre y Apellido:* ${nombre}\n*Teléfono 📞:* ${telefono}\n`;
 
-  let total = 0;
-  let archivos = [];
-
-  if (localOption?.checked) {
-    infoCliente += `*Código de Pedido 📌:* ${randomCode.textContent}\n`;
-  } else if (deliveryOption?.checked) {
-    const address = document.getElementById("address").value.trim();
-    const instructions = document.getElementById("instructions").value.trim();
-    infoCliente += `*Dirección 📍:* ${address}\n*Instrucciones:* ${instructions}\n Envío por $1800`;
-    total += 1800;
+const cartData = localStorage.getItem("cart");
+if (cartData) {
+  let pedidos;
+  try {
+    pedidos = JSON.parse(cartData);
+    if (!Array.isArray(pedidos)) throw new Error();
+  } catch (error) {
+    pedidos = [];
   }
-
-  // Recuperar y conservar el carrito
-  // Recuperar y conservar el carrito
-  let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  let pedidos = [...cartItems, ...cart]; // Fusionar los dos carritos
-
-  if (pedidos.length === 0) {
-    alert("El carrito está vacío. Agrega productos antes de hacer el pedido.");
-    return;
-  }
-
-
-  let orderID = localStorage.getItem('orderID') || generateOrderID();
-  localStorage.setItem('orderID', orderID);
-
-  // Construcción del mensaje con los pedidos
-  const mensajesPedidos = pedidos.map((pedido) => {
-    total += parseFloat(pedido.price);
-    if (pedido.images?.length > 0) archivos.push(pedido.images[0]);
-    return `🎂 *Pedido*\n🍰 *Nombre:* ${pedido.name || pedido.flavor}\n💰 *Precio:* $${pedido.price}\n---`;
-  }).join("\n\n");
-
-  const mensajeCompleto = `${infoCliente}\n\n${mensajesPedidos}\n\n 💵 *Total a Pagar:* $${total.toFixed(2)}\n\n¡Gracias por elegirnos! 😊`;
-
-  const orderData = {
-    orderID: orderID,
-    clienteInfo: infoCliente,
-    pedidos: pedidos,
-    totalPrice: total
-  };
-  localStorage.setItem('pedido_' + orderID, JSON.stringify(orderData));
-
-  if (orderContent) orderContent.innerHTML = mensajeCompleto.replace(/\n/g, "<br>");
-  if (imageContainer) {
-    imageContainer.innerHTML = archivos.map(img => `<img src="${img}" alt="Imagen del Pedido" style="max-width: 200px; margin: 5px;">`).join("");
-  }
-
-  sendOrderToWhatsApp(mensajeCompleto);
-}
-
-
-// Generar un ID de pedido único
-function generateOrderID() {
-  return Math.random().toString(36).substr(2, 9).toUpperCase();
-}
-
-function sendOrderToWhatsApp(order) {
-  const orderID = localStorage.getItem('orderID');
-  const mensaje = `${order}\n\nTu pedido ha sido registrado. Puedes verlo aquí: ${window.location.origin}/ver_pedido.html?order=${orderID}`;
-  document.getElementById('whatsappLink').addEventListener('click', () => {
-    window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensaje)}`, "_blank");
+  pedidos.forEach(pedido => {
+    if (pedido.drawing && imageContainer) {
+      const imgElement = document.createElement("img");
+      imgElement.src = pedido.drawing;
+      imgElement.alt = "Dibujo en el Pedido";
+      imgElement.style.maxWidth = "300px";
+      imgElement.style.margin = "10px";
+      imageContainer.appendChild(imgElement);
+    }
   });
 }
 
-form.addEventListener("submit", function (event) {
-  event.preventDefault(); // Prevenir el comportamiento por defecto (recarga de página)
-  guardarYMostrarPedidos();
-});
+document.addEventListener("DOMContentLoaded", () => { });
