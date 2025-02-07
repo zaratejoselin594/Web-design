@@ -23,7 +23,18 @@ function loadCartFromlocalStorage() {
   });
   // Recuperar y validar cartItems (productos del catálogo)
 }
+// Detectar si el HTML actual está en una subcarpeta
+const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
 
+// Ajustar la ruta de la imagen dependiendo de la ubicación
+function getCorrectImagePath(imagePath) {
+  if (!imagePath) return 'default-image.jpg';
+  if (isIndexPage) {
+    return `${imagePath}`;
+  } else {
+    return `.${imagePath}`;
+  }
+}
 // Función para agregar un producto al DOM
 function addProductToDOM(product) {
   const contentModal = document.querySelector('.cartHtml');
@@ -48,19 +59,6 @@ function addProductToDOM(product) {
       </div>
     `;
     showNotification(product.flavor)
-  }
-
-  // Detectar si el HTML actual está en una subcarpeta
-  const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
-
-  // Ajustar la ruta de la imagen dependiendo de la ubicación
-  function getCorrectImagePath(imagePath) {
-    if (!imagePath) return 'default-image.jpg';
-    if (isIndexPage) {
-      return `${imagePath}`;
-    } else {
-      return `.${imagePath}`;
-    }
   }
 
   if (product.name) {
