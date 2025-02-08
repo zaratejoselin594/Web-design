@@ -193,7 +193,6 @@ function saveFormData() {
       reader.onload = function (e) {
         const imageData = e.target.result;
         images.push(imageData);
-        saveImageToIndexedDB(imageData); // Guardar en IndexedDB
         processedImages++;
 
         if (processedImages === imageFiles.length) {
