@@ -402,6 +402,7 @@ a {
 }
 .pastelModal, .mesaDulceModal, .meriendaModal, .budinesModal, .tartaModal{
   display: none;
+  cursor:pointer;
 }
 .titleFlavor{
   font-family: "Ephesis", serif;
@@ -435,6 +436,7 @@ a {
   justify-content: center;
   align-items: center;
   border-radius: var(--borderRadius);
+  cursor: pointer;
 } 
 .imgContainerMenu{
   width: 20em;

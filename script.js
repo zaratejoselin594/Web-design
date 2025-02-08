@@ -181,17 +181,13 @@ function createModalItem(className, src, alt, itemMenu, price, titulo) {
 }
 
 // Llamadas a la función con referencias al DOM en lugar de cadenas de texto
-createModalItem('pastel', './resourse/img/ocho.webp', 'pastel Vainilla helado', pastel, 12000, 'Pastel de Vainilla helado');
 createModalItem('pastel', './resourse/img/diez.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('pastel', './resourse/img/once.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('pastel', './resourse/img/siete.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('pastel', './resourse/img/once.webp', 'Pastel de Vainilla y helado', pastel, 12500, 'Pastel de Vainilla y helado');
 createModalItem('pastel', './resourse/img/diecinueve.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('pastel', './resourse/img/IMG_0289.jpeg', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('pastel', './resourse/img/IMG_0287.jpeg', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('pastel', './resourse/img/IMG_0291.jpeg', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('pastel', './resourse/img/IMG_0292.jpeg', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('pastel', './resourse/img/doce.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('pastel', './resourse/img/nueve.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('pastel', './resourse/img/IMG_0289.jpeg', 'pastel multifruta', pastel, 12500, 'Pastel Multifruta');
+createModalItem('pastel', './resourse/img/IMG_0287.jpeg', 'pastel Vainilla con mani', pastel, 12500, 'Pastel Vainilla con mani');
+createModalItem('pastel', './resourse/img/IMG_0291.jpeg', 'pastel contemporaneo', pastel, 12500, 'Pastel conteporaneo');
+createModalItem('pastel', './resourse/img/IMG_0292.jpeg', 'pastel multifruta divertido tres pisos', pastel, 31000, 'Pastel Multifruta Tres pisos');
 
 
 createModalItem('mesaDulce', './resourse/img/catorce.webp', 'pastel chocolate con frutilla', mesaDulce, 12500, 'Pastel Chocolate con Frutilla');
