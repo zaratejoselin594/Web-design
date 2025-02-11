@@ -52,7 +52,7 @@ function addProductToDOM(product) {
         <p>Para ${product.people} personas - ${product.grams} gramos - ${product.decorations}</p></div>
         <div class="monto"><ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
         <p>$${product.price}</p></div>
-      </div>
+      </div> 
     `;
     showNotification(product.flavor)
   }
