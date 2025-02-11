@@ -44,6 +44,7 @@ body{
 }
 .hrACart{
   margin: .7em;
+  cursor: pointer;
 }
 .hrLogo{
   font-family: "Ephesis", serif;
@@ -126,13 +127,9 @@ body{
   padding: .5em;
 }
 .modal{
-  visibility: hidden;
-  opacity: 0;
+  visibility: hidden
 }
-.modal:target{
-  visibility: visible;
-  opacity: 1;
-}
+
 /* Modal Container */
 .contentModal img {
   width: 5em;

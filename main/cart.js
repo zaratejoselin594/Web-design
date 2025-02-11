@@ -1,3 +1,10 @@
+document.querySelector('.hrACart').addEventListener('click', () => {
+  document.querySelector('.modal').style.visibility = 'visible'
+})
+document.querySelector('.closeModal').addEventListener('click', () => {
+  document.querySelector('.modal').style.visibility = 'hidden';
+})
+
 function showNotification(title) {
   const notification = document.createElement('div');
   notification.classList.add('notification');
@@ -23,20 +30,7 @@ function loadCartFromlocalStorage() {
   });
   // Recuperar y validar cartItems (productos del catálogo)
 }
-const isIndexPage = window.location.pathname.endsWith("index.html") || window.location.pathname === "/";
-const isInSubfolder = window.location.pathname.split("/").length > 2;
 
-// Ajustar la ruta de la imagen dependiendo de la ubicación
-function getCorrectImagePath(imagePath) {
-  if (!imagePath) return 'default-image.jpg';
-
-  // Si estamos en una subcarpeta, ajustar la ruta relativa
-  if (isInSubfolder) {
-    return `.${imagePath}`;
-  } else {
-    return imagePath;
-  }
-}
 // Función para agregar un producto al DOM
 function addProductToDOM(product) {
   const contentModal = document.querySelector('.cartHtml');
@@ -62,24 +56,35 @@ function addProductToDOM(product) {
     `;
     showNotification(product.flavor)
   }
+  function getCorrectImagePath(imagePath) {
+    // Comprobar si estamos en la página raíz (index.html)
+    const isRootPage = window.location.pathname === '/' || window.location.pathname.includes('index.html');
+
+    // Si estamos en la raíz, la imagen se carga desde 'resources/img/'
+    if (isRootPage) {
+      return `${imagePath}`; // Ruta para la página raíz
+    } else {
+      // Si estamos en una subpágina (como pastel.html o pedido.html), subir un nivel para acceder a 'resources/img/'
+      return `.${imagePath}`; // Ruta para las subpáginas
+    }
+  }
 
   if (product.name) {
-    let productImage = getCorrectImagePath(product.image);
-
+    let image = getCorrectImagePath(product.image);
     productHTML = `
-      <img src="${productImage}" alt="" class="imgProduct">
+      <img src="${image}" alt="" class="imgProduct">
       <div class="titleCart">
-        <div class="infoCart">
-          <h3>${product.name}</h3>
-          <p>Deliciosa opción personalizada</p>
-        </div>
-        <div class="monto">
-          <ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
-          <p>$${product.price}</p>
-        </div>
+          <div class="infoCart">
+              <h3>${product.name}</h3>
+              <p>Deliciosa opción personalizada</p>
+          </div>
+          <div class="monto">
+              <ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
+              <p>$${product.price}</p>
+          </div>
       </div>
     `;
-    showNotification(product.name)
+    showNotification(product.name);
   }
 
   cartItem.innerHTML = productHTML;
