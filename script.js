@@ -45,6 +45,20 @@ navLinks.forEach(link => {
   });
 });
 
+// Notificación
+function showNotification(title) {
+  const notification = document.createElement('div');
+  notification.classList.add('notification');
+  notification.textContent = `${title} ha sido agregado al carrito`;
+  const notContainer = document.querySelector('.notContainer');
+  notContainer.appendChild(notification);
+  setTimeout(() => notContainer.style.display = `flex`, 100);
+  setTimeout(() => {
+    notContainer.style.display = `none`;
+    setTimeout(() => notContainer.remove(), 300);
+  }, 3000);
+}
+
 // Función para manejar el clic en los botones "Añadir"
 function handleAddToCart(event) {
   const button = event.target.closest('.btnAñadir'); // Asegura que se hizo clic en el botón correcto
@@ -101,7 +115,7 @@ function addProductToDOM(product) {
       </div>
     </div>
   `;
-
+  showNotification(product.name);
   contentModal.appendChild(cartItem);
 
   // Añadir evento para eliminar el producto del carrito

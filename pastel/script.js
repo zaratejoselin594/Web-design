@@ -137,14 +137,14 @@ function showNotification(title) {
   const notification = document.createElement('div');
   notification.classList.add('notification');
   notification.textContent = `${title} ha sido agregado al carrito`;
-  document.querySelector('.notContainer').appendChild(notification);
-  setTimeout(() => notification.style.opacity = 1, 100);
+  const notContainer = document.querySelector('.notContainer');
+  notContainer.appendChild(notification);
+  setTimeout(() => notContainer.style.display = `flex`, 100);
   setTimeout(() => {
-    notification.style.opacity = 0;
-    setTimeout(() => notification.remove(), 300);
+    notContainer.style.display = `none`;
+    setTimeout(() => notContainer.remove(), 300);
   }, 3000);
 }
-
 // Evento DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   const inputCanvas = document.getElementById('inputCanvas');

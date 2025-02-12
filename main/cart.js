@@ -5,18 +5,6 @@ document.querySelector('.closeModal').addEventListener('click', () => {
   document.querySelector('.modal').style.visibility = 'hidden';
 })
 
-function showNotification(title) {
-  const notification = document.createElement('div');
-  notification.classList.add('notification');
-  notification.textContent = `${title} ha sido agregado al carrito`;
-  document.querySelector('.notContainer').appendChild(notification);
-
-  setTimeout(() => notification.style.opacity = 1, 100);
-  setTimeout(() => {
-    notification.style.opacity = 0;
-    setTimeout(() => notification.remove(), 300);
-  }, 3000);
-}
 
 // Función para cargar productos desde localStorage y mostrarlos en el DOM
 function loadCartFromlocalStorage() {
@@ -54,7 +42,6 @@ function addProductToDOM(product) {
         <p>$${product.price}</p></div>
       </div> 
     `;
-    showNotification(product.flavor)
   }
   function getCorrectImagePath(imagePath) {
     // Comprobar si estamos en la página raíz (index.html)
@@ -83,7 +70,6 @@ function addProductToDOM(product) {
           </div>
       </div>
     `;
-    showNotification(product.name);
   }
 
   cartItem.innerHTML = productHTML;
