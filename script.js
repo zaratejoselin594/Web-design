@@ -13,6 +13,7 @@ const cookies = [
   }
 ];
 
+
 // Cambio automático de imágenes sin flechas
 cookies.forEach(item => {
   const imgElement = document.querySelector(item.selector);
