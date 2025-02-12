@@ -45,7 +45,7 @@ function addProductToDOM(product) {
   }
   function getCorrectImagePath(imagePath) {
     // Comprobar si estamos en la página raíz (index.html)
-    const isRootPage = window.location.pathname === '/' & window.location.pathname.includes('index.html');
+    const isRootPage = window.location.pathname === 'Web-design/' || window.location.pathname.includes('index.html');
     // Si estamos en la raíz, la imagen se carga desde 'resources/img/'
     if (isRootPage) {
       return `${imagePath}`; // Ruta para la página raíz
