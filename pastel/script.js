@@ -139,10 +139,10 @@ function showNotification(title) {
   notification.textContent = `${title} ha sido agregado al carrito`;
   const notContainer = document.querySelector('.notContainer');
   notContainer.appendChild(notification);
-  setTimeout(() => notContainer.style.display = `flex`, 100);
+  setTimeout(() => notContainer.style.display = 'flex', 100);
   setTimeout(() => {
-    notContainer.style.display = `none`;
-    setTimeout(() => notContainer.remove(), 300);
+    notContainer.style.display = 'none';
+    setTimeout(() => notification.remove(), 300);
   }, 3000);
 }
 // Evento DOMContentLoaded

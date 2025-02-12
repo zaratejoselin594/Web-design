@@ -97,15 +97,14 @@
                 </div>
                 <div class="divFrom">
                   <label for="images">Sube 1 imagen de referencia:</label>
-                  <input type="file" id="images" name="images" accept="image/*" multiple required>
-                  <p id="imageLimitWarning" style="color: red; display: none;">Máximo 3 imágenes permitidas.</p>
+                  <input type="file" id="images" name="images" accept="image/*"  required>
                 </div>
                 <div class="contenedorBtn">
-                  <label for="inputCanvas">Dibujar Mi pastel</label>
+                  <label for="inputCanvas" style="cursor: pointer;">Dibujar <br> Mi pastel 🎂</label>
                   <input type="checkbox" id="inputCanvas"/>
                 </div>
                 <div class="canvasModal">
-                  <label for="canvas">Dibuja algo para personalizar:</label>
+                  <label for="canvas">Dibuja como quieres tu pastel:</label>
                   <canvas id="canvas" width="300" height="300" style="border: 1px solid black;"></canvas>
                   <div>
                     <label for="lineWidth">Grosor:</label>
