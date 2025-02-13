@@ -1,9 +1,3 @@
-document.querySelector('.hrACart').addEventListener('click', () => {
-  document.querySelector('.modal').style.visibility = 'visible'
-})
-document.querySelector('.closeModal').addEventListener('click', () => {
-  document.querySelector('.modal').style.visibility = 'hidden';
-})
 
 
 // Función para cargar productos desde localStorage y mostrarlos en el DOM
