@@ -46,7 +46,7 @@ function addProductToDOM(product) {
 
   if (product.name) {
     productHTML = `
-      <img src="${product.image}" alt="" class="imgProduct">
+      <img src=".${product.image}" alt="" class="imgProduct">
       <div class="titleCart">
           <div class="infoCart">
               <h3>${product.name}</h3>
