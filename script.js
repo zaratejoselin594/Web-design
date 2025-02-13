@@ -91,37 +91,6 @@ function saveTolocalStorage(product) {
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
 }
 
-// Función para añadir el producto al DOM
-function addProductToDOM(product) {
-  const contentModal = document.querySelector('.cartHtml');
-
-  // Verifica si el producto ya existe en el DOM por su id
-  const existingProduct = contentModal.querySelector(`[data-id="${product.id}"]`);
-  if (existingProduct) return; // Si el producto ya está en el DOM, no lo añadimos de nuevo
-
-  const cartItem = document.createElement('div');
-  cartItem.classList.add('cartItem');
-  cartItem.setAttribute('data-id', product.id); // Añade el id como atributo para identificación
-  cartItem.innerHTML = `
-    <img src="${product.image}" alt="" class="imgProduct">
-    <div class="titleCart">
-      <div class="infoCart">
-        <h3>${product.name}</h3>
-        <p>Deliciosa opción personalizada</p>
-      </div>
-      <div class="monto">
-        <ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
-        <p>$${product.price}</p>
-      </div>
-    </div>
-  `;
-  showNotification(product.name);
-  contentModal.appendChild(cartItem);
-  
-  cartItem.querySelector('.iconTrash').addEventListener('click', () => removeItem(cartItem, product.id));
-
-  // Añadir evento para eliminar el producto del carrito
-}
 
 // Event Listener para todos los botones de "Añadir"
 document.addEventListener('click', handleAddToCart);
