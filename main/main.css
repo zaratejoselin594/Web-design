@@ -532,6 +532,7 @@ a {
   height: 100vh;
   top: 3.7em;
   position: fixed;
+  z-index: 2000;
 }
 
 .notification {
@@ -542,7 +543,6 @@ a {
   box-shadow: 0 .4em .2em #6668;
   font-size: 14px;
   animation: fadeInOut 3s ease-in-out forwards;
-  z-index: 2000;
 }
 
 .notification.error {

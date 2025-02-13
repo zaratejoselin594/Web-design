@@ -117,9 +117,10 @@ function addProductToDOM(product) {
   `;
   showNotification(product.name);
   contentModal.appendChild(cartItem);
+  
+  cartItem.querySelector('.iconTrash').addEventListener('click', () => removeItem(cartItem, product.id));
 
   // Añadir evento para eliminar el producto del carrito
-  cartItem.querySelector('.iconTrash').addEventListener('click', () => removeFromCart(product.id, cartItem));
 }
 
 // Event Listener para todos los botones de "Añadir"
@@ -165,7 +166,7 @@ function abrirModal(itemMenu, modalClass) {
 
 function createModalItem(className, src, alt, itemMenu, price, titulo) {
   let modalContainer = document.querySelector(`.${className}Modal`);
-
+  
   // Si el contenedor no existe, créalo
   if (!modalContainer) {
     modalContainer = document.createElement('div');
@@ -191,9 +192,11 @@ function createModalItem(className, src, alt, itemMenu, price, titulo) {
 
   // Agregar el nuevo ítem dentro del modal
   modalContainer.appendChild(itemElement);
-
   abrirModal(itemMenu, className);
 }
+
+
+
 
 // Llamadas a la función con referencias al DOM en lugar de cadenas de texto
 createModalItem('pastel', './resourse/img/diez.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
@@ -246,27 +249,3 @@ document.addEventListener('DOMContentLoaded', () => {
   loadCartFromlocalStorage();
 });
 
-
-/*
-web:
-  index.html
-  estilo.css
-  script.js
-  main
-    cart.js
-    main.css
-  pastel 
-    pastel.html
-    estilo.css
-    pastel.js
-  ordenar
-    odenar.html
-    estilo.css
-    ordenar.js
-  resourse
-    img
-      pastel
-      torta
-      budin
-;
-*/

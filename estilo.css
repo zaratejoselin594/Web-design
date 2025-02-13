@@ -434,6 +434,7 @@ a {
   align-items: center;
   border-radius: var(--borderRadius);
   cursor: pointer;
+  flex-direction: column;
 } 
 .imgContainerMenu{
   width: 20em;
@@ -645,6 +646,8 @@ h3{
   height: 100vh;
   top: 3.7em;
   position: fixed;
+  z-index: 2000;
+  background-color: red;
 }
 
 .notification {
@@ -655,7 +658,6 @@ h3{
   box-shadow: 0 .4em .2em #6668;
   font-size: 14px;
   animation: fadeInOut 3s ease-in-out forwards;
-  z-index: 2000;
 }
 
 .notification.error {
