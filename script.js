@@ -206,17 +206,6 @@ createModalItem('tarta', './resourse/img/veintidos.jpeg', 'pastel chocolate con 
 createModalItem('tarta', './resourse/img/veintitres.jpeg', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
 createModalItem('tarta', './resourse/img/veinticuatro.jpeg', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
 
-function loadCartFromlocalStorage() {
-  const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  cartItems.forEach(product => {
-    addProductToDOM(product);
-  });
-}
-
-// Cargar carrito al iniciar la página
-document.addEventListener('DOMContentLoaded', () => {
-  loadCartFromlocalStorage();
-});
 
 //caritoo --------------------------------------------------------------------------------------------------------------------------
 document.querySelector('.hrACart').addEventListener('click', () => {
