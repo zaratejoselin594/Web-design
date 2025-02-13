@@ -43,14 +43,14 @@ function addProductToDOM(product) {
       </div> 
     `;
   }
-
+  const image = `.${product.image}`
   if (product.name) {
     productHTML = `
-      <img src=".${product.image}" alt="" class="imgProduct">
+      <img src="${image}" alt="" class="imgProduct">
       <div class="titleCart">
           <div class="infoCart">
               <h3>${product.name}</h3>
-              <p>Deliciosa opción personalizada</p>
+              <p>Delicioso pastel para tu evento</p>
           </div>
           <div class="monto">
               <ion-icon name="trash-outline" class="iconTrash" data-id="${product.id}"></ion-icon>
