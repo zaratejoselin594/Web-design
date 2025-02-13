@@ -42,15 +42,6 @@ document.querySelector('.closeModal').addEventListener('click', () => {
   document.querySelector('.modal').style.visibility = 'hidden';
 })
 
-// Limitar la cantidad de imágenes
-document.getElementById('images').addEventListener('change', function () {
-  if (this.files.length > 1) {
-    this.value = '';
-    document.getElementById('imageLimitWarning').style.display = 'flex';
-  } else {
-    document.getElementById('imageLimitWarning').style.display = 'none';
-  }
-});
 
 // Canvas
 
@@ -151,6 +142,7 @@ function showNotification(title) {
     setTimeout(() => notification.remove(), 300);
   }, 3000);
 }
+
 // Evento DOMContentLoaded
 document.addEventListener('DOMContentLoaded', () => {
   const inputCanvas = document.getElementById('inputCanvas');
@@ -224,6 +216,7 @@ function saveProduct(flavor, grams, people, decorations, drawing, images, price)
 }
 
 function createProduct(flavor, grams, people, decorations, drawing, images, price) {
+  showNotification(flavor);
   return { id: generateUniqueId(), flavor, grams, people, decorations, drawing, images, price };
 }
 
@@ -263,7 +256,7 @@ function addProductToDOM(product) {
   cartItem.innerHTML = productHTML;
   contentModal.appendChild(cartItem);
 
-  showNotification(product.flavor);
+  
 
   // Agregar evento para eliminar producto
   cartItem.querySelector('.iconTrash').addEventListener('click', () => removeProductFromCart(product.id));

@@ -536,7 +536,7 @@ a {
 }
 
 .notification {
-  background-color: var(--secondColor);
+  background-color: var(--fourthColor);
   color: #fff;
   padding: 10px 20px;
   border-radius: var(--borderRadius);

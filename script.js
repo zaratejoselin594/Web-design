@@ -29,13 +29,6 @@ cookies.forEach(item => {
   }
 });
 
-document.querySelector('.hrACart').addEventListener('click', () => {
-  document.querySelector('.modal').style.visibility = 'visible'
-})
-document.querySelector('.closeModal').addEventListener('click', () => {
-  document.querySelector('.modal').style.visibility = 'hidden';
-})
-
 // Cierre del menú al tocar fuera
 const menuCheckbox = document.getElementById('menu');
 const navLinks = document.querySelectorAll('.hrUlRve a');
@@ -87,7 +80,7 @@ function handleAddToCart(event) {
 
   // Guarda el producto en localStorage
   saveTolocalStorage(product);
-
+  showNotification(product.name)
   // Agrega el elemento al DOM
   addProductToDOM(product);
 }
