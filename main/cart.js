@@ -43,22 +43,10 @@ function addProductToDOM(product) {
       </div> 
     `;
   }
-  function getCorrectImagePath(imagePath) {
-    // Comprobar si estamos en la página raíz (index.html)
-    const isRootPage = window.location.pathname === 'Web-design/' || window.location.pathname.includes('index.html');
-    // Si estamos en la raíz, la imagen se carga desde 'resources/img/'
-    if (isRootPage) {
-      return `${imagePath}`; // Ruta para la página raíz
-    } else {
-      // Si estamos en una subpágina (como pastel.html o pedido.html), subir un nivel para acceder a 'resources/img/'
-      return `.${imagePath}`; // Ruta para las subpáginas
-    }
-  }
 
   if (product.name) {
-    let image = getCorrectImagePath(product.image);
     productHTML = `
-      <img src="${image}" alt="" class="imgProduct">
+      <img src="${product.image}" alt="" class="imgProduct">
       <div class="titleCart">
           <div class="infoCart">
               <h3>${product.name}</h3>
