@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Ephesis&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 :root{
-  --primaryColor:#BF1523;
+  --primaryColor:#a7111d;
   --secondColor:#D91438;
   --thirdColor:#F1F2D5;
   --fourthColor:#F2C2CB;
-  --borderRadius: .7em;
+  --borderRadius: 1em;
 }
 
 *{
@@ -342,7 +342,13 @@ a {
   color: var(--primaryColor);
   gap: 3em;
 }
-
+.containerDosFronPage{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
 .title{
   font-family: "Ephesis", serif;
   font-size: 7em;
@@ -359,8 +365,8 @@ a {
   gap: 1em;
 }
 .imgPasteleria {
-  width: 15em;
-  height: 15em;
+  width: 12em;
+  height: 12em;
   border-radius: var(--borderRadius);
   overflow: hidden;
   margin: 1em;
@@ -460,6 +466,7 @@ a {
   margin: 1em;
   transition: color .3s;
   border-radius: var(--borderRadius);
+  transition: background .2s ease-out;
 }
 
 .imgCookieFlavor{
@@ -524,10 +531,6 @@ h3{
   height: 40em;
 }
 /* ----------------------------------------------------------------- */
-
-
-
-
 
 @keyframes fadeInOut {
   0% {
@@ -682,8 +685,7 @@ h3{
   }
 
   .contentFlavor:hover {
-    background-color: var(--fourthColor);
-    color: #fff;
+    background-color: #ffdae1;
   }
 
 }
@@ -734,7 +736,6 @@ h3{
     width: 100%;
     height: 10em;
     align-items: center;
-    background-color: var(--fourthColor);
   }
   .imgCookieFlavor{
     width: 8em;
@@ -742,7 +743,7 @@ h3{
     margin: 1em;
   }
 }
-@media (max-width: 660px) {
+@media (max-width: 700px) {
   .ourFlavor{
     height: 70em;
   }
@@ -765,29 +766,35 @@ a {
   font-size: 1.2em;
   cursor: pointer;
 }
-.ajedresBtn{
-  width: 9em;
-  height: 1.6em;
-  overflow: hidden;
-  background-color: #F2C2CB;
-  opacity: 0.8;
-  background-image: repeating-linear-gradient(45deg, #D91438 25%, transparent 25%, transparent 75%, #D91438 75%, #D91438), repeating-linear-gradient(45deg, #D91438 25%, #F2C2CB 25%, #F2C2CB 75%, #D91438 75%, #D91438);
-  background-position: 0 0, 10px 10px;
-  background-size: 20px 20px;
+.ajedresBtn {
+  width: 7em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background-color: var(--secondColor);
   border-radius: var(--borderRadius);
+  border: 2px solid var(--secondColor);
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-ajedrez {
+  color: #fff;
+  text-align: center;
+  font-size: 1em;
+  font-weight: bold;
   cursor: pointer;
 }
-.btn-ajedrez {
-  text-align: center;
-  font-size: 1.2em;
-  color:#fff;
-  font-weight: bold;
-  text-shadow: 
-   -2px -2px 0 #000,
-    0px 2px 0 #000,
-    -2px 0px 0 #000,
-    2px 0px 0 #000;
-  cursor: pointer;
+
+.conteainerAjedresBtn:hover .ajedresBtn {
+  border: 2px solid var(--secondColor);
+  background-color: transparent;
+}
+
+.conteainerAjedresBtn:hover .btn-ajedrez {
+  color: var(--secondColor);
 }
 .aContact{
   color: #fff;

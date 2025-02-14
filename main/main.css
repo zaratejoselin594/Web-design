@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 
 :root {
-  --primaryColor: #BF1523;
+  --primaryColor: #a7111d;
   --secondColor: #D91438;
   --thirdColor: #F1F2D5;
   --fourthColor: #F2C2CB;
-  --borderRadius: .7em;
+  --borderRadius: 1em;
 }
 
 * {
@@ -534,27 +534,49 @@ a {
   position: fixed;
   z-index: 2000;
 }
-
-.notification {
-  background-color: var(--thirdColor);
-  color: #000;
-  padding: 10px 20px;
-  border-radius: var(--borderRadius);
-  box-shadow: 0 .2em .2em #6668;
-  font-size: 14px;
-  animation: fadeInOut 3s ease-in-out forwards;
+.btn-3 {
+  line-height: 1;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: #fff;
+  border-radius: 2em;
+  font-weight: 600;
+  font-size: 1.5em;
+  padding: 2em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
 }
 
-.notification.error {
-  background-color: #f44336;
-  /* Rojo para errores */
+.btn-3 .button__icon-wrapper {
+  animation: not .3s ease-out;
+  background-color: #5c1b35;
+  width: 1.8em;
+  height: 1.8em;
+  position: relative;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  box-shadow: 3px 3px 1em #5c1b35;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  transform: translateY(-1em);
 }
+@keyframes not {
+  0% {
+    transform: translateY(1em);
+  }
 
-.notification.warning {
-  background-color: #ff9800;
-  /* Naranja para advertencias */
+  100% {
+    transform: translateY(-1em);
+  }
 }
-
 .conteainerAjedresBtn {
   display: flex;
   align-items: center;
@@ -566,35 +588,37 @@ a {
 }
 
 .ajedresBtn {
-  width: 9em;
-  height: 1.6em;
-  overflow: hidden;
-  background-color: #F2C2CB;
-  opacity: 0.8;
+  width: 7em;
+  height: 2em;
   display: flex;
   align-items: center;
   text-align: center;
   justify-content: center;
-  gap: 1em;
-  background-image: repeating-linear-gradient(45deg, #D91438 25%, transparent 25%, transparent 75%, #D91438 75%, #D91438), repeating-linear-gradient(45deg, #D91438 25%, #F2C2CB 25%, #F2C2CB 75%, #D91438 75%, #D91438);
-  background-position: 0 0, 10px 10px;
-  background-size: 20px 20px;
+  background-color: var(--secondColor);
   border-radius: var(--borderRadius);
+  border: 2px solid var(--secondColor);
+  cursor: pointer;
   text-align: center;
+  transition: background .1s ease-out, border .1s ease-out;
 }
 
 .btn-ajedrez {
-  font-size: 1.2em;
   color: #fff;
+  text-align: center;
+  font-size: 1em;
   font-weight: bold;
-  text-shadow:
-    -2px -2px 0 #000,
-    0px 2px 0 #000,
-    -2px 0px 0 #000,
-    2px 0px 0 #000;
   cursor: pointer;
+  transition: color .1s ease-out;
 }
 
+.conteainerAjedresBtn:hover .ajedresBtn {
+  border: 2px solid var(--secondColor);
+  background-color: transparent;
+}
+
+.conteainerAjedresBtn:hover .btn-ajedrez {
+  color: var(--secondColor);
+}
 .aContact {
   color: var(--thirdColor);
 }

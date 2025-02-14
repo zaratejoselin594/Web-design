@@ -130,17 +130,21 @@ function loadCartFromLocalStorage() {
 }
 
 // Notificación
-function showNotification(title) {
-  const notification = document.createElement('div');
-  notification.classList.add('notification');
-  notification.textContent = `${title} ha sido agregado al carrito`;
+function showNotification() {
+  const notification = document.createElement('a');
+  notification.innerHTML = `
+    <div class="button__icon-wrapper">
+      <ion-icon class="button__icon-cart" name="cart-outline"></ion-icon>
+    </div>
+  `;
+  notification.classList.add('btn-3');
   const notContainer = document.querySelector('.notContainer');
   notContainer.appendChild(notification);
   setTimeout(() => notContainer.style.display = 'flex', 100);
   setTimeout(() => {
     notContainer.style.display = 'none';
-    setTimeout(() => notification.remove(), 300);
-  }, 3000);
+    setTimeout(() => notification.remove(), 100);
+  }, 1000);
 }
 
 // Evento DOMContentLoaded
@@ -216,7 +220,7 @@ function saveProduct(flavor, grams, people, decorations, drawing, images, price)
 }
 
 function createProduct(flavor, grams, people, decorations, drawing, images, price) {
-  showNotification(flavor);
+  showNotification();
   return { id: generateUniqueId(), flavor, grams, people, decorations, drawing, images, price };
 }
 
