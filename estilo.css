@@ -450,10 +450,12 @@ a {
   position: fixed;
   font-size: 1.7em;
   padding: .3em;
-  border-bottom-right-radius: var(--borderRadius);
-  background-color: var(--primaryColor);
-  color: #fff ;
-  left: 0px;
+  border-radius: var(--borderRadius);
+  border: 3px solid #fff;
+  background-color: #000;
+  color: #fff;
+  right: 0px;
+  font-weight: bold;
 }
 .contentFlavor{
   color: #000;
@@ -687,7 +689,14 @@ h3{
   .contentFlavor:hover {
     background-color: #ffdae1;
   }
+.conteainerAjedresBtn:hover .ajedresBtn {
+  border: 2px solid var(--secondColor);
+  background-color: transparent;
+}
 
+.conteainerAjedresBtn:hover .btn-ajedrez {
+  color: var(--secondColor);
+}
 }
 
 @media (max-width: 1200px) {
@@ -788,14 +797,7 @@ a {
   cursor: pointer;
 }
 
-.conteainerAjedresBtn:hover .ajedresBtn {
-  border: 2px solid var(--secondColor);
-  background-color: transparent;
-}
 
-.conteainerAjedresBtn:hover .btn-ajedrez {
-  color: var(--secondColor);
-}
 .aContact{
   color: #fff;
 }

@@ -122,6 +122,7 @@ function abrirModal(itemMenu, modalClass) {
     } else {
       modal.style.display = 'flex';
       modal.style.position = 'fixed';
+      body.style.overflow='hidden'
     }
 
     // Buscar o crear el botón de cierre
@@ -135,6 +136,7 @@ function abrirModal(itemMenu, modalClass) {
 
     close.onclick = () => {
       modal.style.display = 'none';
+      body.style.overflow = 'auto'
     };
   });
 }
