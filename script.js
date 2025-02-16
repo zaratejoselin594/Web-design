@@ -236,11 +236,6 @@ document.querySelector('.hrACart').addEventListener('click', () => {
 document.querySelector('.closeModal').addEventListener('click', () => {
   modal.style.visibility = 'hidden';
 });
-window.onclick = function (event) {
-  if (event.target == modal) {
-    modal.style.visibility = 'hidden';
-  }
-}
 // Función para cargar productos desde localStorage y mostrarlos en el DOM
 function loadCartFromlocalStorage() {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];

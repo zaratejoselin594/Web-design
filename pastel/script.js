@@ -34,18 +34,12 @@ function openModal() {
 
 function closeModal() {
   document.getElementById('customModal').style.display = 'none';
-  window.onclick = function () {
-    document.getElementById('customModal').style.display = 'none';
-  }
 }
 document.querySelector('.hrACart').addEventListener('click', () => {
   document.querySelector('.modal').style.visibility = 'visible'
 })
 document.querySelector('.closeModal').addEventListener('click', () => {
   document.querySelector('.modal').style.visibility = 'hidden';
-  window.onclick = function () {
-    document.querySelector('.modal').style.visibility = 'hidden';
-  }
 })
 
 document.getElementById('images').addEventListener('change', function () {
