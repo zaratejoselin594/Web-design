@@ -44,6 +44,11 @@ navLinks.forEach(link => {
   link.addEventListener('click', () => {
     menuCheckbox.checked = false;
   });
+  window.onclick = function (event) {
+    if (event.target == menuCheckbox.checked) {
+      menuCheckbox.checked = false;
+    }
+  }
 });
 
 
@@ -129,11 +134,16 @@ function abrirModal(itemMenu, modalClass) {
     let close = modal.querySelector('.close-icon');
     if (!close) {
       close = document.createElement('ion-icon');
-      close.name = 'close-outline';
+      close.name = 'arrow-back-outline';
       close.classList.add('close-icon');
       modal.appendChild(close);
     }
-
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        body.style.overflow = 'auto'
+      }
+    }
     close.onclick = () => {
       modal.style.display = 'none';
       body.style.overflow = 'auto'
@@ -216,14 +226,21 @@ createModalItem('tarta', './resourse/img/veinticuatro.jpeg', 'pastel chocolate c
 
 
 //caritoo --------------------------------------------------------------------------------------------------------------------------
+const modal = document.querySelector('.modal');
+// Cuando se hace clic en el elemento con clase .hrACart, se muestra el modal
 document.querySelector('.hrACart').addEventListener('click', () => {
-  document.querySelector('.modal').style.visibility = 'visible'
-})
+  modal.style.visibility = 'visible';
+});
+
+// Cuando se hace clic en el botón de cerrar (con clase .closeModal), se oculta el modal
 document.querySelector('.closeModal').addEventListener('click', () => {
-  document.querySelector('.modal').style.visibility = 'hidden';
-})
-
-
+  modal.style.visibility = 'hidden';
+});
+window.onclick = function (event) {
+  if (event.target == modal) {
+    modal.style.visibility = 'hidden';
+  }
+}
 // Función para cargar productos desde localStorage y mostrarlos en el DOM
 function loadCartFromlocalStorage() {
   const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];

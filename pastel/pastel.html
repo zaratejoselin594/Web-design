@@ -26,7 +26,7 @@
       <ul class="hrUlRve">
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html" title="Inicio">Inicio</a></li>
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#aboutus" title="Ubicación">Ubicación</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="#pastel" title="Pastel Personalizado">Pastel Personalizado</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="#pastel" title="Pastel Personalizado">Personalizar Pastel</a></li>
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#tienda" title="Tienda">Tienda</a></li>
       </ul>
     </nav>
@@ -97,9 +97,11 @@
                     required></textarea>
                 </div>
                 <div class="divFrom">
-                  <label for="images">Sube 1 imagen de referencia:</label>
-                  <input type="file" id="images" name="images" accept="image/*"  required>
+                  <label for="images" class="labelImage">Subir 1 imagen de referencia</label>
+                  <input type="file" id="images" name="images" accept="image/*" required>
+                  <p id="fileName"></p> <!-- Aquí se mostrará el nombre del archivo -->
                 </div>
+
                 <div class="contenedorBtn">
                   <label for="inputCanvas" style="cursor: pointer;">Dibujar <br> Mi pastel 🎂</label>
                   <input type="checkbox" id="inputCanvas"/>
@@ -108,11 +110,11 @@
                   <label for="canvas">Dibuja como quieres tu pastel:</label>
                   <canvas id="canvas" width="300" height="300" style="border: 1px solid black;"></canvas>
                   <div>
+                    <button type="button" onclick="clearCanvas()" class="borrarDibujo">Borrar dibujo</button>
                     <label for="lineWidth">Grosor:</label>
                     <input type="range" id="lineWidth" min="1" max="10" value="5">
                     <label for="lineColor">Color:</label>
                     <input type="color" id="lineColor" value="#000000">
-                    <button type="button" onclick="clearCanvas()">Borrar dibujo</button>
                   </div>
                 </div>
               

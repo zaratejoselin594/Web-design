@@ -118,16 +118,17 @@ body{
   color: #fff;
   padding: .5em;
   cursor: pointer;
+  font-weight: bold;
 }
 .cart-total:hover{
-  background-color: #ba86e2;
+  background-color: var(--fourthColor);
 }
 .total{
   text-align: end;
   padding: .5em;
 }
 .modal{
-  visibility: hidden
+  visibility: hidden ;
 }
 
 /* Modal Container */
@@ -449,12 +450,12 @@ a {
 .close-icon{
   position: fixed;
   font-size: 1.7em;
-  padding: .3em;
+  padding: .2em 1em;
   border-radius: var(--borderRadius);
   border: 3px solid #fff;
   background-color: #000;
   color: #fff;
-  right: 0px;
+  left: 0px;
   font-weight: bold;
 }
 .contentFlavor{
@@ -654,25 +655,6 @@ h3{
   z-index: 2000;
 }
 
-.notification {
-  background-color: var(--secondColor);
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: var(--borderRadius);
-  box-shadow: 0 .4em .2em #6668;
-  font-size: 14px;
-  animation: fadeInOut 3s ease-in-out forwards;
-}
-
-.notification.error {
-  background-color: #f44336;
-  /* Rojo para errores */
-}
-
-.notification.warning {
-  background-color: #ff9800;
-  /* Naranja para advertencias */
-}
 /* Rve ---------------------------------------------------------------------------------------------------------------- */
 
 @media(min-width: 1200px) {

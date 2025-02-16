@@ -3,6 +3,7 @@ const form = document.getElementById('registroForm');
 form.addEventListener('submit', (event) => {
   event.preventDefault(); // Previene el comportamiento por defecto del formulario (opcional)
   document.querySelector(".carritoContainer").style = 'display: flex;'
+  document.querySelector('.form-container').style.display = 'none';
 });
 function openCopyOrderModal() {
   document.getElementById('copyOrderModal').style.display = 'flex';
@@ -130,9 +131,7 @@ function guardarYMostrarPedidos() {
 
 
 function wpLink(mensajeCompleto) {
-  document.getElementById('whatsappLink').addEventListener('click', () => {
-    window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
-  })
+  window.open(`https://wa.me/+5493517716910?text=${encodeURIComponent(mensajeCompleto)}`, "_blank");
 }
 cartTotal.addEventListener("click", guardarYMostrarPedidos);
 document.addEventListener("DOMContentLoaded", function () {

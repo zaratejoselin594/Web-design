@@ -26,7 +26,7 @@
       <ul class="hrUlRve">
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html" title="Inicio">Inicio</a></li>
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#aboutus" title="Ubicación">Ubicación</a></li>
-        <li class="hrUlLiRve"><a class="hrLiA" href="../pastel/pastel.html" title="Pastel Personalizado">Pastel Personalizado</a></li>
+        <li class="hrUlLiRve"><a class="hrLiA" href="../pastel/pastel.html" title="Pastel Personalizado">Personalizar Pastel</a></li>
         <li class="hrUlLiRve"><a class="hrLiA" href="../index.html#tienda" title="Tienda">Tienda</a></li>
       </ul>
     </nav>
@@ -80,23 +80,19 @@
         </div>
         <button type="submit" id="submit" class="conteainerAjedresBtn">
           <div class="ajedresBtn">
-            <p class="btn-ajedrez" id="local">Enviar</p>
+            <p class="btn-ajedrez" id="local">Continuar</p>
           </div>
         </button>
       </form> 
     </div>
     <div class="carritoContainer">
+      <div class="topModal">
+        <h3>Realizar pedido</h3>
+        <button class="cartTotal" id="comprar" onclick="openCopyOrderModal()">Perdir por WhatsApp 🛒</button>
+      </div>
       <div class="infoCarrito">
         <div class="containerModalOrder">
           <div class="contentModalOrder cartHtml">
-            <div class="topModal">
-              <h3>Carrito de Compras</h3>
-              <a href="#"><ion-icon class="closeModal" name="close-outline"></ion-icon></a>
-            </div>
-            <div class="form-group">
-              <button class="cartTotal" id="comprar" onclick="openCopyOrderModal()">Hacer pedido 🛒</button>
-            </div>
-            <p class="total"></p>
           </div>
         </div>
       </div>
@@ -114,7 +110,6 @@
               <div class="imageContainer"></div>
             </div>
             <p class="orderTotal"></p>
-            <button id="whatsappLink">Pedir por WhatsApp</button>
           </div>
         </div>
       </div>

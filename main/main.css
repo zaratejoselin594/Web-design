@@ -208,6 +208,7 @@ h3 {
   color: #fff;
   padding: .5em;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .cart-total:hover {
@@ -555,9 +556,9 @@ a {
 .btn-3 .button__icon-wrapper {
   animation: not .4s ease-out;
   background-color: #000;
-  width: 1.8em;
-  height: 1.8em;
+  padding: .5em;
   position: relative;
+  font-size: 1.5em;
   color: #fff;
   border: none;
   border-radius: 50%;

@@ -224,13 +224,46 @@ option:checked {
   cursor: pointer;
   color: #000;
 }
+/* Estilo para ocultar la parte del input file */
+input[type="file"] {
+  display: none;
+  /* Ocultamos el input file original */
+}
 
+/* Estilo del texto que va debajo */
+#fileName {
+  margin-top: 10px;
+  color: #333;
+  font-size: 14px;
+  font-weight: normal;
+}
+.labelImage{
+  background-color: var(--secondColor);
+  border-radius: var(--borderRadius);
+  padding: .3em .8em;
+}
+#lineColor{
+  width: 3em;
+  height: 3em;
+  padding: 0;
+}
+#lineWidth{
+  width: 6em;
+}
 #canvas {
   display: flex;
   margin: 10px 0;
   border-radius: var(--borderRadius);
   background-color: #fff;
   touch-action: none;
+}
+.borrarDibujo{
+  background-color: var(--primaryColor);
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: .3em;
+  border-radius: var(--borderRadius);
 }
 .contentModal img{
   width: 5em;
@@ -239,4 +272,10 @@ option:checked {
 .canvasModal{
   display: none;
   flex-direction: column;
+}
+.canvasModal div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .3em;
 }
