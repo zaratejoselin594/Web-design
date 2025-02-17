@@ -401,17 +401,13 @@ a {
   display: none;
 }
 .cartTotal {
-  border: #fff solid 1px;
   border-radius: var(--borderRadius);
-  background-color: var(--fourthColor);
-  box-shadow:  3px 3px 0 #bf15237d;
-  color: #000;
+  border: 3px solid var(--secondColor);
+  background-color: transparent;
+  color: var(--secondColor);
+  font-weight: bold;
   text-transform: uppercase;
   padding: .3em 2em;
   font-size: 1.2em;
   cursor: pointer;
-}
-
-.cartTotal:hover {
-  background-color: #D91438;
 }
