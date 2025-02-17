@@ -236,7 +236,6 @@ function saveCartToLocalStorage(cartItems) {
   localStorage.setItem('cart', JSON.stringify(cartItems));
 }
 
-// Función para añadir un producto al DOM y mostrarlo en la interfaz
 function addProductToDOM(product) {
   const contentModal = document.querySelector('.cartHtml');
   if (!contentModal || contentModal.querySelector(`[data-id="${product.id}"]`)) return; // Evitar duplicados
@@ -256,22 +255,27 @@ function addProductToDOM(product) {
     </div>
   `;
 
-  if (product.images.length > 0) {
+  // Asegurarse de que las imágenes sean válidas antes de agregarlas
+  if (product.images && product.images.length > 0 && isValidImageURL(product.images[0])) {
     productHTML = `<img src="${product.images[0]}" alt="Producto" class="imgProduct">` + productHTML;
   }
 
-  if (product.drawing) {
+  if (product.drawing && isValidImageURL(product.drawing)) {
     productHTML = `<img src="${product.drawing}" alt="Dibujo" class="imgProduct">` + productHTML;
   }
 
   cartItem.innerHTML = productHTML;
   contentModal.appendChild(cartItem);
 
-  
-
   // Agregar evento para eliminar producto
   cartItem.querySelector('.iconTrash').addEventListener('click', () => removeProductFromCart(product.id));
 }
+
+// Función auxiliar para verificar si la URL de la imagen es válida
+function isValidImageURL(url) {
+  return url && (url.startsWith('http') || url.startsWith('https'));
+}
+
 
 // Función para eliminar un producto del carrito
 function removeProductFromCart(productId) {
