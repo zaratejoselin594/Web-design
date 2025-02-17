@@ -42,10 +42,6 @@ document.querySelector('.closeModal').addEventListener('click', () => {
   document.querySelector('.modal').style.visibility = 'hidden';
 })
 
-document.getElementById('images').addEventListener('change', function () {
-  var fileName = this.files[0] ? this.files[0].name : 'No se ha seleccionado ningún archivo';
-  document.getElementById('fileName').textContent = fileName;
-});
 
 
 // Canvas
@@ -169,8 +165,13 @@ document.addEventListener('DOMContentLoaded', () => {
 document.getElementById('cakeForm').addEventListener('submit', (e) => {
   e.preventDefault();
   saveFormData();
-  document.getElementById('customModal').style.display = 'none';
+  cerrarModal()
 });
+
+// Cerrar Modal formulario
+function cerrarModal() {
+  setTimeout(() => document.getElementById('customModal').style.display = 'none', 100);
+}
 
 // Generar ID único
 function generateUniqueId() {

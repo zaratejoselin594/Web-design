@@ -178,6 +178,7 @@ select {
   color: #c14158;
   cursor: pointer;
   outline: none;
+  text-align: center;
   width: 58%;
   transition: all 0.3s ease-in-out;
   text-align: center;
@@ -202,7 +203,9 @@ select:active,
 select:focus {
   background-color: #f7b0bd;
 }
-
+option{
+  text-align: center;
+}
 option:hover {
   background-color: #db2445;
   color: #fff;
@@ -226,22 +229,10 @@ option:checked {
 }
 /* Estilo para ocultar la parte del input file */
 input[type="file"] {
-  display: none;
-  /* Ocultamos el input file original */
+  width: 20em;
 }
 
-/* Estilo del texto que va debajo */
-#fileName {
-  margin-top: 10px;
-  color: #333;
-  font-size: 14px;
-  font-weight: normal;
-}
-.labelImage{
-  background-color: var(--secondColor);
-  border-radius: var(--borderRadius);
-  padding: .3em .8em;
-}
+
 #lineColor{
   width: 3em;
   height: 3em;
