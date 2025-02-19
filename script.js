@@ -186,43 +186,48 @@ function createModalItem(className, src, alt, itemMenu, price, titulo) {
 
 
 // Llamadas a la función con referencias al DOM en lugar de cadenas de texto
-createModalItem('pastel', './resourse/img/diez.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('pastel', './resourse/img/once.webp', 'Pastel de Vainilla y helado', pastel, 12500, 'Pastel de Vainilla y helado');
-createModalItem('pastel', './resourse/img/diecinueve.webp', 'pastel chocolate con frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('pastel', './resourse/img/IMG_0289.jpeg', 'pastel multifruta', pastel, 12500, 'Pastel Multifruta');
-createModalItem('pastel', './resourse/img/IMG_0287.jpeg', 'pastel Vainilla con mani', pastel, 12500, 'Pastel Vainilla con mani');
-createModalItem('pastel', './resourse/img/IMG_0291.jpeg', 'pastel contemporaneo', pastel, 12500, 'Pastel conteporaneo');
-createModalItem('pastel', './resourse/img/IMG_0292.jpeg', 'pastel multifruta divertido tres pisos', pastel, 31000, 'Pastel Multifruta Tres pisos');
+createModalItem('pastel', './resourse/img/diez.webp', 'Pastel Chocolate & Frutilla', pastel, 12500, 'Pastel Chocolate con Frutilla');
+createModalItem('pastel', './resourse/img/once.webp', 'Pastel Vainilla & Helado', pastel, 14500, 'Pastel de Vainilla y Helado');
+createModalItem('pastel', './resourse/img/diecinueve.webp', 'Pastel Chocolate & Frutilla', pastel, 13500, 'Pastel Chocolate con Frutilla');
+createModalItem('pastel', './resourse/img/IMG_0289.jpeg', 'Pastel Multifruta', pastel, 15500, 'Pastel Multifruta');
+createModalItem('pastel', './resourse/img/IMG_0287.jpeg', 'Pastel Vainilla & Mani', pastel, 12000, 'Pastel Vainilla con Mani');
+createModalItem('pastel', './resourse/img/IMG_0291.jpeg', 'Pastel Contemporáneo', pastel, 17000, 'Pastel Contemporáneo');
+createModalItem('pastel', './resourse/img/IMG_0292.jpeg', 'Pastel Multifruta Tres Pisos', pastel, 31000, 'Pastel Multifruta Tres Pisos');
 
+createModalItem('mesaDulce', './resourse/img/catorce.webp', 'Mesa Dulce 1', mesaDulce, 65000, 'Mesa Dulce 1');
+createModalItem('mesaDulce', './resourse/img/cuatro.webp', 'Mesa Dulce 2', mesaDulce, 72000, 'Mesa Dulce 2');
+createModalItem('mesaDulce', './resourse/img/dieciocho.webp', 'Mesa Dulce 3', mesaDulce, 68000, 'Mesa Dulce 3');
+createModalItem('mesaDulce', './resourse/img/dieciseis.webp', 'Mesa Dulce 4', mesaDulce, 59000, 'Mesa Dulce 4');
+createModalItem('mesaDulce', './resourse/img/diecisiete.webp', 'Mesa Dulce 5', mesaDulce, 62000, 'Mesa Dulce 5');
+createModalItem('mesaDulce', './resourse/img/dos.webp', 'Mesa Dulce 6', mesaDulce, 54000, 'Mesa Dulce 6');
+createModalItem('mesaDulce', './resourse/img/seis.webp', 'Mesa Dulce 7', mesaDulce, 59000, 'Mesa Dulce 7');
+createModalItem('mesaDulce', './resourse/img/quince.webp', 'Mesa Dulce 8', mesaDulce, 66000, 'Mesa Dulce 8');
+createModalItem('mesaDulce', './resourse/img/trece.webp', 'Mesa Dulce 9', mesaDulce, 71000, 'Mesa Dulce 9');
+createModalItem('mesaDulce', './resourse/img/tres.webp', 'Mesa Dulce 10', mesaDulce, 74000, 'Mesa Dulce 10');
+createModalItem('mesaDulce', './resourse/img/uno.webp', 'Mesa Dulce 11', mesaDulce, 76000, 'Mesa Dulce 11');
 
-createModalItem('mesaDulce', './resourse/img/catorce.webp', 'pastel chocolate con frutilla', mesaDulce, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('mesaDulce', './resourse/img/cuatro.webp', 'pastel chocolate con frutilla', mesaDulce, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('mesaDulce', './resourse/img/dieciocho.webp', 'pastel chocolate con frutilla', mesaDulce, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('mesaDulce', './resourse/img/dieciseis.webp', 'pastel Vainilla helado', mesaDulce, 12000, 'Pastel de Vainilla helado');
-createModalItem('mesaDulce', './resourse/img/diecisiete.webp', 'pastel Vainilla helado', mesaDulce, 12000, 'Pastel de Vainilla helado');
-createModalItem('mesaDulce', './resourse/img/dos.webp', 'pastel Vainilla helado', mesaDulce, 12000, 'Pastel de Vainilla helado');
-createModalItem('mesaDulce', './resourse/img/seis.webp', 'pastel Vainilla helado', mesaDulce, 12000, 'Pastel de Vainilla helado');
-createModalItem('mesaDulce', './resourse/img/quince.webp', 'pastel Vainilla helado', mesaDulce, 12000, 'Pastel de Vainilla helado');
-createModalItem('mesaDulce', './resourse/img/trece.webp', 'pastel Vainilla helado', mesaDulce, 12000, 'Pastel de Vainilla helado');
-createModalItem('mesaDulce', './resourse/img/tres.webp', 'pastel Vainilla helado', mesaDulce, 12000, 'Pastel de Vainilla helado');
-createModalItem('mesaDulce', './resourse/img/uno.webp', 'pastel Vainilla helado', mesaDulce, 12000, 'Pastel de Vainilla helado');
+createModalItem('merienda', './resourse/img/IMG_0285.jpeg', 'Galletas surtidas 1', merienda, 5600, 'Galletas surtidas 1');
+createModalItem('merienda', './resourse/img/IMG_0286.jpeg', 'Galletas surtidas 2', merienda, 6200, 'Galletas surtidas 2');
+createModalItem('merienda', './resourse/img/veinticinco.jpeg', 'Alfajor de chocolate', merienda, 6900, 'Alfajor de chocolate');
+createModalItem('merienda', './resourse/img/veintiseis.jpeg', 'Alfajor de vainilla', merienda, 5400, 'Alfajor de Vainilla');
+createModalItem('merienda', './resourse/img/veintisiete.jpeg', 'Alfajor de Frutilla', merienda, 6000, 'Alfajor de Frutilla');
+createModalItem('merienda', './resourse/img/veintiocho.jpeg', 'Alfajor de frutilla y vainilla', merienda, 6700, 'Alfajor de frutilla y vainilla');
+createModalItem('merienda', './resourse/img/veintinueve.jpeg', 'Muffin 1', merienda, 7100, 'Muffin 1');
+createModalItem('merienda', './resourse/img/treinta.jpeg', 'Factura con Dulce de leche', merienda, 6600, 'Factura con Dulce de leche');
+createModalItem('merienda', './resourse/img/treintayuno.jpeg', 'Masitas surtidas 1', merienda, 7200, 'Masitas surtidas 1');
+createModalItem('merienda', './resourse/img/treintaydos.jpeg', 'Masitas surtidas 2', merienda, 7500, 'Masitas surtidas 2');
+createModalItem('merienda', './resourse/img/treintaicuatro.jpeg', 'Galletas surtidas 3', merienda, 7100, 'Galletas surtidas 3');
+createModalItem('merienda', './resourse/img/treintaicinco.jpeg', 'Alfajor relleno frutilla', merienda, 6800, 'Alfajor relleno frutilla');
+createModalItem('merienda', './resourse/img/treintaiseis.jpeg', 'Muffin 2', merienda, 7500, 'Muffin 2');
+createModalItem('merienda', './resourse/img/treintaisiete.jpeg', 'Croissant', merienda, 6300, 'Croissant');
+createModalItem('merienda', './resourse/img/treintaiocho.jpeg', 'Masitas surtidas 3', merienda, 7000, 'Masitas surtidas 3');
 
+createModalItem('tarta', './resourse/img/veinte.jpeg', 'Tarta Vainilla', tarta, 6500, 'Tarta de Vainilla');
+createModalItem('tarta', './resourse/img/veintiuno.jpeg', 'Tarta de LemonPie', tarta, 7000, 'Tarta de LemonPie');
+createModalItem('tarta', './resourse/img/veintidos.jpeg', 'Tarta Chocolate', tarta, 7500, 'Tarta Chocolate');
+createModalItem('tarta', './resourse/img/veintitres.jpeg', 'Tarta Frutilla', tarta, 7800, 'Tarta Frutilla');
+createModalItem('tarta', './resourse/img/veinticuatro.jpeg', 'Tarta Chocolate con fruta', tarta, 7300, 'Tarta Chocolate con Fruta');
 
-createModalItem('merienda', './resourse/img/IMG_0285.jpeg', 'pastel Vainilla helado', merienda, 12000, 'Pastel de Vainilla helado');
-createModalItem('merienda', './resourse/img/IMG_0286.jpeg', 'pastel chocolate con frutilla', merienda, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('merienda', './resourse/img/once.webp', 'pastel chocolate con frutilla', merienda, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('merienda', './resourse/img/siete.webp', 'pastel chocolate con frutilla', merienda, 12500, 'Pastel Chocolate con Frutilla');
-
-createModalItem('budines', './resourse/img/budin.jpeg', 'pastel Vainilla helado', budines, 12000, 'Pastel de Vainilla helado');
-createModalItem('budines', './resourse/img/diez.webp', 'pastel chocolate con frutilla', budines, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('budines', './resourse/img/once.webp', 'pastel chocolate con frutilla', budines, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('budines', './resourse/img/siete.webp', 'pastel chocolate con frutilla', budines, 12500, 'Pastel Chocolate con Frutilla');
-
-createModalItem('tarta', './resourse/img/veinte.jpeg', 'pastel Vainilla helado', tarta, 12000, 'Pastel de Vainilla helado');
-createModalItem('tarta', './resourse/img/veintiuno.jpeg', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('tarta', './resourse/img/veintidos.jpeg', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('tarta', './resourse/img/veintitres.jpeg', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
-createModalItem('tarta', './resourse/img/veinticuatro.jpeg', 'pastel chocolate con frutilla', tarta, 12500, 'Pastel Chocolate con Frutilla');
 
 
 //caritoo --------------------------------------------------------------------------------------------------------------------------
